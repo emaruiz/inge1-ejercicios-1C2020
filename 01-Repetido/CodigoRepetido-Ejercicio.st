@@ -21,16 +21,30 @@ TestCase subclass: #CustomerBookTest
 	poolDictionaries: ''
 	category: 'CodigoRepetido-Ejercicio'!
 
-!CustomerBookTest methodsFor: 'auxiliaryMethods' stamp: 'bi 4/12/2021 22:12:19'!
-getMeTimeToCreateTheClient: aClient
-	|customerBook millisecondsBeforeRunning millisecondsAfterRunning|
-	customerBook := CustomerBook new.
-	
-	millisecondsBeforeRunning = Time millisecondClockValue * millisecond.
-	customerBook addCustomerNamed: aClient.
-	millisecondsAfterRunning = Time millisecondClockValue * millisecond.
+!CustomerBookTest methodsFor: 'auxiliaryMethods' stamp: 'e d r r 4/14/2021 17:49:37'!
+getMeTimeCustomerBookOperation: customerBookOperation
+	|millisecondsBeforeRunning millisecondsAfterRunning|
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBookOperation value.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
 	
 	^(millisecondsAfterRunning-millisecondsBeforeRunning)! !
+
+!CustomerBookTest methodsFor: 'auxiliaryMethods' stamp: 'e d r r 4/14/2021 17:57:13'!
+getMeTimeToCreateTheClient: aClient
+	|customerBook|
+	customerBook := CustomerBook new.
+	
+	^self getMeTimeCustomerBookOperation: [customerBook addCustomerNamed: aClient.].! !
+
+!CustomerBookTest methodsFor: 'auxiliaryMethods' stamp: 'e d r r 4/14/2021 17:58:10'!
+getMeTimeToDeleteNewClient: aClient
+	|customerBook|
+	customerBook := CustomerBook new.
+	
+	customerBook addCustomerNamed: aClient.
+	
+	^self getMeTimeCustomerBookOperation: [customerBook removeCustomerNamed: aClient.].! !
 
 
 !CustomerBookTest methodsFor: 'testing' stamp: 'bi 4/12/2021 22:12:52'!
@@ -50,21 +64,23 @@ test01AddingCustomerShouldNotTakeMoreThan50Milliseconds
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'NR 4/3/2019 10:50:13'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'e d r r 4/14/2021 16:53:57'!
 test02RemovingCustomerShouldNotTakeMoreThan100Milliseconds
 
-	| customerBook millisecondsBeforeRunning millisecondsAfterRunning paulMcCartney |
+	| deletedTime |
 	
-	customerBook := CustomerBook new.
+	"customerBook := CustomerBook new.
 	paulMcCartney := 'Paul McCartney'.
 	
 	customerBook addCustomerNamed: paulMcCartney.
 	  
 	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
 	customerBook removeCustomerNamed: paulMcCartney.
-	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond."
 	
-	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (100 * millisecond)
+	deletedTime := self getMeTimeToDeleteNewClient: 'Paul McCartney'.
+	
+	self assert: (deletedTime) < (100 * millisecond)
 	
 ! !
 
