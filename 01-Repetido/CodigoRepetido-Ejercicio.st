@@ -251,26 +251,11 @@ numberOfSuspendedCustomers
 	
 	^suspended size! !
 
-!CustomerBook methodsFor: 'customer management' stamp: 'NR 4/3/2019 10:14:26'!
+!CustomerBook methodsFor: 'customer management' stamp: 'e d r r 4/15/2021 16:46:45'!
 removeCustomerNamed: aName 
- 
-	1 to: active size do: 
-	[ :index |
-		aName = (active at: index)
-			ifTrue: [
-				active removeAt: index.
-				^ aName 
-			] 
-	].
 
-	1 to: suspended size do: 	
-	[ :index |
-		aName = (suspended at: index)
-			ifTrue: [
-				suspended removeAt: index.
-				^ aName 
-			] 
-	].
+	(active includes: aName) ifTrue: [^self removeInCollection: active theItem: aName.].
+	(suspended includes: aName) ifTrue: [^self removeInCollection: suspended theItem: aName].
 	
 	^ NotFound signal.
 ! !
@@ -294,6 +279,18 @@ suspendCustomerNamed: aName
 	
 	suspended add: aName
 ! !
+
+
+!CustomerBook methodsFor: 'auxiliaryMethods' stamp: 'e d r r 4/15/2021 16:04:51'!
+removeInCollection: collection theItem: searchedElement
+	1 to: collection size do: 
+	[ :index |
+		searchedElement = (collection at: index)
+			ifTrue: [
+				collection removeAt: index.
+				^ searchedElement 
+			] 
+	].! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
