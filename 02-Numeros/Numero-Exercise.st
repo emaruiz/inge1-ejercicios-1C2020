@@ -364,33 +364,50 @@ Numero subclass: #Entero
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'e d r r 4/20/2021 16:34:00'!
+!Entero methodsFor: 'complementary arithmetic operations' stamp: 'bi 4/20/2021 20:06:03'!
+addEntero: enteroAdder
+	
+	^self class with: enteroAdder integerValue + value.! !
+
+!Entero methodsFor: 'complementary arithmetic operations' stamp: 'bi 4/20/2021 20:50:45'!
+divideEntero: enteroDivided
+
+	^Fraccion with: enteroDivided over: self.! !
+
+!Entero methodsFor: 'complementary arithmetic operations' stamp: 'bi 4/20/2021 20:42:42'!
+multiplyEntero: enteroMultied
+
+	^self class with: enteroMultied integerValue * value.! !
+
+!Entero methodsFor: 'complementary arithmetic operations' stamp: 'bi 4/20/2021 20:33:42'!
+subtractedFromEntero: enteroSubstracted
+
+	 ^self class with: enteroSubstracted integerValue - value.! !
+
+
+!Entero methodsFor: 'arithmetic operations' stamp: 'bi 4/20/2021 20:43:12'!
 * aMultiplier 
 	
-	(aMultiplier isKindOf: Entero) ifTrue: [^self class with: value * aMultiplier integerValue].
-	(aMultiplier isKindOf: Fraccion) ifTrue: [^self * aMultiplier numerator / aMultiplier denominator].
+	^aMultiplier multiplyEntero: self.
 	! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'e d r r 4/20/2021 16:09:41'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'bi 4/20/2021 20:12:00'!
 + anAdder 
 	
-	(anAdder isKindOf: Entero) ifTrue: [^self class with: value + anAdder integerValue].
-	(anAdder isKindOf: Fraccion) ifTrue: [^self * anAdder denominator  + anAdder numerator / anAdder denominator].
+	^anAdder addEntero: self
 	
 ! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'e d r r 4/20/2021 17:03:52'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'bi 4/20/2021 21:10:47'!
 - aSubtrahend 
 	
-	(aSubtrahend isKindOf: Entero) ifTrue: [^self class with: value - aSubtrahend integerValue.].
-	(aSubtrahend isKindOf: Fraccion) ifTrue: [^self * aSubtrahend denominator - aSubtrahend numerator / aSubtrahend denominator].
+	^aSubtrahend subtractedFromEntero: self.
 	! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'e d r r 4/20/2021 17:13:25'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'bi 4/20/2021 21:10:04'!
 / aDivisor 
 	
-	(aDivisor isKindOf: Entero) ifTrue: [^Fraccion with: self over: aDivisor].
-	(aDivisor isKindOf: Fraccion) ifTrue: [^Fraccion with: self * aDivisor denominator over: aDivisor numerator].! !
+	^aDivisor divideEntero: self.! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'HernanWilkinson 5/7/2016 21:55'!
 // aDivisor 
@@ -588,6 +605,27 @@ printOn: aStream
 		print: numerator;
 		nextPut: $/;
 		print: denominator ! !
+
+
+!Fraccion methodsFor: 'complementary arithmetic operations' stamp: 'bi 4/20/2021 21:09:25'!
+addEntero: enteroAdder
+
+	^enteroAdder * denominator + numerator / denominator.! !
+
+!Fraccion methodsFor: 'complementary arithmetic operations' stamp: 'bi 4/20/2021 21:09:18'!
+divideEntero: enteroDivided
+
+	^Fraccion with: enteroDivided * denominator over: numerator.! !
+
+!Fraccion methodsFor: 'complementary arithmetic operations' stamp: 'bi 4/20/2021 20:44:29'!
+multiplyEntero: enteroMultied
+
+	^enteroMultied * numerator / denominator.! !
+
+!Fraccion methodsFor: 'complementary arithmetic operations' stamp: 'bi 4/20/2021 20:35:01'!
+subtractedFromEntero: enteroSubstracted
+
+	^enteroSubstracted * denominator - numerator / denominator.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
