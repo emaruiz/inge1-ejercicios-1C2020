@@ -147,30 +147,36 @@ TestCase subclass: #SentenceFinderByPrefixTest
 
 !classDefinition: #OOStack category: 'Stack-Exercise'!
 Object subclass: #OOStack
-	instanceVariableNames: 'elements'
+	instanceVariableNames: 'top'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'e d r r 4/26/2021 18:27:20'!
+!OOStack methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:44:52'!
 initialize
 	
-	elements := LinkedList new.! !
+	top := OOStackBaseElement new.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'e d r r 4/26/2021 18:28:21'!
+!OOStack methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:45:33'!
 isEmpty
 	
-	^elements isEmpty.! !
+	^top isEmpty.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'e d r r 4/26/2021 18:40:53'!
+!OOStack methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:30:19'!
 pop
 	
-	elements removeLast.! !
+	^elements removeLast.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'e d r r 4/26/2021 18:39:27'!
+!OOStack methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:57:47'!
 push: elem
 	
-	elements addLast: elem.! !
+	top := OOStackValueElement with: elem nextTo: top.
+	! !
+
+!OOStack methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:33:37'!
+top
+
+	^elements last! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -182,6 +188,62 @@ OOStack class
 stackEmptyErrorDescription
 	
 	^ 'Stack is empty!!!!!!'! !
+
+
+!classDefinition: #OOStackElement category: 'Stack-Exercise'!
+Object subclass: #OOStackElement
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!OOStackElement methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:46:10'!
+isEmpty
+
+	self subclassResponsibility.! !
+
+
+!classDefinition: #OOStackBaseElement category: 'Stack-Exercise'!
+OOStackElement subclass: #OOStackBaseElement
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!OOStackBaseElement methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:47:40'!
+isEmpty
+
+	^true! !
+
+
+!classDefinition: #OOStackValueElement category: 'Stack-Exercise'!
+OOStackElement subclass: #OOStackValueElement
+	instanceVariableNames: 'value next'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!OOStackValueElement methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:54:01'!
+initializeWith: aValue nextTo: aElement
+
+	value := aValue.
+	next := aElement.! !
+
+!OOStackValueElement methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:58:43'!
+isEmpty
+
+	^false.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'OOStackValueElement class' category: 'Stack-Exercise'!
+OOStackValueElement class
+	instanceVariableNames: ''!
+
+!OOStackValueElement class methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:55:27'!
+with: aValue nextTo: aElement
+
+	^self new initializeWith: aValue nextTo: 	aElement.! !
 
 
 !classDefinition: #SentenceFinderByPrefix category: 'Stack-Exercise'!
