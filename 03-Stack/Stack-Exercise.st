@@ -162,10 +162,13 @@ isEmpty
 	
 	^top isEmpty.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:30:19'!
+!OOStack methodsFor: 'as yet unclassified' stamp: 'e d r r 4/27/2021 17:35:29'!
 pop
 	
-	^elements removeLast.! !
+	| value |
+	value := top getValue.
+	top := top getNext.
+	^value.! !
 
 !OOStack methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:57:47'!
 push: elem
@@ -173,10 +176,15 @@ push: elem
 	top := OOStackValueElement with: elem nextTo: top.
 	! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:33:37'!
+!OOStack methodsFor: 'as yet unclassified' stamp: 'e d r r 4/27/2021 18:43:06'!
+size
+	
+	^top amountStackElements.! !
+
+!OOStack methodsFor: 'as yet unclassified' stamp: 'e d r r 4/27/2021 17:38:47'!
 top
 
-	^elements last! !
+	^top getValue.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -210,6 +218,11 @@ OOStackElement subclass: #OOStackBaseElement
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
+!OOStackBaseElement methodsFor: 'as yet unclassified' stamp: 'e d r r 4/27/2021 18:23:23'!
+amountStackElements
+	
+	^0.! !
+
 !OOStackBaseElement methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:47:40'!
 isEmpty
 
@@ -222,6 +235,21 @@ OOStackElement subclass: #OOStackValueElement
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
+
+!OOStackValueElement methodsFor: 'as yet unclassified' stamp: 'e d r r 4/27/2021 18:20:32'!
+amountStackElements
+	
+	^1 + self getNext amountStackElements.! !
+
+!OOStackValueElement methodsFor: 'as yet unclassified' stamp: 'e d r r 4/27/2021 17:28:35'!
+getNext
+	
+	^next.! !
+
+!OOStackValueElement methodsFor: 'as yet unclassified' stamp: 'e d r r 4/27/2021 17:35:04'!
+getValue
+	
+	^value.! !
 
 !OOStackValueElement methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:54:01'!
 initializeWith: aValue nextTo: aElement
