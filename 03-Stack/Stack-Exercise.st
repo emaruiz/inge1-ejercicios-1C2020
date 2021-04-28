@@ -162,14 +162,20 @@ isEmpty
 	
 	^top isEmpty.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'bi 4/27/2021 20:09:05'!
+!OOStack methodsFor: 'as yet unclassified' stamp: 'bi 4/27/2021 21:39:28'!
 pop
 	
 	
 	"value := top getValue.
 	top := top getNext.
 	^value."
-	^top pop! !
+	
+	"^top pop"
+	
+	| value |
+	value := top top.
+	top := top getNext.
+	^value.! !
 
 !OOStack methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:57:47'!
 push: elem
@@ -211,11 +217,6 @@ isEmpty
 
 	self subclassResponsibility.! !
 
-!OOStackElement methodsFor: 'as yet unclassified' stamp: 'bi 4/27/2021 20:09:36'!
-pop
-	
-	self subclassResponsibility.! !
-
 !OOStackElement methodsFor: 'as yet unclassified' stamp: 'bi 4/27/2021 20:39:42'!
 top
 	
@@ -239,7 +240,7 @@ isEmpty
 
 	^true! !
 
-!OOStackBaseElement methodsFor: 'as yet unclassified' stamp: 'bi 4/27/2021 20:11:49'!
+!OOStackBaseElement methodsFor: 'as yet unclassified' stamp: 'bi 4/27/2021 21:42:00'!
 pop
 
 	self error: OOStack stackEmptyErrorDescription.! !
@@ -282,22 +283,6 @@ initializeWith: aValue nextTo: aElement
 isEmpty
 
 	^false.! !
-
-!OOStackValueElement methodsFor: 'as yet unclassified' stamp: 'bi 4/27/2021 21:03:32'!
-pop
-	
-	|valueRet|
-	
-	valueRet := value.
-	
-	"value := next getValue.
-	next := next getNext."
-	
-	^valueRet.
-	
-	"value := top getValue.
-	top := top getNext.
-	^value."! !
 
 !OOStackValueElement methodsFor: 'as yet unclassified' stamp: 'bi 4/27/2021 20:40:29'!
 top
