@@ -152,17 +152,18 @@ Object subclass: #OOStack
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:44:52'!
+!OOStack methodsFor: 'initialization' stamp: 'bi 4/26/2021 21:44:52'!
 initialize
 	
 	top := OOStackBaseElement new.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:45:33'!
+
+!OOStack methodsFor: 'stack operations' stamp: 'bi 4/26/2021 21:45:33'!
 isEmpty
 	
 	^top isEmpty.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'bi 4/27/2021 21:39:28'!
+!OOStack methodsFor: 'stack operations' stamp: 'bi 4/27/2021 21:39:28'!
 pop
 	
 	
@@ -177,18 +178,18 @@ pop
 	top := top getNext.
 	^value.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:57:47'!
+!OOStack methodsFor: 'stack operations' stamp: 'bi 4/26/2021 21:57:47'!
 push: elem
 	
 	top := OOStackValueElement with: elem nextTo: top.
 	! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'e d r r 4/27/2021 18:43:06'!
+!OOStack methodsFor: 'stack operations' stamp: 'e d r r 4/27/2021 18:43:06'!
 size
 	
 	^top amountStackElements.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'bi 4/27/2021 20:39:32'!
+!OOStack methodsFor: 'stack operations' stamp: 'bi 4/27/2021 20:39:32'!
 top
 
 	^top top.! !
@@ -212,12 +213,17 @@ Object subclass: #OOStackElement
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStackElement methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:46:10'!
+!OOStackElement methodsFor: 'complementary stack operations' stamp: 'e d r r 4/28/2021 18:46:39'!
+amountStackElements
+	
+	self subclassResponsibility.! !
+
+!OOStackElement methodsFor: 'complementary stack operations' stamp: 'bi 4/26/2021 21:46:10'!
 isEmpty
 
 	self subclassResponsibility.! !
 
-!OOStackElement methodsFor: 'as yet unclassified' stamp: 'bi 4/27/2021 20:39:42'!
+!OOStackElement methodsFor: 'complementary stack operations' stamp: 'bi 4/27/2021 20:39:42'!
 top
 	
 	self subclassResponsibility.! !
@@ -230,22 +236,22 @@ OOStackElement subclass: #OOStackBaseElement
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStackBaseElement methodsFor: 'as yet unclassified' stamp: 'e d r r 4/27/2021 18:23:23'!
+!OOStackBaseElement methodsFor: 'complementary stack operations' stamp: 'e d r r 4/27/2021 18:23:23'!
 amountStackElements
 	
 	^0.! !
 
-!OOStackBaseElement methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:47:40'!
+!OOStackBaseElement methodsFor: 'complementary stack operations' stamp: 'bi 4/26/2021 21:47:40'!
 isEmpty
 
 	^true! !
 
-!OOStackBaseElement methodsFor: 'as yet unclassified' stamp: 'bi 4/27/2021 21:42:00'!
+!OOStackBaseElement methodsFor: 'complementary stack operations' stamp: 'bi 4/27/2021 21:42:00'!
 pop
 
 	self error: OOStack stackEmptyErrorDescription.! !
 
-!OOStackBaseElement methodsFor: 'as yet unclassified' stamp: 'bi 4/27/2021 20:39:51'!
+!OOStackBaseElement methodsFor: 'complementary stack operations' stamp: 'bi 4/27/2021 20:39:51'!
 top
 
 	self error: OOStack stackEmptyErrorDescription.! !
@@ -258,33 +264,35 @@ OOStackElement subclass: #OOStackValueElement
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStackValueElement methodsFor: 'as yet unclassified' stamp: 'e d r r 4/27/2021 18:20:32'!
-amountStackElements
-	
-	^1 + self getNext amountStackElements.! !
-
-!OOStackValueElement methodsFor: 'as yet unclassified' stamp: 'e d r r 4/27/2021 17:28:35'!
-getNext
-	
-	^next.! !
-
-!OOStackValueElement methodsFor: 'as yet unclassified' stamp: 'e d r r 4/27/2021 17:35:04'!
-getValue
-	
-	^value.! !
-
-!OOStackValueElement methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:54:01'!
+!OOStackValueElement methodsFor: 'initialization' stamp: 'bi 4/26/2021 21:54:01'!
 initializeWith: aValue nextTo: aElement
 
 	value := aValue.
 	next := aElement.! !
 
-!OOStackValueElement methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:58:43'!
+
+!OOStackValueElement methodsFor: 'accessing' stamp: 'e d r r 4/27/2021 17:28:35'!
+getNext
+	
+	^next.! !
+
+!OOStackValueElement methodsFor: 'accessing' stamp: 'e d r r 4/27/2021 17:35:04'!
+getValue
+	
+	^value.! !
+
+
+!OOStackValueElement methodsFor: 'complementary stack operations' stamp: 'e d r r 4/27/2021 18:20:32'!
+amountStackElements
+	
+	^1 + self getNext amountStackElements.! !
+
+!OOStackValueElement methodsFor: 'complementary stack operations' stamp: 'bi 4/26/2021 21:58:43'!
 isEmpty
 
 	^false.! !
 
-!OOStackValueElement methodsFor: 'as yet unclassified' stamp: 'bi 4/27/2021 20:40:29'!
+!OOStackValueElement methodsFor: 'complementary stack operations' stamp: 'bi 4/27/2021 20:40:29'!
 top
 	
 	^self getValue.! !
@@ -295,7 +303,7 @@ top
 OOStackValueElement class
 	instanceVariableNames: ''!
 
-!OOStackValueElement class methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:55:27'!
+!OOStackValueElement class methodsFor: 'instance creation' stamp: 'bi 4/26/2021 21:55:27'!
 with: aValue nextTo: aElement
 
 	^self new initializeWith: aValue nextTo: 	aElement.! !
