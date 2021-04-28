@@ -162,13 +162,14 @@ isEmpty
 	
 	^top isEmpty.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'e d r r 4/27/2021 17:35:29'!
+!OOStack methodsFor: 'as yet unclassified' stamp: 'bi 4/27/2021 20:09:05'!
 pop
 	
-	| value |
-	value := top getValue.
+	
+	"value := top getValue.
 	top := top getNext.
-	^value.! !
+	^value."
+	^top pop! !
 
 !OOStack methodsFor: 'as yet unclassified' stamp: 'bi 4/26/2021 21:57:47'!
 push: elem
@@ -181,10 +182,10 @@ size
 	
 	^top amountStackElements.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'e d r r 4/27/2021 17:38:47'!
+!OOStack methodsFor: 'as yet unclassified' stamp: 'bi 4/27/2021 20:39:32'!
 top
 
-	^top getValue.! !
+	^top top.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -210,6 +211,16 @@ isEmpty
 
 	self subclassResponsibility.! !
 
+!OOStackElement methodsFor: 'as yet unclassified' stamp: 'bi 4/27/2021 20:09:36'!
+pop
+	
+	self subclassResponsibility.! !
+
+!OOStackElement methodsFor: 'as yet unclassified' stamp: 'bi 4/27/2021 20:39:42'!
+top
+	
+	self subclassResponsibility.! !
+
 
 !classDefinition: #OOStackBaseElement category: 'Stack-Exercise'!
 OOStackElement subclass: #OOStackBaseElement
@@ -227,6 +238,16 @@ amountStackElements
 isEmpty
 
 	^true! !
+
+!OOStackBaseElement methodsFor: 'as yet unclassified' stamp: 'bi 4/27/2021 20:11:49'!
+pop
+
+	self error: OOStack stackEmptyErrorDescription.! !
+
+!OOStackBaseElement methodsFor: 'as yet unclassified' stamp: 'bi 4/27/2021 20:39:51'!
+top
+
+	self error: OOStack stackEmptyErrorDescription.! !
 
 
 !classDefinition: #OOStackValueElement category: 'Stack-Exercise'!
@@ -261,6 +282,27 @@ initializeWith: aValue nextTo: aElement
 isEmpty
 
 	^false.! !
+
+!OOStackValueElement methodsFor: 'as yet unclassified' stamp: 'bi 4/27/2021 21:03:32'!
+pop
+	
+	|valueRet|
+	
+	valueRet := value.
+	
+	"value := next getValue.
+	next := next getNext."
+	
+	^valueRet.
+	
+	"value := top getValue.
+	top := top getNext.
+	^value."! !
+
+!OOStackValueElement methodsFor: 'as yet unclassified' stamp: 'bi 4/27/2021 20:40:29'!
+top
+	
+	^self getValue.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
