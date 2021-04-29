@@ -91,7 +91,7 @@ test07TopDoesNotRemoveObjectFromStack
 	self assert: stack size = 1.
 	! !
 
-!OOStackTest methodsFor: 'test' stamp: 'HAW 4/14/2017 22:48:26'!
+!OOStackTest methodsFor: 'test' stamp: 'bi 4/28/2021 21:07:09'!
 test08CanNotPopWhenThereAreNoObjectsInTheStack
 
 	| stack  |
@@ -143,6 +143,130 @@ TestCase subclass: #SentenceFinderByPrefixTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'bi 4/28/2021 20:47:25'!
+test01FindAnEmptyStackIsEmpty
+
+	|finder stack|	
+
+	stack _ OOStack new.
+	finder _ SentenceFinderByPrefix with: stack.
+	
+	self assert: (finder find:'a') isEmpty.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'bi 4/28/2021 20:48:08'!
+test02FindOfEmptyPrefixReturnsError
+
+	|finder stack|	
+	
+	stack _ OOStack new.
+	finder _ SentenceFinderByPrefix with: stack.
+	
+	self should: [finder find:''] 
+	      raise: Error 
+	      withExceptionDo:[:anError | anError messageText = SentenceFinderByPrefix messageEmptyPrefixError].! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'bi 4/28/2021 20:56:38'!
+test03FindIsCaseSensitive
+
+	|finder stack|	
+	
+	stack _ OOStack new.
+	stack push: 'AbA'.
+	stack push: 'bAb'.
+	finder _ SentenceFinderByPrefix with: stack.
+	
+	self assert: (finder find:'aBa') isEmpty.
+	self assert: (finder find:'BaB') isEmpty.
+	
+	self deny: (finder find:'Ab') isEmpty.
+	self deny: (finder find:'bA') isEmpty.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'bi 4/28/2021 20:58:19'!
+test04FindPrefixWithSpacesReturnsError
+
+	|finder stack|	
+
+	stack _ OOStack new.
+	finder _ SentenceFinderByPrefix with: stack.
+
+	self should: [finder find:' '] 
+	      raise: Error 
+	      withExceptionDo:[:anError | anError messageText = SentenceFinderByPrefix messageHasEmptySpacesError].
+	self should: [finder find:'aa '] 
+	      raise: Error 
+	      withExceptionDo:[:anError | anError messageText = SentenceFinderByPrefix messageHasEmptySpacesError].
+	self should: [finder find:' aa'] 
+	      raise: Error 
+	      withExceptionDo:[:anError | anError messageText = SentenceFinderByPrefix messageHasEmptySpacesError].
+	self should: [finder find:'a a'] 
+	      raise: Error 
+	      withExceptionDo:[:anError | anError messageText = SentenceFinderByPrefix messageHasEmptySpacesError].! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'bi 4/28/2021 21:01:05'!
+test05FindDoesNotModifyStack
+
+	| finder stackToFind validationStack |	
+	
+	validationStack _ OOStack new.
+	validationStack push: 'a'; push: 'aa'; push: 'aaa'.
+	
+	stackToFind _ OOStack new.
+	stackToFind push: 'a';push: 'aa'; push: 'aaa'.
+	
+	finder _ SentenceFinderByPrefix with: stackToFind.
+	finder find:'a'.
+	
+	self assert:(stackToFind isEmpty = validationStack isEmpty).
+	self assert:(stackToFind size = validationStack size).
+	3 timesRepeat: [self assert:(stackToFind pop = validationStack pop)].
+	self assert:(stackToFind isEmpty = validationStack isEmpty).! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'bi 4/28/2021 21:08:16'!
+test06FindOfAPresentAndUniquePrefixReturnsIt
+
+	|finder stack result|	
+
+	stack _ OOStack new.
+	stack push:'a';push:'fdfg';push:'sdsdsdadafg'.
+	
+	finder _ SentenceFinderByPrefix with: stack.
+	result _ finder find:'a'.
+	
+	self deny: result isEmpty.
+	self assert: result size = 1.
+	self assert: ((result first) = 'a').! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'bi 4/28/2021 21:12:08'!
+test07FindOfAPresentPrefixReturnsThem
+
+	|finder stack result resultAsBag appearances|	
+	
+	stack _ OOStack new.
+	stack push:'a';push:'aa';push:'ababa';push:'zszszszs'.
+	appearances _ 3.
+	finder _ SentenceFinderByPrefix with: stack.
+	result _ finder find:'a'.	
+
+	self deny: result isEmpty.
+	self assert: result size = appearances.
+	result do:[:aString | self assert: (aString beginsWith: 'a')].
+	resultAsBag _ result asBag.
+
+	#('a' 'aa' 'ababa') do:[:aString | self assert: (resultAsBag occurrencesOf: aString) = 1].! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'bi 4/28/2021 21:13:06'!
+test08FindOfAMissingPrefixReturnsEmpty
+
+	|finder stack |	
+
+	stack _ OOStack new.
+	stack push:'ba'.
+	stack push:'baa'.
+	stack push:'bababa'.
+	finder _ SentenceFinderByPrefix with: stack.
+
+	self assert: (finder find:'a') isEmpty.! !
 
 
 !classDefinition: #OOStack category: 'Stack-Exercise'!
@@ -311,7 +435,62 @@ with: aValue nextTo: aElement
 
 !classDefinition: #SentenceFinderByPrefix category: 'Stack-Exercise'!
 Object subclass: #SentenceFinderByPrefix
-	instanceVariableNames: ''
+	instanceVariableNames: 'stack'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
+
+!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'bi 4/28/2021 20:39:22'!
+find: aPrefix
+
+	| tempStack prefixCollection|
+
+	(aPrefix = '') ifTrue:[^Error signal: SentenceFinderByPrefix messageEmptyPrefixError].
+	('* *' match: aPrefix ) ifTrue:[^Error signal: SentenceFinderByPrefix messageHasEmptySpacesError].
+
+	tempStack _ OOStack new.
+	prefixCollection _ OrderedCollection new.
+	
+	[stack isEmpty not] 
+	whileTrue: [| element |
+		element _ stack pop.
+		tempStack push: element.
+		(element beginsWith: aPrefix) 
+		ifTrue:[
+			prefixCollection add: element.
+		].
+	].
+
+	[tempStack isEmpty not] 
+	whileTrue: [
+		stack push: tempStack pop.
+	].
+
+
+	^prefixCollection.! !
+
+!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'bi 4/28/2021 20:36:47'!
+with: aStack
+
+	stack _ aStack.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'SentenceFinderByPrefix class' category: 'Stack-Exercise'!
+SentenceFinderByPrefix class
+	instanceVariableNames: ''!
+
+!SentenceFinderByPrefix class methodsFor: 'as yet unclassified' stamp: 'bi 4/28/2021 20:35:06'!
+messageEmptyPrefixError
+
+	^'Prefix cannot be empty'.! !
+
+!SentenceFinderByPrefix class methodsFor: 'as yet unclassified' stamp: 'bi 4/28/2021 20:35:24'!
+messageHasEmptySpacesError
+
+	^'Prefix cannot have empty spaces'.! !
+
+!SentenceFinderByPrefix class methodsFor: 'as yet unclassified' stamp: 'bi 4/28/2021 20:35:58'!
+with: aStack
+
+	^super new with: aStack.! !
