@@ -1,0 +1,659 @@
+
+
+----QUIT----(9 March 2021 14:58:42) CuisUniversity-4532.image priorSource: 13044060!
+
+----STARTUP---- (9 March 2021 14:58:43) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-4532.image!
+
+
+----QUIT----(9 March 2021 14:58:43) CuisUniversity-4532.image priorSource: 16885479!
+
+----STARTUP---- (14 May 2021 19:40:31) as /home/bingani/Documentos/Ing 1/PRACTICAS/inge1-ejercicios-1C2021/04-MarsRover/Implementacion/CuisUniversity-4532.image!
+
+
+----End fileIn of /home/bingani/Documentos/Ing 1/PRACTICAS/inge1-ejercicios-1C2021/04-MarsRover/Implementacion/Mars-Rover.st----!
+
+!classDefinition: #MarsRoverTest category: 'Mars-Rover' stamp: 'bi 5/14/2021 19:45:17'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+!classDefinition: #MarsRover category: 'Mars-Rover' stamp: 'bi 5/14/2021 19:45:39'!
+Object subclass: #MarsRover
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 19:45:13' prior: 50859348!
+test01
+	
+	
+	marsRover := MarsRover at: 0@0 heading: #North.
+	
+	marsRover process: ''.
+	
+	self assert: (marsRover isAt: 0@0 heding: #North
+	)! !
+
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+!classDefinition: #MarsRoverTest category: 'Mars-Rover' stamp: 'bi 5/14/2021 19:46:15'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 19:46:33' prior: 50859372!
+test01
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: #North.
+	
+	marsRover process: ''.
+	
+	self assert: (marsRover isAt: 0@0 heding: #North
+	)! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 19:46:37' prior: 50859391!
+test01
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: #North.
+	
+	marsRover process: ''.
+	
+	self assert: (marsRover isAt: 0@0 heding: #North	)! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 19:46:42'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 19:46:42'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 19:48:08'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 19:48:29'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 19:48:29'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 19:48:35'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 19:48:35'!
+ERROR!
+!MarsRover class methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 19:49:22'!
+at: aPoint heading: aSymbol 
+	self shouldBeImplemented.! !
+
+!classDefinition: 'MarsRover class' category: 'Mars-Rover' stamp: 'bi 5/14/2021 19:52:02'!
+MarsRover class
+	instanceVariableNames: 'position'!
+
+!classDefinition: 'MarsRover class' category: 'Mars-Rover' stamp: 'bi 5/14/2021 19:52:04'!
+MarsRover class
+	instanceVariableNames: 'position cardinalPoint'!
+!MarsRover class methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 19:51:35' prior: 50859423!
+at: aPosition heading: aCardinalPoint 
+	
+	position := aPosition .
+	cardinalPoint := aCardinalPoint .! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 19:52:09'!
+ERROR!
+!MarsRover class methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 19:52:37'!
+process: aString 
+	self shouldBeImplemented.! !
+!MarsRover class methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 19:52:55' prior: 50859447!
+process: aProcess
+! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 19:52:58'!
+ERROR!
+!MarsRover class methodsFor: 'inquiries' stamp: 'bi 5/14/2021 19:55:07'!
+isAt: aPoint heding: aSymbol 
+	self shouldBeImplemented.! !
+!MarsRover class methodsFor: 'inquiries' stamp: 'bi 5/14/2021 19:55:46' prior: 50859458!
+isAt: aPosition heding: aCardinalPoint 
+	
+	^true.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 19:55:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 19:55:53'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 19:58:55'!
+test02
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@1 heading: #North.
+	
+	marsRover process: ''.
+	
+	self assert: (marsRover isAt: 0@0 heding: #North	)! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 19:59:50' prior: 50859472!
+test02
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@1 heading: #North.
+	
+	marsRover process: ''.
+	
+	self deny: (marsRover isAt: 0@0 heding: #North	)! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 20:00:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'bi 5/14/2021 20:00:13'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02 stamp: 'bi 5/14/2021 20:00:13'!
+FAILURE!
+!MarsRover class methodsFor: 'inquiries' stamp: 'bi 5/14/2021 20:02:06' prior: 50859463!
+isAt: aPosition heding: aCardinalPoint 
+	
+	^(position = aPosition)! !
+
+!testRun: #MarsRoverTest #test02 stamp: 'bi 5/14/2021 20:02:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 20:02:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'bi 5/14/2021 20:02:13'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 20:03:18'!
+test03
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@1 heading: #South.
+	
+	marsRover process: ''.
+	
+	self assert: (marsRover isAt: 0@1 heding: #South	)! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 20:03:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'bi 5/14/2021 20:03:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'bi 5/14/2021 20:03:29'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 20:04:20' prior: 50859507!
+test03
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@1 heading: #South.
+	
+	marsRover process: ''.
+	
+	self deny: (marsRover isAt: 0@1 heding: #North	)! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 20:04:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'bi 5/14/2021 20:04:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'bi 5/14/2021 20:04:23'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test03 stamp: 'bi 5/14/2021 20:04:24'!
+FAILURE!
+!MarsRover class methodsFor: 'inquiries' stamp: 'bi 5/14/2021 20:05:32' prior: 50859495!
+isAt: aPosition heding: aCardinalPoint 
+	
+	^(position = aPosition and: cardinalPoint = aCardinalPoint )! !
+
+!testRun: #MarsRoverTest #test03 stamp: 'bi 5/14/2021 20:05:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 20:05:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'bi 5/14/2021 20:05:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'bi 5/14/2021 20:05:38'!
+PASSED!
+
+!classDefinition: #MarsRover category: 'Mars-Rover' stamp: 'bi 5/14/2021 20:08:52'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+!classDefinition: #MarsRover category: 'Mars-Rover' stamp: 'bi 5/14/2021 20:08:54'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position cardinalPoint'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+!MarsRover methodsFor: 'nil' stamp: 'bi 5/14/2021 20:08:47'!
+at: aPosition heading: aCardinalPoint 
+	
+	position := aPosition .
+	cardinalPoint := aCardinalPoint .! !
+
+MarsRover class
+	instanceVariableNames: ''!
+
+!classDefinition: 'MarsRover class' category: 'Mars-Rover' stamp: 'bi 5/14/2021 20:09:08'!
+MarsRover class
+	instanceVariableNames: ''!
+!MarsRover methodsFor: 'nil' stamp: 'bi 5/14/2021 20:09:27'!
+isAt: aPosition heding: aCardinalPoint 
+	
+	^(position = aPosition and: cardinalPoint = aCardinalPoint )! !
+!MarsRover methodsFor: 'nil' stamp: 'bi 5/14/2021 20:09:39'!
+process: aProcess
+! !
+
+!methodRemoval: MarsRover class #at:heading: stamp: 'bi 5/14/2021 20:09:56'!
+at: aPosition heading: aCardinalPoint 
+	
+	position := aPosition .
+	cardinalPoint := aCardinalPoint .!
+
+!methodRemoval: MarsRover class #isAt:heding: stamp: 'bi 5/14/2021 20:09:58'!
+isAt: aPosition heding: aCardinalPoint 
+	
+	^(position = aPosition and: cardinalPoint = aCardinalPoint )!
+
+!methodRemoval: MarsRover class #process: stamp: 'bi 5/14/2021 20:10:00'!
+process: aProcess
+!
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 20:10:13'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'bi 5/14/2021 20:10:13'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03 stamp: 'bi 5/14/2021 20:10:13'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 20:11:41'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 20:12:11'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 20:12:21'!
+ERROR!
+!MarsRover class methodsFor: 'initialize' stamp: 'bi 5/14/2021 20:14:35'!
+at: aPoint heading: aSymbol 
+	self shouldBeImplemented.! !
+!MarsRover class methodsFor: 'initialize' stamp: 'bi 5/14/2021 20:17:11' prior: 50859617!
+at: aPosition heading: aCardinalPoint 
+	
+	^MarsRover new initializeAt: aPosition heading: aCardinalPoint .! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 20:17:20'!
+ERROR!
+!MarsRover methodsFor: 'initialization' stamp: 'bi 5/14/2021 20:17:40'!
+initializeAt: aPosition heading: aCardinalPoint 
+	self shouldBeImplemented.
+	position := aPosition.
+	cardinalPoint := aCardinalPoint.! !
+!MarsRover methodsFor: 'initialization' stamp: 'bi 5/14/2021 20:18:00' prior: 50859630!
+initializeAt: aPosition heading: aCardinalPoint 
+
+	position := aPosition.
+	cardinalPoint := aCardinalPoint.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 20:18:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 20:18:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'bi 5/14/2021 20:18:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'bi 5/14/2021 20:18:10'!
+PASSED!
+
+!methodRemoval: MarsRover #at:heading: stamp: 'bi 5/14/2021 20:18:57'!
+at: aPosition heading: aCardinalPoint 
+	
+	position := aPosition .
+	cardinalPoint := aCardinalPoint .!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 20:19:18' prior: 50859579!
+isAt: aPosition heding: aCardinalPoint 
+	
+	^position = aPosition and: [cardinalPoint = aCardinalPoint ].! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 20:19:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'bi 5/14/2021 20:19:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'bi 5/14/2021 20:19:35'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 20:28:44'!
+test04
+	
+	
+	self 
+		should: [MarsRover at: 0@0 heading: #Fruit]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidCardinalPointErrorDescription ].! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'bi 5/14/2021 20:38:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'bi 5/14/2021 20:38:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'bi 5/14/2021 20:38:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'bi 5/14/2021 20:38:33'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test04 stamp: 'bi 5/14/2021 20:38:33'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test04 stamp: 'bi 5/14/2021 20:38:51'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test04 stamp: 'bi 5/14/2021 20:39:02'!
+FAILURE!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 20:46:23' prior: 50859673!
+test04
+	
+	
+	"self 
+		should: [MarsRover at: 0@0 heading: #Fruit]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidCardinalPointErrorDescription ]."! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 20:54:52'!
+test01CreationCorrectlyPositionAndCardinalPoint
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: #North.
+	
+	marsRover process: ''.
+	
+	self assert: (marsRover isAt: 0@0 heding: #North	)! !
+
+!methodRemoval: MarsRoverTest #test01 stamp: 'bi 5/14/2021 20:54:56'!
+test01
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: #North.
+	
+	marsRover process: ''.
+	
+	self assert: (marsRover isAt: 0@0 heding: #North	)!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 21:08:36' prior: 50859480!
+test02
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@1 heading: $N.
+	
+	marsRover process: ''.
+	
+	self deny: (marsRover isAt: 0@0 heding: $N)! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 21:09:01' prior: 50859708!
+test01CreationCorrectlyPositionAndCardinalPoint
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: $N.
+	
+	marsRover process: ''.
+	
+	self assert: (marsRover isAt: 0@0 heding: $N)! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 21:09:14' prior: 50859522!
+test03
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@1 heading: $S.
+	
+	marsRover process: ''.
+	
+	self deny: (marsRover isAt: 0@1 heding: $N)! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 21:09:28' prior: 50859699!
+test04
+	
+	
+	"self 
+		should: [MarsRover at: 0@0 heading: $F]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidCardinalPointErrorDescription ]."! !
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/14/2021 21:09:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'bi 5/14/2021 21:09:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'bi 5/14/2021 21:09:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'bi 5/14/2021 21:09:30'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 21:11:02'!
+test04CannotCreateMarsRoverWithWrongOrientation
+	
+	
+	"self 
+		should: [MarsRover at: 0@0 heading: $F]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidCardinalPointErrorDescription ]."! !
+
+!methodRemoval: MarsRoverTest #test04 stamp: 'bi 5/14/2021 21:11:07'!
+test04
+	
+	
+	"self 
+		should: [MarsRover at: 0@0 heading: $F]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidCardinalPointErrorDescription ]."!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 21:11:51'!
+test04CannotCreateMarsRoverWithWrongCardinalPoint
+	
+	
+	"self 
+		should: [MarsRover at: 0@0 heading: $F]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidCardinalPointErrorDescription ]."! !
+
+!methodRemoval: MarsRoverTest #test04CannotCreateMarsRoverWithWrongOrientation stamp: 'bi 5/14/2021 21:11:51'!
+test04CannotCreateMarsRoverWithWrongOrientation
+	
+	
+	"self 
+		should: [MarsRover at: 0@0 heading: $F]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidCardinalPointErrorDescription ]."!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 21:19:25'!
+test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@1 heading: $N.
+	
+	marsRover process: ''.
+	
+	self deny: (marsRover isAt: 0@0 heding: $N)! !
+
+!methodRemoval: MarsRoverTest #test02 stamp: 'bi 5/14/2021 21:19:32'!
+test02
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@1 heading: $N.
+	
+	marsRover process: ''.
+	
+	self deny: (marsRover isAt: 0@0 heding: $N)!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 21:20:59'!
+test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@1 heading: $S.
+	
+	marsRover process: ''.
+	
+	self deny: (marsRover isAt: 0@1 heding: $N)! !
+
+!methodRemoval: MarsRoverTest #test03 stamp: 'bi 5/14/2021 21:21:09'!
+test03
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@1 heading: $S.
+	
+	marsRover process: ''.
+	
+	self deny: (marsRover isAt: 0@1 heding: $N)!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 21:21:39' prior: 50859789!
+test04CannotCreateMarsRoverWithWrongCardinalPoint
+	
+	
+	self 
+		should: [MarsRover at: 0@0 heading: $F]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidCardinalPointErrorDescription ].! !
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/14/2021 21:21:51'!
+FAILURE!
+!MarsRover class methodsFor: 'initialize' stamp: 'bi 5/14/2021 21:31:01' prior: 50859622!
+at: aPosition heading: aCardinalPoint 
+	
+	(#($N $S $E $O) includes: aCardinalPoint) 
+	ifTrue: [
+		^MarsRover new initializeAt: aPosition heading: aCardinalPoint
+		] 
+	ifFalse: 
+		[
+			self error: ''
+		].! !
+!MarsRover class methodsFor: 'initialize' stamp: 'bi 5/14/2021 21:31:58' prior: 50859859!
+at: aPosition heading: aCardinalPoint 
+	
+	(#($N $S $E $O) includes: aCardinalPoint) 
+	ifTrue: [
+		^MarsRover new initializeAt: aPosition heading: aCardinalPoint
+		] 
+	ifFalse: 
+		[
+			self error: 'aCardinalPoint not valid'
+		].! !
+!MarsRover class methodsFor: 'initialize' stamp: 'bi 5/14/2021 21:32:07' prior: 50859869!
+at: aPosition heading: aCardinalPoint 
+	
+	( #($N $S $E $O) includes: aCardinalPoint ) 
+	ifTrue: [
+		^MarsRover new initializeAt: aPosition heading: aCardinalPoint
+		] 
+	ifFalse: 
+		[
+			self error: 'aCardinalPoint not valid'
+		].! !
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/14/2021 21:32:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/14/2021 21:32:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/14/2021 21:32:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/14/2021 21:32:17'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/14/2021 21:32:17'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/14/2021 21:32:37'!
+ERROR!
+!MarsRover class methodsFor: 'initialize' stamp: 'bi 5/14/2021 21:33:50'!
+invalidCardinalPointErrorDescription
+	
+	^'aCardinalPoint not valid'! !
+!MarsRover class methodsFor: 'initialize' stamp: 'bi 5/14/2021 21:34:25' prior: 50859880!
+at: aPosition heading: aCardinalPoint 
+	
+	( #($N $S $E $O) includes: aCardinalPoint ) 
+	ifTrue: [
+		^MarsRover new initializeAt: aPosition heading: aCardinalPoint
+		] 
+	ifFalse: 
+		[
+			self error: self invalidCardinalPointErrorDescription 
+		].! !
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/14/2021 21:35:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/14/2021 21:35:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/14/2021 21:35:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/14/2021 21:35:01'!
+PASSED!
+
+0@0!
+
+(0@0) x!
+
+(0@0) y!
+
+(0@1) x!
+
+(0@1) y!
+
+0@0 !
+
+(0@1) x!
+
+(0@1) y !
+
+(0@1) y typeOfClass !
+
+((0@1) y) typeOfClass !
+
+((0@1) y) value !
+
+(0@1) y asInteger !
+
+(0@1) y isInteger!
+
+(0@$N) y isInteger!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 21:49:41'!
+test05
+	
+	
+	"chequear que position sea de tipo Point y que sus coordenadas sean de tipo Integer
+	(0@1) y isInteger
+	"! !
+
+----QUIT----(14 May 2021 21:52:40) CuisUniversity-4532.image priorSource: 16885703!
