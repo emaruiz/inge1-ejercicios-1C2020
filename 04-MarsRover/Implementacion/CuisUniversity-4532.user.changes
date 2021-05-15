@@ -657,3 +657,639 @@ test05
 	"! !
 
 ----QUIT----(14 May 2021 21:52:40) CuisUniversity-4532.image priorSource: 16885703!
+
+----STARTUP---- (15 May 2021 16:53:45) as /home/manuel/Facultad/Ingeniería1/Ejercicios/inge1-ejercicios-1C2021/04-MarsRover/Implementacion/CuisUniversity-4532.image!
+
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/15/2021 16:56:15' prior: 50859952!
+test05
+	
+	
+	"chequear que position sea de tipo Point y que sus coordenadas sean de tipo Integer
+	(0@1) y isInteger
+	"
+	self 
+		should: [MarsRover at: 0@'1' heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].! !
+
+!testRun: #MarsRoverTest #test05 stamp: 'e d r r 5/15/2021 16:56:38'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test05 stamp: 'e d r r 5/15/2021 16:56:38'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test05 stamp: 'e d r r 5/15/2021 16:56:42'!
+FAILURE!
+!MarsRover class methodsFor: 'initialize' stamp: 'e d r r 5/15/2021 16:59:54' prior: 50859919!
+at: aPosition heading: aCardinalPoint 
+	
+	aPosition  y isInteger  ifFalse:[self error: self invalidPositionErrorDescription].
+	( #($N $S $E $O) includes: aCardinalPoint ) 
+	ifTrue: [
+		^MarsRover new initializeAt: aPosition heading: aCardinalPoint
+		] 
+	ifFalse: 
+		[
+			self error: self invalidCardinalPointErrorDescription 
+		].! !
+!MarsRover class methodsFor: 'initialize' stamp: 'e d r r 5/15/2021 17:00:17' prior: 50859987!
+at: aPosition heading: aCardinalPoint 
+	
+	aPosition y isInteger ifFalse:[self error: self invalidPositionErrorDescription].
+	( #($N $S $E $O) includes: aCardinalPoint ) 
+	ifTrue: [
+		^MarsRover new initializeAt: aPosition heading: aCardinalPoint
+		] 
+	ifFalse: 
+		[
+			self error: self invalidCardinalPointErrorDescription 
+		].! !
+
+!testRun: #MarsRoverTest #test05 stamp: 'e d r r 5/15/2021 17:00:24'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05 stamp: 'e d r r 5/15/2021 17:00:24'!
+ERROR!
+!MarsRover class methodsFor: 'assertions' stamp: 'e d r r 5/15/2021 17:00:44'!
+invalidPositionErrorDescription
+	self shouldBeImplemented.! !
+!MarsRover class methodsFor: 'assertions' stamp: 'e d r r 5/15/2021 17:00:57' prior: 50860019!
+invalidPositionErrorDescription
+	
+	^'aPosition not valid'! !
+
+!testRun: #MarsRoverTest #test05 stamp: 'e d r r 5/15/2021 17:01:08'!
+FAILURE!
+
+MarsRover invalidPositionErrorDescription!
+
+anError messageText!
+
+!testRun: #MarsRoverTest #test05 stamp: 'e d r r 5/15/2021 17:03:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'e d r r 5/15/2021 17:03:13'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/15/2021 17:03:28'!
+test06
+	
+	"chequear que position sea de tipo Point y que sus coordenadas sean de tipo Integer
+	(0@1) y isInteger
+	"
+	self 
+		should: [MarsRover at: 0@'1' heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/15/2021 17:03:44' prior: 50860039!
+test06
+	
+	
+	"chequear que position sea de tipo Point y que sus coordenadas sean de tipo Integer
+	(0@1) y isInteger
+	"
+	self 
+		should: [MarsRover at: 0@'1' heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/15/2021 17:04:11' prior: 50860052!
+test06
+	
+	
+	"chequear que position sea de tipo Point y que sus coordenadas sean de tipo Integer
+	(0@1) y isInteger
+	"
+	self 
+		should: [MarsRover at: '0'@1 heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].! !
+
+!testRun: #MarsRoverTest #test06 stamp: 'e d r r 5/15/2021 17:04:19'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test06 stamp: 'e d r r 5/15/2021 17:04:19'!
+FAILURE!
+
+actual!
+
+expected!
+
+MarsRover!
+!MarsRover class methodsFor: 'initialize' stamp: 'e d r r 5/15/2021 17:11:06' prior: 50860001!
+at: aPosition heading: aCardinalPoint 
+	
+	(aPosition x isInteger and: aPosition y isInteger) ifFalse:[self error: self invalidPositionErrorDescription].
+	( #($N $S $E $O) includes: aCardinalPoint ) 
+	ifTrue: [
+		^MarsRover new initializeAt: aPosition heading: aCardinalPoint
+		] 
+	ifFalse: 
+		[
+			self error: self invalidCardinalPointErrorDescription 
+		].! !
+
+!testRun: #MarsRoverTest #test06 stamp: 'e d r r 5/15/2021 17:11:24'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test06 stamp: 'e d r r 5/15/2021 17:11:24'!
+FAILURE!
+!MarsRover class methodsFor: 'initialize' stamp: 'e d r r 5/15/2021 17:11:43' prior: 50860084!
+at: aPosition heading: aCardinalPoint 
+	
+	(aPosition x isInteger and: aPosition y isInteger) ifFalse: [self error: self invalidPositionErrorDescription].
+	( #($N $S $E $O) includes: aCardinalPoint ) 
+	ifTrue: [
+		^MarsRover new initializeAt: aPosition heading: aCardinalPoint
+		] 
+	ifFalse: 
+		[
+			self error: self invalidCardinalPointErrorDescription 
+		].! !
+
+!testRun: #MarsRoverTest #test06 stamp: 'e d r r 5/15/2021 17:11:57'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test06 stamp: 'e d r r 5/15/2021 17:11:57'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test06 stamp: 'e d r r 5/15/2021 17:28:38'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test06 stamp: 'e d r r 5/15/2021 17:28:38'!
+FAILURE!
+
+aBoolean!
+
+aStringOrBlock!
+!MarsRover class methodsFor: 'initialize' stamp: 'e d r r 5/15/2021 16:59:54' prior: 50860104!
+at: aPosition heading: aCardinalPoint 
+	
+	aPosition  y isInteger  ifFalse:[self error: self invalidPositionErrorDescription].
+	( #($N $S $E $O) includes: aCardinalPoint ) 
+	ifTrue: [
+		^MarsRover new initializeAt: aPosition heading: aCardinalPoint
+		] 
+	ifFalse: 
+		[
+			self error: self invalidCardinalPointErrorDescription 
+		].! !
+
+!testRun: #MarsRoverTest #test05 stamp: 'e d r r 5/15/2021 17:33:47'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/15/2021 17:40:32' prior: 50860065!
+test06
+	
+	
+	"chequear que position sea de tipo Point y que sus coordenadas sean de tipo Integer
+	(0@1) y isInteger
+	"
+	|invalidPosition|
+	invalidPosition := Point x:'0' y: 1.
+	self 
+		should: [MarsRover at: invalidPosition heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/15/2021 17:40:54' prior: 50860147!
+test06
+	
+	
+	"chequear que position sea de tipo Point y que sus coordenadas sean de tipo Integer
+	(0@1) y isInteger
+	"
+	| invalidPosition |
+	invalidPosition := Point x:'0' y: 1.
+	self 
+		should: [MarsRover at: invalidPosition heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].! !
+
+!testRun: #MarsRoverTest #test06 stamp: 'e d r r 5/15/2021 17:40:59'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test06 stamp: 'e d r r 5/15/2021 17:40:59'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test06 stamp: 'e d r r 5/15/2021 17:43:04'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test06 stamp: 'e d r r 5/15/2021 17:43:04'!
+FAILURE!
+!MarsRover class methodsFor: 'initialize' stamp: 'e d r r 5/15/2021 17:43:47' prior: 50860130!
+at: aPosition heading: aCardinalPoint 
+	
+	(aPosition x isInteger and: aPosition y isInteger) ifFalse:[self error: self invalidPositionErrorDescription].
+	( #($N $S $E $O) includes: aCardinalPoint ) 
+	ifTrue: [
+		^MarsRover new initializeAt: aPosition heading: aCardinalPoint
+		] 
+	ifFalse: 
+		[
+			self error: self invalidCardinalPointErrorDescription 
+		].! !
+
+!testRun: #MarsRoverTest #test06 stamp: 'e d r r 5/15/2021 17:44:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'e d r r 5/15/2021 17:44:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'e d r r 5/15/2021 17:44:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'e d r r 5/15/2021 17:44:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'e d r r 5/15/2021 17:44:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'e d r r 5/15/2021 17:44:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'e d r r 5/15/2021 17:44:39'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/15/2021 17:51:41'!
+test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition
+	
+	
+	"chequear que position sea de tipo Point y que sus coordenadas sean de tipo Integer
+	(0@1) y isInteger
+	"
+	self 
+		should: [MarsRover at: 0@'1' heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].! !
+
+!methodRemoval: MarsRoverTest #test05 stamp: 'e d r r 5/15/2021 17:51:41'!
+test05
+	
+	
+	"chequear que position sea de tipo Point y que sus coordenadas sean de tipo Integer
+	(0@1) y isInteger
+	"
+	self 
+		should: [MarsRover at: 0@'1' heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/15/2021 17:52:14'!
+test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition
+	
+	
+	"chequear que position sea de tipo Point y que sus coordenadas sean de tipo Integer
+	(0@1) y isInteger
+	"
+	| invalidPosition |
+	invalidPosition := Point x:'0' y: 1.
+	self 
+		should: [MarsRover at: invalidPosition heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].! !
+
+!methodRemoval: MarsRoverTest #test06 stamp: 'e d r r 5/15/2021 17:52:14'!
+test06
+	
+	
+	"chequear que position sea de tipo Point y que sus coordenadas sean de tipo Integer
+	(0@1) y isInteger
+	"
+	| invalidPosition |
+	invalidPosition := Point x:'0' y: 1.
+	self 
+		should: [MarsRover at: invalidPosition heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/15/2021 18:02:34' prior: 50860251!
+test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition
+	
+	
+	"chequear que position sea de tipo Point y que sus coordenadas sean de tipo Integer
+	(0@1) y isInteger
+	"
+	| invalidPosition |
+	invalidPosition := Point x: '0' y: 1.
+	self 
+		should: [MarsRover at: invalidPosition heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].! !
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'e d r r 5/15/2021 18:02:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'e d r r 5/15/2021 18:02:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'e d r r 5/15/2021 18:02:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'e d r r 5/15/2021 18:02:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'e d r r 5/15/2021 18:02:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'e d r r 5/15/2021 18:02:37'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/15/2021 18:02:46'!
+test07CannotCreateMarsRoverWithWrongXCoordinateOfPosition
+	
+	
+	"chequear que position sea de tipo Point y que sus coordenadas sean de tipo Integer
+	(0@1) y isInteger
+	"
+	| invalidPosition |
+	invalidPosition := Point x: '0' y: 1.
+	self 
+		should: [MarsRover at: invalidPosition heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/15/2021 18:03:25' prior: 50860282!
+test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition
+	
+	
+	"chequear que position sea de tipo Point y que sus coordenadas sean de tipo Integer
+	(0@1) y isInteger
+	"
+	| invalidPosition |
+	invalidPosition := Point x: '0' y: 1.
+	self 
+		should: [MarsRover at: invalidPosition heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/15/2021 18:03:52' prior: 50860323!
+test07CannotCreateMarsRoverWithWrongXCoordinateOfPosition
+	
+	
+	"chequear que position sea de tipo Point y que sus coordenadas sean de tipo Integer
+	(0@1) y isInteger
+	"
+	self 
+		should: [MarsRover at: 01 heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].! !
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'e d r r 5/15/2021 18:04:36'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'e d r r 5/15/2021 18:04:36'!
+FAILURE!
+
+actual!
+
+expected!
+!MarsRover class methodsFor: 'initialize' stamp: 'e d r r 5/15/2021 18:05:57' prior: 50860187!
+at: aPosition heading: aCardinalPoint 
+	
+	(aPosition isPoint and: aPosition x isInteger and: aPosition y isInteger) ifFalse:[self error: self invalidPositionErrorDescription].
+	( #($N $S $E $O) includes: aCardinalPoint ) 
+	ifTrue: [
+		^MarsRover new initializeAt: aPosition heading: aCardinalPoint
+		] 
+	ifFalse: 
+		[
+			self error: self invalidCardinalPointErrorDescription 
+		].! !
+!MarsRover class methodsFor: 'initialize' stamp: 'e d r r 5/15/2021 18:06:14' prior: 50860380!
+at: aPosition heading: aCardinalPoint 
+	
+	(aPosition isPoint and: aPosition x isInteger and: aPosition y isInteger) ifFalse: [self error: self invalidPositionErrorDescription].
+	( #($N $S $E $O) includes: aCardinalPoint ) 
+	ifTrue: [
+		^MarsRover new initializeAt: aPosition heading: aCardinalPoint
+		] 
+	ifFalse: 
+		[
+			self error: self invalidCardinalPointErrorDescription 
+		].! !
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'e d r r 5/15/2021 18:06:33'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'e d r r 5/15/2021 18:06:33'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'e d r r 5/15/2021 18:08:02'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'e d r r 5/15/2021 18:08:02'!
+FAILURE!
+
+actual!
+
+expected!
+!MarsRover class methodsFor: 'initialize' stamp: 'e d r r 5/15/2021 18:09:07' prior: 50860395!
+at: aPosition heading: aCardinalPoint 
+	
+	aPosition isPoint ifFalse: [self error: self invalidPositionErrorDescription].
+	(aPosition x isInteger and: aPosition y isInteger) ifFalse: [self error: self invalidPositionErrorDescription].
+	( #($N $S $E $O) includes: aCardinalPoint ) 
+	ifTrue: [
+		^MarsRover new initializeAt: aPosition heading: aCardinalPoint
+		] 
+	ifFalse: 
+		[
+			self error: self invalidCardinalPointErrorDescription 
+		].! !
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'e d r r 5/15/2021 18:09:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'e d r r 5/15/2021 18:09:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'e d r r 5/15/2021 18:09:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'e d r r 5/15/2021 18:09:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'e d r r 5/15/2021 18:09:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'e d r r 5/15/2021 18:09:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'e d r r 5/15/2021 18:09:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'e d r r 5/15/2021 18:09:32'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/15/2021 18:10:20' prior: 50860357!
+test07CannotCreateMarsRoverWithWrongXCoordinateOfPosition
+	
+	
+	"chequear que position sea de tipo Point y que sus coordenadas sean de tipo Integer
+	(0@1) y isInteger
+	"
+	self 
+		should: [MarsRover at: 01 heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/15/2021 18:11:14' prior: 50860477!
+test07CannotCreateMarsRoverWithWrongXCoordinateOfPosition
+	
+	
+	"chequear que position sea de tipo Point y que sus coordenadas sean de tipo Integer
+	(0@1) y isInteger
+	"
+	self 
+		should: [MarsRover at: 01 heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/15/2021 18:14:49' prior: 50860492!
+test07CannotCreateMarsRoverWithWrongXCoordinateOfPosition
+	
+	
+	"chequear que position sea de tipo Point y que sus coordenadas sean de tipo Integer
+	(0@1) y isInteger
+	"
+	self 
+		should: [MarsRover at: 01 heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/15/2021 18:15:13'!
+test07CannotCreateMarsRoverWithWrongPosition
+	
+	
+	"chequear que position sea de tipo Point y que sus coordenadas sean de tipo Integer
+	(0@1) y isInteger
+	"
+	self 
+		should: [MarsRover at: 01 heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].! !
+
+!methodRemoval: MarsRoverTest #test07CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'e d r r 5/15/2021 18:15:13'!
+test07CannotCreateMarsRoverWithWrongXCoordinateOfPosition
+	
+	
+	"chequear que position sea de tipo Point y que sus coordenadas sean de tipo Integer
+	(0@1) y isInteger
+	"
+	self 
+		should: [MarsRover at: 01 heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].!
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'e d r r 5/15/2021 18:15:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'e d r r 5/15/2021 18:15:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'e d r r 5/15/2021 18:15:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'e d r r 5/15/2021 18:15:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'e d r r 5/15/2021 18:15:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'e d r r 5/15/2021 18:15:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'e d r r 5/15/2021 18:15:18'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/15/2021 18:18:18' prior: 50860225!
+test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition
+	
+	
+	self 
+		should: [MarsRover at: 0@'1' heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/15/2021 18:18:25' prior: 50860340!
+test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition
+	
+	
+	| invalidPosition |
+	invalidPosition := Point x: '0' y: 1.
+	self 
+		should: [MarsRover at: invalidPosition heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/15/2021 18:18:39' prior: 50860521!
+test07CannotCreateMarsRoverWithWrongPosition
+	
+	
+	self 
+		should: [MarsRover at: 01 heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].! !
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'e d r r 5/15/2021 18:18:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'e d r r 5/15/2021 18:18:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'e d r r 5/15/2021 18:18:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'e d r r 5/15/2021 18:18:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'e d r r 5/15/2021 18:18:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'e d r r 5/15/2021 18:18:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'e d r r 5/15/2021 18:18:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'e d r r 5/15/2021 18:23:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'e d r r 5/15/2021 18:23:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'e d r r 5/15/2021 18:23:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'e d r r 5/15/2021 18:23:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'e d r r 5/15/2021 18:23:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'e d r r 5/15/2021 18:23:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'e d r r 5/15/2021 18:23:23'!
+PASSED!
+
+!classRemoval: #MarsRover stamp: 'e d r r 5/15/2021 18:23:46'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position cardinalPoint'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+!classRemoval: #MarsRoverTest stamp: 'e d r r 5/15/2021 18:23:47'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+----End fileIn of /home/manuel/Facultad/Ingeniería1/Ejercicios/inge1-ejercicios-1C2021/04-MarsRover/Implementacion/Mars-Rover.st----!
+
+----STARTUP---- (15 May 2021 18:25:33) as /home/manuel/Facultad/Ingeniería1/Ejercicios/inge1-ejercicios-1C2021/04-MarsRover/Implementacion/CuisUniversity-4532.image!
+
+
+!classRemoval: #MarsRover stamp: 'e d r r 5/15/2021 18:25:58'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position cardinalPoint'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+!classRemoval: #MarsRoverTest stamp: 'e d r r 5/15/2021 18:25:58'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+----End fileIn of /home/manuel/Facultad/Ingeniería1/Ejercicios/inge1-ejercicios-1C2021/04-MarsRover/Implementacion/Mars-Rover.st----!
+
+----QUIT----(15 May 2021 18:26:17) CuisUniversity-4532.image priorSource: 16905848!

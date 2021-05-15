@@ -47,13 +47,34 @@ test04CannotCreateMarsRoverWithWrongCardinalPoint
 		raise: Error
 		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidCardinalPointErrorDescription ].! !
 
-!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/14/2021 21:49:41'!
-test05
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/15/2021 18:18:18'!
+test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition
 	
 	
-	"chequear que position sea de tipo Point y que sus coordenadas sean de tipo Integer
-	(0@1) y isInteger
-	"! !
+	self 
+		should: [MarsRover at: 0@'1' heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].! !
+
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/15/2021 18:18:25'!
+test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition
+	
+	
+	| invalidPosition |
+	invalidPosition := Point x: '0' y: 1.
+	self 
+		should: [MarsRover at: invalidPosition heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].! !
+
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/15/2021 18:18:39'!
+test07CannotCreateMarsRoverWithWrongPosition
+	
+	
+	self 
+		should: [MarsRover at: 01 heading: $N]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: MarsRover invalidPositionErrorDescription ].! !
 
 
 !classDefinition: #MarsRover category: 'Mars-Rover'!
@@ -90,10 +111,17 @@ invalidCardinalPointErrorDescription
 	
 	^'aCardinalPoint not valid'! !
 
+!MarsRover class methodsFor: 'assertions' stamp: 'e d r r 5/15/2021 17:00:57'!
+invalidPositionErrorDescription
+	
+	^'aPosition not valid'! !
 
-!MarsRover class methodsFor: 'initialize' stamp: 'bi 5/14/2021 21:34:25'!
+
+!MarsRover class methodsFor: 'initialize' stamp: 'e d r r 5/15/2021 18:09:07'!
 at: aPosition heading: aCardinalPoint 
 	
+	aPosition isPoint ifFalse: [self error: self invalidPositionErrorDescription].
+	(aPosition x isInteger and: aPosition y isInteger) ifFalse: [self error: self invalidPositionErrorDescription].
 	( #($N $S $E $O) includes: aCardinalPoint ) 
 	ifTrue: [
 		^MarsRover new initializeAt: aPosition heading: aCardinalPoint
