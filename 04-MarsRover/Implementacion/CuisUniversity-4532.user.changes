@@ -3782,3 +3782,2296 @@ PASSED!
 
 !testRun: #MarsRoverTest #test15CardinalPointEAndCommandBThenMove1NegativeOnXAxis stamp: 'e d r r 5/16/2021 13:29:11'!
 PASSED!
+
+----STARTUP---- (16 May 2021 14:37:18) as /home/bingani/Documentos/Ing 1/PRACTICAS/inge1-ejercicios-1C2021/04-MarsRover/Implementacion/CuisUniversity-4532.image!
+
+
+!classRemoval: #MarsRover stamp: 'bi 5/16/2021 14:37:35'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position cardinalPoint'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+!classRemoval: #MarsRoverTest stamp: 'bi 5/16/2021 14:37:36'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+----End fileIn of /home/bingani/Documentos/Ing 1/PRACTICAS/inge1-ejercicios-1C2021/04-MarsRover/Implementacion/Mars-Rover.st----!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 14:59:00'!
+test16MarsRoverStopProcessingOnInvalidInstruccion
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 1@1 heading: $N.
+	
+	marsRover process: 'rf'.
+	
+	! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 15:06:31' prior: 50863022!
+test16MarsRoverStopProcessingOnInvalidInstruccion
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 1@1 heading: $N.
+	
+	self 
+		should: [marsRover process: 'rf']
+		raise: Error
+		withExceptionDo: [ :anError | 
+						self assert: 	anError messageText equals: MarsRover invalidInstruccionErrorDescription .
+						self assert: marsRover position = (1@1) .
+						"self assert: marsRover  = (1@1) ."
+					].
+	! !
+!MarsRover methodsFor: 'accessing' stamp: 'bi 5/16/2021 15:07:49'!
+position
+
+	^position! !
+!MarsRover methodsFor: 'accessing' stamp: 'bi 5/16/2021 15:07:59'!
+cardinalPoint
+
+	^cardinalPoint ! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 15:08:44' prior: 50863030!
+test16MarsRoverStopProcessingOnInvalidInstruccion
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 1@1 heading: $N.
+	
+	self 
+		should: [marsRover process: 'fe']
+		raise: Error
+		withExceptionDo: [ :anError | 
+						self assert: 	anError messageText equals: MarsRover invalidInstruccionErrorDescription .
+						self assert: marsRover position = (1@2) .
+						self assert: marsRover cardinalPoint = $N .
+					].
+	! !
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/16/2021 15:10:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/16/2021 15:10:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/16/2021 15:10:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/16/2021 15:10:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'bi 5/16/2021 15:10:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'bi 5/16/2021 15:10:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'bi 5/16/2021 15:10:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08CardinalPointNAndCommandFThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 15:10:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09CardinalPointSAndCommandFThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 15:10:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CardinalPointOAndCommandFThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 15:10:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11CardinalPointEAndCommandFThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 15:10:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12CardinalPointNAndCommandBThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 15:10:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13CardinalPointSAndCommandBThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 15:10:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14CardinalPointOAndCommandBThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 15:10:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15CardinalPointEAndCommandBThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 15:10:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 15:10:53'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 15:10:53'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 15:18:09' prior: 50862946!
+process: aProcess
+
+	aProcess do: [:s | 
+		(#($f $b $l $r) includes: s) ifFalse: [self error: 'error' ].
+		($f = s) ifTrue: [
+			self cardinalNMoveOnYAxis: 1.
+			self cardinalSMoveOnYAxis: -1.
+			self cardinalOMoveOnXAxis: -1.
+			self cardinalEMoveOnXAxis: 1.
+		].
+		($b = s) ifTrue: [
+			self cardinalNMoveOnYAxis: -1.
+			self cardinalSMoveOnYAxis: 1.
+			self cardinalOMoveOnXAxis: 1.
+			self cardinalEMoveOnXAxis: -1.
+		]
+	].! !
+!MarsRover class methodsFor: 'message assertions' stamp: 'bi 5/16/2021 15:19:36'!
+invalidInstructionErrorDescription
+	
+	^'aInstruction not valid'! !
+
+!methodRemoval: MarsRover class #invalidInstructionErrorDescription stamp: 'bi 5/16/2021 15:20:00'!
+invalidInstructionErrorDescription
+	
+	^'aInstruction not valid'!
+!MarsRover class methodsFor: 'message assertions' stamp: 'bi 5/16/2021 15:20:27'!
+invalidInstructionErrorDescription
+	
+	^'aInstruction not valid'! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 15:21:50' prior: 50863135!
+process: aProcess
+
+	aProcess do: [:s | 
+		(#($f $b $l $r) includes: s) ifFalse: [self error: self invalidInstructionErrorDescription ].
+		($f = s) ifTrue: [
+			self cardinalNMoveOnYAxis: 1.
+			self cardinalSMoveOnYAxis: -1.
+			self cardinalOMoveOnXAxis: -1.
+			self cardinalEMoveOnXAxis: 1.
+		].
+		($b = s) ifTrue: [
+			self cardinalNMoveOnYAxis: -1.
+			self cardinalSMoveOnYAxis: 1.
+			self cardinalOMoveOnXAxis: 1.
+			self cardinalEMoveOnXAxis: -1.
+		]
+	].! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 15:22:13' prior: 50863166!
+process: aProcess
+
+	aProcess do: [:s | 
+		(#($f $b $l $r) includes: s) ifFalse: [self error: self invalidInstructionErrorDescription ].
+		($f = s) ifTrue: [
+			self cardinalNMoveOnYAxis: 1.
+			self cardinalSMoveOnYAxis: -1.
+			self cardinalOMoveOnXAxis: -1.
+			self cardinalEMoveOnXAxis: 1.
+		].
+		($b = s) ifTrue: [
+			self cardinalNMoveOnYAxis: -1.
+			self cardinalSMoveOnYAxis: 1.
+			self cardinalOMoveOnXAxis: 1.
+			self cardinalEMoveOnXAxis: -1.
+		]
+	].! !
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/16/2021 15:22:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/16/2021 15:22:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/16/2021 15:22:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/16/2021 15:22:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'bi 5/16/2021 15:22:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'bi 5/16/2021 15:22:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'bi 5/16/2021 15:22:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08CardinalPointNAndCommandFThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 15:22:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09CardinalPointSAndCommandFThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 15:22:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CardinalPointOAndCommandFThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 15:22:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11CardinalPointEAndCommandFThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 15:22:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12CardinalPointNAndCommandBThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 15:22:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13CardinalPointSAndCommandBThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 15:22:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14CardinalPointOAndCommandBThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 15:22:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15CardinalPointEAndCommandBThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 15:22:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 15:22:26'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 15:22:26'!
+ERROR!
+
+!methodRemoval: MarsRover class #invalidInstructionErrorDescription stamp: 'bi 5/16/2021 15:23:13'!
+invalidInstructionErrorDescription
+	
+	^'aInstruction not valid'!
+!MarsRover methodsFor: 'nil' stamp: 'bi 5/16/2021 15:23:19'!
+nvalidInstructionErrorDescription
+	
+	^'aInstruction not valid'! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 15:23:49'!
+invalidInstructionErrorDescription
+	
+	^'aInstruction not valid'! !
+
+!methodRemoval: MarsRover #nvalidInstructionErrorDescription stamp: 'bi 5/16/2021 15:23:51'!
+nvalidInstructionErrorDescription
+	
+	^'aInstruction not valid'!
+!MarsRover methodsFor: 'assertions' stamp: 'bi 5/16/2021 15:24:52'!
+assertCardinalPointValid: aCardinalPoint
+	
+	(#($N $S $E $O) includes: aCardinalPoint) ifFalse: [ ].! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 15:25:22' prior: 50863184!
+process: aProcess
+
+	aProcess do: [:s | 
+		
+		($f = s) ifTrue: [
+			self cardinalNMoveOnYAxis: 1.
+			self cardinalSMoveOnYAxis: -1.
+			self cardinalOMoveOnXAxis: -1.
+			self cardinalEMoveOnXAxis: 1.
+		].
+		($b = s) ifTrue: [
+			self cardinalNMoveOnYAxis: -1.
+			self cardinalSMoveOnYAxis: 1.
+			self cardinalOMoveOnXAxis: 1.
+			self cardinalEMoveOnXAxis: -1.
+		]
+	].! !
+!MarsRover methodsFor: 'assertions' stamp: 'bi 5/16/2021 15:26:19'!
+assertInstructionValid: aInstruction
+	
+	(#($f $b $l $r) includes: aInstruction) ifFalse: [self error: self invalidInstructionErrorDescription ].! !
+
+!methodRemoval: MarsRover #assertCardinalPointValid: stamp: 'bi 5/16/2021 15:26:39'!
+assertCardinalPointValid: aCardinalPoint
+	
+	(#($N $S $E $O) includes: aCardinalPoint) ifFalse: [ ].!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 15:26:56' prior: 50863293!
+process: aProcess
+
+	aProcess do: [:s | 
+		self assertInstructionValid: s.
+		($f = s) ifTrue: [
+			self cardinalNMoveOnYAxis: 1.
+			self cardinalSMoveOnYAxis: -1.
+			self cardinalOMoveOnXAxis: -1.
+			self cardinalEMoveOnXAxis: 1.
+		].
+		($b = s) ifTrue: [
+			self cardinalNMoveOnYAxis: -1.
+			self cardinalSMoveOnYAxis: 1.
+			self cardinalOMoveOnXAxis: 1.
+			self cardinalEMoveOnXAxis: -1.
+		]
+	].! !
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/16/2021 15:27:06'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/16/2021 15:27:06'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/16/2021 15:27:06'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/16/2021 15:27:06'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'bi 5/16/2021 15:27:06'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'bi 5/16/2021 15:27:06'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'bi 5/16/2021 15:27:06'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08CardinalPointNAndCommandFThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 15:27:06'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09CardinalPointSAndCommandFThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 15:27:06'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CardinalPointOAndCommandFThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 15:27:06'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11CardinalPointEAndCommandFThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 15:27:06'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12CardinalPointNAndCommandBThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 15:27:06'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13CardinalPointSAndCommandBThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 15:27:06'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14CardinalPointOAndCommandBThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 15:27:06'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15CardinalPointEAndCommandBThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 15:27:06'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 15:27:06'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 15:27:06'!
+ERROR!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 15:28:11' prior: 50863053!
+test16MarsRoverStopProcessingOnInvalidInstruccion
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 1@1 heading: $N.
+	
+	self 
+		should: [marsRover process: 'fe']
+		raise: Error
+		withExceptionDo: [ :anError | 
+						self assert: 	anError messageText equals: marsRover invalidInstruccionErrorDescription .
+						self assert: marsRover position = (1@2) .
+						self assert: marsRover cardinalPoint = $N .
+					].
+	! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 15:28:25' prior: 50863402!
+test16MarsRoverStopProcessingOnInvalidInstruccion
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 1@1 heading: $N.
+	
+	self 
+		should: [marsRover process: 'fe']
+		raise: Error
+		withExceptionDo: [ :anError | 
+						self assert: 	anError messageText equals: MarsRover invalidInstruccionErrorDescription .
+						self assert: marsRover position = (1@2) .
+						self assert: marsRover cardinalPoint = $N .
+					].
+	! !
+!MarsRover class methodsFor: 'message assertions' stamp: 'bi 5/16/2021 15:29:04'!
+invalidInstructionErrorDescription
+	
+	^'aInstruction not valid'! !
+!MarsRover methodsFor: 'assertions' stamp: 'bi 5/16/2021 15:29:17' prior: 50863307!
+assertInstructionValid: aInstruction
+	
+	(#($f $b $l $r) includes: aInstruction) ifFalse: [self error: MarsRover invalidInstructionErrorDescription ].! !
+
+!methodRemoval: MarsRover #invalidInstructionErrorDescription stamp: 'bi 5/16/2021 15:29:21'!
+invalidInstructionErrorDescription
+	
+	^'aInstruction not valid'!
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/16/2021 15:29:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/16/2021 15:29:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/16/2021 15:29:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/16/2021 15:29:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'bi 5/16/2021 15:29:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'bi 5/16/2021 15:29:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'bi 5/16/2021 15:29:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08CardinalPointNAndCommandFThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 15:29:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09CardinalPointSAndCommandFThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 15:29:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CardinalPointOAndCommandFThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 15:29:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11CardinalPointEAndCommandFThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 15:29:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12CardinalPointNAndCommandBThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 15:29:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13CardinalPointSAndCommandBThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 15:29:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14CardinalPointOAndCommandBThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 15:29:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15CardinalPointEAndCommandBThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 15:29:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 15:29:43'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 15:29:43'!
+ERROR!
+!MarsRover methodsFor: 'assertions' stamp: 'bi 5/16/2021 15:30:12' prior: 50863439!
+assertInstructionValid: aInstruction
+	
+	(#($f $b $l $r) includes: aInstruction) ifFalse: [self error: MarsRover invalidInstructionErrorDescription ].! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 15:30:39' prior: 50863418!
+test16MarsRoverStopProcessingOnInvalidInstruccion
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 1@1 heading: $N.
+	
+	self 
+		should: [marsRover process: 'fe']
+		raise: Error
+		withExceptionDo: [ :anError | 
+						self assert: 	anError messageText equals: MarsRover invalidInstructionErrorDescription .
+						self assert: marsRover position = (1@2) .
+						self assert: marsRover cardinalPoint = $N .
+					].
+	! !
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 15:30:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/16/2021 15:30:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/16/2021 15:30:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/16/2021 15:30:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/16/2021 15:30:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'bi 5/16/2021 15:30:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'bi 5/16/2021 15:30:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'bi 5/16/2021 15:30:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08CardinalPointNAndCommandFThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 15:30:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09CardinalPointSAndCommandFThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 15:30:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CardinalPointOAndCommandFThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 15:30:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11CardinalPointEAndCommandFThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 15:30:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12CardinalPointNAndCommandBThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 15:30:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13CardinalPointSAndCommandBThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 15:30:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14CardinalPointOAndCommandBThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 15:30:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15CardinalPointEAndCommandBThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 15:30:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 15:30:41'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 15:31:10' prior: 50863525!
+test16MarsRoverStopProcessingOnInvalidInstruccion
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 1@1 heading: $N.
+	
+	self 
+		should: [marsRover process: 'feb']
+		raise: Error
+		withExceptionDo: [ :anError | 
+						self assert: 	anError messageText equals: MarsRover invalidInstructionErrorDescription .
+						self assert: marsRover position = (1@2) .
+						self assert: marsRover cardinalPoint = $N .
+					].
+	! !
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 15:31:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/16/2021 15:31:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/16/2021 15:31:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/16/2021 15:31:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/16/2021 15:31:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'bi 5/16/2021 15:31:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'bi 5/16/2021 15:31:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'bi 5/16/2021 15:31:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08CardinalPointNAndCommandFThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 15:31:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09CardinalPointSAndCommandFThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 15:31:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CardinalPointOAndCommandFThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 15:31:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11CardinalPointEAndCommandFThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 15:31:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12CardinalPointNAndCommandBThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 15:31:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13CardinalPointSAndCommandBThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 15:31:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14CardinalPointOAndCommandBThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 15:31:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15CardinalPointEAndCommandBThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 15:31:12'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 15:31:12'!
+PASSED!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 16:10:42'!
+moveOnXAxis: aValueX
+
+	position :=  (position x + aValueX) @ (position y)! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 16:11:02'!
+moveOnYAxis: aValueY
+
+	position :=  (position x) @ (position y  + aValueY )! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 16:14:22' prior: 50863321!
+process: aProcess
+
+	aProcess do: [:s | 
+		self assertInstructionValid: s.
+		($f = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+		].
+		($b = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+		]
+	].! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 16:14:34' prior: 50863699!
+process: aProcess
+
+	aProcess do: [:s | 
+		self assertInstructionValid: s.
+		($f = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+		].
+		($b = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+		]
+	].! !
+
+!methodRemoval: MarsRover #cardinalEMoveOnXAxis: stamp: 'bi 5/16/2021 16:14:42'!
+cardinalEMoveOnXAxis: aValueX
+
+	($E = cardinalPoint) ifTrue: [
+		position :=  (position x + aValueX) @ (position y)
+	]!
+
+!methodRemoval: MarsRover #cardinalNMoveOnYAxis: stamp: 'bi 5/16/2021 16:14:43'!
+cardinalNMoveOnYAxis: aValueY
+
+	($N = cardinalPoint) ifTrue: [
+		position :=  (position x) @ (position y + aValueY)
+	]!
+
+!methodRemoval: MarsRover #cardinalOMoveOnXAxis: stamp: 'bi 5/16/2021 16:14:44'!
+cardinalOMoveOnXAxis: aValueX
+
+	($O = cardinalPoint) ifTrue: [
+		position :=  (position x + aValueX) @ (position y)
+	]!
+
+!methodRemoval: MarsRover #cardinalSMoveOnYAxis: stamp: 'bi 5/16/2021 16:14:46'!
+cardinalSMoveOnYAxis: aValueY
+
+	($S = cardinalPoint) ifTrue: [
+		position :=  (position x) @ (position y + aValueY)
+	]!
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/16/2021 16:14:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/16/2021 16:14:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/16/2021 16:14:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/16/2021 16:14:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'bi 5/16/2021 16:14:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'bi 5/16/2021 16:14:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'bi 5/16/2021 16:14:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08CardinalPointNAndCommandFThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:14:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09CardinalPointSAndCommandFThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:14:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CardinalPointOAndCommandFThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:14:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11CardinalPointEAndCommandFThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:14:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12CardinalPointNAndCommandBThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:14:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13CardinalPointSAndCommandBThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:14:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14CardinalPointOAndCommandBThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:14:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15CardinalPointEAndCommandBThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:14:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 16:14:51'!
+PASSED!
+!MarsRover methodsFor: 'operations' stamp: 'bi 5/16/2021 16:18:09' prior: 50863721!
+process: aProcess
+
+	aProcess do: [:s | 
+		self assertInstructionValid: s.
+		($f = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+		] ifFalse: [
+			($b = s) ifTrue: [
+				($N = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+				($S = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+				($O = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+				($E = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+			]
+		]
+	].! !
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/16/2021 16:18:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/16/2021 16:18:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/16/2021 16:18:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/16/2021 16:18:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'bi 5/16/2021 16:18:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'bi 5/16/2021 16:18:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'bi 5/16/2021 16:18:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08CardinalPointNAndCommandFThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:18:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09CardinalPointSAndCommandFThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:18:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CardinalPointOAndCommandFThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:18:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11CardinalPointEAndCommandFThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:18:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12CardinalPointNAndCommandBThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:18:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13CardinalPointSAndCommandBThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:18:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14CardinalPointOAndCommandBThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:18:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15CardinalPointEAndCommandBThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:18:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 16:18:18'!
+PASSED!
+!MarsRover methodsFor: 'operations' stamp: 'bi 5/16/2021 16:19:11' prior: 50863830!
+process: aProcess
+
+	aProcess do: [:s | 
+		self assertInstructionValid: s.
+		($f = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+		].
+		($b = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+		].
+	].! !
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/16/2021 16:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/16/2021 16:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/16/2021 16:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/16/2021 16:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'bi 5/16/2021 16:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'bi 5/16/2021 16:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'bi 5/16/2021 16:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08CardinalPointNAndCommandFThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09CardinalPointSAndCommandFThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CardinalPointOAndCommandFThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11CardinalPointEAndCommandFThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12CardinalPointNAndCommandBThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13CardinalPointSAndCommandBThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14CardinalPointOAndCommandBThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15CardinalPointEAndCommandBThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:19:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 16:19:15'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 16:24:19'!
+test17CardinalPointNAndCommandLThenRotateLeft
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: $N.
+	
+	marsRover process: 'l'.
+	
+	self assert: (marsRover isAt: 0@0 heding: $O)! !
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/16/2021 16:26:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/16/2021 16:26:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/16/2021 16:26:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/16/2021 16:26:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'bi 5/16/2021 16:26:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'bi 5/16/2021 16:26:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'bi 5/16/2021 16:26:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08CardinalPointNAndCommandFThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:26:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09CardinalPointSAndCommandFThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:26:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CardinalPointOAndCommandFThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:26:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11CardinalPointEAndCommandFThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:26:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12CardinalPointNAndCommandBThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:26:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13CardinalPointSAndCommandBThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:26:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14CardinalPointOAndCommandBThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:26:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15CardinalPointEAndCommandBThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:26:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 16:26:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17CardinalPointNAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:26:32'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test17CardinalPointNAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:26:32'!
+FAILURE!
+!MarsRover methodsFor: 'operations' stamp: 'bi 5/16/2021 16:28:41' prior: 50863914!
+process: aProcess
+
+	aProcess do: [:s | 
+		self assertInstructionValid: s.
+		($f = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+		].
+		($b = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+		].
+		($l = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ cardinalPoint := $O] .
+		].
+	].! !
+
+!testRun: #MarsRoverTest #test17CardinalPointNAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:28:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/16/2021 16:28:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/16/2021 16:28:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/16/2021 16:28:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/16/2021 16:28:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'bi 5/16/2021 16:28:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'bi 5/16/2021 16:28:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'bi 5/16/2021 16:28:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08CardinalPointNAndCommandFThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:28:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09CardinalPointSAndCommandFThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:28:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CardinalPointOAndCommandFThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:28:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11CardinalPointEAndCommandFThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:28:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12CardinalPointNAndCommandBThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:28:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13CardinalPointSAndCommandBThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:28:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14CardinalPointOAndCommandBThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:28:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15CardinalPointEAndCommandBThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:28:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 16:28:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17CardinalPointNAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:28:46'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 16:29:25'!
+test18CardinalPointSAndCommandLThenRotateLeft
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: $S.
+	
+	marsRover process: 'l'.
+	
+	self assert: (marsRover isAt: 0@0 heding: $E)! !
+!MarsRover methodsFor: 'operations' stamp: 'bi 5/16/2021 16:29:47' prior: 50864075!
+process: aProcess
+
+	aProcess do: [:s | 
+		self assertInstructionValid: s.
+		($f = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+		].
+		($b = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+		].
+		($l = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ cardinalPoint := $O] .
+			($S = cardinalPoint) ifTrue: [ cardinalPoint := $E] .
+		].
+	].! !
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/16/2021 16:29:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/16/2021 16:29:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/16/2021 16:29:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/16/2021 16:29:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'bi 5/16/2021 16:29:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'bi 5/16/2021 16:29:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'bi 5/16/2021 16:29:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08CardinalPointNAndCommandFThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:29:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09CardinalPointSAndCommandFThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:29:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CardinalPointOAndCommandFThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:29:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11CardinalPointEAndCommandFThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:29:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12CardinalPointNAndCommandBThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:29:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13CardinalPointSAndCommandBThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:29:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14CardinalPointOAndCommandBThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:29:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15CardinalPointEAndCommandBThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:29:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 16:29:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17CardinalPointNAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:29:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18CardinalPointSAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:29:58'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 16:30:30'!
+test19CardinalPointOAndCommandLThenRotateLeft
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: $O.
+	
+	marsRover process: 'l'.
+	
+	self assert: (marsRover isAt: 0@0 heding: $S)! !
+!MarsRover methodsFor: 'operations' stamp: 'bi 5/16/2021 16:30:48' prior: 50864177!
+process: aProcess
+
+	aProcess do: [:s | 
+		self assertInstructionValid: s.
+		($f = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+		].
+		($b = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+		].
+		($l = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ cardinalPoint := $O] .
+			($S = cardinalPoint) ifTrue: [ cardinalPoint := $E] .
+			($O = cardinalPoint) ifTrue: [ cardinalPoint := $S] .
+		].
+	].! !
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/16/2021 16:30:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/16/2021 16:30:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/16/2021 16:30:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/16/2021 16:30:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'bi 5/16/2021 16:30:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'bi 5/16/2021 16:30:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'bi 5/16/2021 16:30:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08CardinalPointNAndCommandFThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:30:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09CardinalPointSAndCommandFThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:30:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CardinalPointOAndCommandFThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:30:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11CardinalPointEAndCommandFThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:30:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12CardinalPointNAndCommandBThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:30:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13CardinalPointSAndCommandBThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:30:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14CardinalPointOAndCommandBThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:30:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15CardinalPointEAndCommandBThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:30:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 16:30:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17CardinalPointNAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:30:52'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test18CardinalPointSAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:30:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19CardinalPointOAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:30:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17CardinalPointNAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:30:52'!
+FAILURE!
+!MarsRover methodsFor: 'operations' stamp: 'bi 5/16/2021 16:33:52' prior: 50864281!
+process: aProcess
+
+	aProcess do: [:s | 
+		self assertInstructionValid: s.
+		($f = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+		].
+		($b = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+		].
+		($l = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ cardinalPoint := $O] 
+				ifFalse: [
+					($S = cardinalPoint) ifTrue: [ cardinalPoint := $E]
+						ifFalse: [
+							($O = cardinalPoint) ifTrue: [ cardinalPoint := $S] .
+						].
+				].
+			 
+			
+		].
+	].! !
+!MarsRover methodsFor: 'operations' stamp: 'bi 5/16/2021 16:35:33' prior: 50864385!
+process: aProcess
+
+	aProcess do: [:s | 
+		self assertInstructionValid: s.
+		($f = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+		].
+		($b = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+		].
+		($l = s) ifTrue: [
+			($N = cardinalPoint) 
+			ifTrue: [ 
+				cardinalPoint := $O
+			] ifFalse: [
+				($S = cardinalPoint) 
+				ifTrue: [ 
+					cardinalPoint := $E
+				] ifFalse: [
+					($O = cardinalPoint) ifTrue: [ cardinalPoint := $S] .
+				].
+			].
+		].
+	].! !
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/16/2021 16:35:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/16/2021 16:35:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/16/2021 16:35:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/16/2021 16:35:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'bi 5/16/2021 16:35:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'bi 5/16/2021 16:35:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'bi 5/16/2021 16:35:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08CardinalPointNAndCommandFThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:35:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09CardinalPointSAndCommandFThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:35:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CardinalPointOAndCommandFThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:35:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11CardinalPointEAndCommandFThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:35:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12CardinalPointNAndCommandBThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:35:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13CardinalPointSAndCommandBThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:35:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14CardinalPointOAndCommandBThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:35:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15CardinalPointEAndCommandBThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:35:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 16:35:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17CardinalPointNAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:35:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18CardinalPointSAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:35:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19CardinalPointOAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:35:38'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 16:36:18'!
+test20CardinalPointEAndCommandLThenRotateLeft
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: $E.
+	
+	marsRover process: 'l'.
+	
+	self assert: (marsRover isAt: 0@0 heding: $N)! !
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/16/2021 16:36:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/16/2021 16:36:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/16/2021 16:36:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/16/2021 16:36:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'bi 5/16/2021 16:36:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'bi 5/16/2021 16:36:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'bi 5/16/2021 16:36:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08CardinalPointNAndCommandFThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:36:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09CardinalPointSAndCommandFThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:36:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CardinalPointOAndCommandFThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:36:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11CardinalPointEAndCommandFThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:36:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12CardinalPointNAndCommandBThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:36:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13CardinalPointSAndCommandBThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:36:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14CardinalPointOAndCommandBThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:36:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15CardinalPointEAndCommandBThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:36:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 16:36:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17CardinalPointNAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:36:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18CardinalPointSAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:36:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19CardinalPointOAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:36:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20CardinalPointEAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:36:29'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test20CardinalPointEAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:36:29'!
+FAILURE!
+!MarsRover methodsFor: 'operations' stamp: 'bi 5/16/2021 16:38:57' prior: 50864415!
+process: aProcess
+
+	aProcess do: [:s | 
+		self assertInstructionValid: s.
+		($f = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+		].
+		($b = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+		].
+		($l = s) ifTrue: [
+			($N = cardinalPoint) 
+			ifTrue: [ 
+				cardinalPoint := $O
+			] ifFalse: [
+				($S = cardinalPoint) 
+				ifTrue: [ 
+					cardinalPoint := $E
+				] ifFalse: [
+					($O = cardinalPoint) 
+					ifTrue: [ 
+						cardinalPoint := $S
+					] ifFalse: [
+						($E = cardinalPoint) ifTrue: [cardinalPoint := $N].
+					]
+				].
+			].
+		].
+	].! !
+!MarsRover methodsFor: 'operations' stamp: 'bi 5/16/2021 16:41:01' prior: 50864605!
+process: aProcess
+
+	aProcess do: [:s | 
+		self assertInstructionValid: s.
+		($f = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+		].
+		($b = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+		].
+		($l = s) ifTrue: [
+			($N = cardinalPoint) 
+			ifTrue: [ 
+				cardinalPoint := $O
+			] ifFalse: [
+				($S = cardinalPoint) 
+				ifTrue: [ 
+					cardinalPoint := $E
+				] ifFalse: [
+					($O = cardinalPoint) 
+					ifTrue: [ 
+						cardinalPoint := $S
+					] ifFalse: [
+						($E = cardinalPoint) ifTrue: [cardinalPoint := $N].
+					].
+				].
+			].
+		].
+	].! !
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/16/2021 16:42:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/16/2021 16:42:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/16/2021 16:42:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/16/2021 16:42:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'bi 5/16/2021 16:42:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'bi 5/16/2021 16:42:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'bi 5/16/2021 16:42:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08CardinalPointNAndCommandFThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:42:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09CardinalPointSAndCommandFThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:42:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CardinalPointOAndCommandFThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:42:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11CardinalPointEAndCommandFThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:42:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12CardinalPointNAndCommandBThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:42:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13CardinalPointSAndCommandBThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:42:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14CardinalPointOAndCommandBThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:42:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15CardinalPointEAndCommandBThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:42:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 16:42:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17CardinalPointNAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:42:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18CardinalPointSAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:42:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19CardinalPointOAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:42:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20CardinalPointEAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:42:16'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 16:44:51'!
+test21CardinalPointNAndCommandRThenRotateLeft
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: $N.
+	
+	marsRover process: 'r'.
+	
+	self assert: (marsRover isAt: 0@0 heding: $E)! !
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/16/2021 16:45:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/16/2021 16:45:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/16/2021 16:45:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/16/2021 16:45:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'bi 5/16/2021 16:45:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'bi 5/16/2021 16:45:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'bi 5/16/2021 16:45:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08CardinalPointNAndCommandFThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:45:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09CardinalPointSAndCommandFThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:45:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CardinalPointOAndCommandFThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:45:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11CardinalPointEAndCommandFThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:45:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12CardinalPointNAndCommandBThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:45:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13CardinalPointSAndCommandBThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:45:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14CardinalPointOAndCommandBThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:45:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15CardinalPointEAndCommandBThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:45:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 16:45:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17CardinalPointNAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:45:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18CardinalPointSAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:45:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19CardinalPointOAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:45:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20CardinalPointEAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:45:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21CardinalPointNAndCommandRThenRotateLeft stamp: 'bi 5/16/2021 16:45:00'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test21CardinalPointNAndCommandRThenRotateLeft stamp: 'bi 5/16/2021 16:45:00'!
+FAILURE!
+!MarsRover methodsFor: 'operations' stamp: 'bi 5/16/2021 16:46:03' prior: 50864638!
+process: aProcess
+
+	aProcess do: [:s | 
+		self assertInstructionValid: s.
+		($f = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+		].
+		($b = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+		].
+		($l = s) ifTrue: [
+			($N = cardinalPoint) 
+			ifTrue: [ 
+				cardinalPoint := $O
+			] ifFalse: [
+				($S = cardinalPoint) 
+				ifTrue: [ 
+					cardinalPoint := $E
+				] ifFalse: [
+					($O = cardinalPoint) 
+					ifTrue: [ 
+						cardinalPoint := $S
+					] ifFalse: [
+						($E = cardinalPoint) ifTrue: [cardinalPoint := $N].
+					].
+				].
+			].
+		].
+		($r = s) ifTrue: [
+			($N = cardinalPoint) 
+			ifTrue: [ 
+				cardinalPoint := $E
+			]
+		].
+	].! !
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/16/2021 16:46:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/16/2021 16:46:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/16/2021 16:46:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/16/2021 16:46:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'bi 5/16/2021 16:46:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'bi 5/16/2021 16:46:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'bi 5/16/2021 16:46:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08CardinalPointNAndCommandFThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:46:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09CardinalPointSAndCommandFThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:46:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CardinalPointOAndCommandFThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:46:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11CardinalPointEAndCommandFThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:46:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12CardinalPointNAndCommandBThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:46:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13CardinalPointSAndCommandBThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:46:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14CardinalPointOAndCommandBThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:46:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15CardinalPointEAndCommandBThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:46:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 16:46:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17CardinalPointNAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:46:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18CardinalPointSAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:46:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19CardinalPointOAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:46:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20CardinalPointEAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:46:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21CardinalPointNAndCommandRThenRotateLeft stamp: 'bi 5/16/2021 16:46:08'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 16:47:31'!
+test22CardinalPointSAndCommandRThenRotateRightToCardinalPointO
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: $S.
+	
+	marsRover process: 'r'.
+	
+	self assert: (marsRover isAt: 0@0 heding: $O)! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 16:48:01'!
+test21CardinalPointNAndCommandRThenRotateRightToCardinalPointE
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: $N.
+	
+	marsRover process: 'r'.
+	
+	self assert: (marsRover isAt: 0@0 heding: $E)! !
+
+!methodRemoval: MarsRoverTest #test21CardinalPointNAndCommandRThenRotateLeft stamp: 'bi 5/16/2021 16:48:01'!
+test21CardinalPointNAndCommandRThenRotateLeft
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: $N.
+	
+	marsRover process: 'r'.
+	
+	self assert: (marsRover isAt: 0@0 heding: $E)!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 16:48:28'!
+test17CardinalPointNAndCommandLThenRotateLeftToCardinalPointO
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: $N.
+	
+	marsRover process: 'l'.
+	
+	self assert: (marsRover isAt: 0@0 heding: $O)! !
+
+!methodRemoval: MarsRoverTest #test17CardinalPointNAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:48:28'!
+test17CardinalPointNAndCommandLThenRotateLeft
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: $N.
+	
+	marsRover process: 'l'.
+	
+	self assert: (marsRover isAt: 0@0 heding: $O)!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 16:48:38'!
+test18CardinalPointSAndCommandLThenRotateLeftToCardinalPointE
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: $S.
+	
+	marsRover process: 'l'.
+	
+	self assert: (marsRover isAt: 0@0 heding: $E)! !
+
+!methodRemoval: MarsRoverTest #test18CardinalPointSAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:48:38'!
+test18CardinalPointSAndCommandLThenRotateLeft
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: $S.
+	
+	marsRover process: 'l'.
+	
+	self assert: (marsRover isAt: 0@0 heding: $E)!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 16:48:46'!
+test19CardinalPointOAndCommandLThenRotateLeftToCardinalPointS
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: $O.
+	
+	marsRover process: 'l'.
+	
+	self assert: (marsRover isAt: 0@0 heding: $S)! !
+
+!methodRemoval: MarsRoverTest #test19CardinalPointOAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:48:46'!
+test19CardinalPointOAndCommandLThenRotateLeft
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: $O.
+	
+	marsRover process: 'l'.
+	
+	self assert: (marsRover isAt: 0@0 heding: $S)!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 16:48:53'!
+test20CardinalPointEAndCommandLThenRotateLeftToCardinalPointN
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: $E.
+	
+	marsRover process: 'l'.
+	
+	self assert: (marsRover isAt: 0@0 heding: $N)! !
+
+!methodRemoval: MarsRoverTest #test20CardinalPointEAndCommandLThenRotateLeft stamp: 'bi 5/16/2021 16:48:53'!
+test20CardinalPointEAndCommandLThenRotateLeft
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: $E.
+	
+	marsRover process: 'l'.
+	
+	self assert: (marsRover isAt: 0@0 heding: $N)!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 16:49:33'!
+test23CardinalPointOAndCommandRThenRotateRightToCardinalPointN
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: $O.
+	
+	marsRover process: 'r'.
+	
+	self assert: (marsRover isAt: 0@0 heding: $N)! !
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/16/2021 16:49:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/16/2021 16:49:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/16/2021 16:49:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/16/2021 16:49:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'bi 5/16/2021 16:49:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'bi 5/16/2021 16:49:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'bi 5/16/2021 16:49:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08CardinalPointNAndCommandFThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:49:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09CardinalPointSAndCommandFThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:49:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CardinalPointOAndCommandFThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:49:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11CardinalPointEAndCommandFThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:49:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12CardinalPointNAndCommandBThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:49:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13CardinalPointSAndCommandBThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:49:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14CardinalPointOAndCommandBThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:49:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15CardinalPointEAndCommandBThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:49:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 16:49:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17CardinalPointNAndCommandLThenRotateLeftToCardinalPointO stamp: 'bi 5/16/2021 16:49:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18CardinalPointSAndCommandLThenRotateLeftToCardinalPointE stamp: 'bi 5/16/2021 16:49:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19CardinalPointOAndCommandLThenRotateLeftToCardinalPointS stamp: 'bi 5/16/2021 16:49:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20CardinalPointEAndCommandLThenRotateLeftToCardinalPointN stamp: 'bi 5/16/2021 16:49:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21CardinalPointNAndCommandRThenRotateRightToCardinalPointE stamp: 'bi 5/16/2021 16:49:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22CardinalPointSAndCommandRThenRotateRightToCardinalPointO stamp: 'bi 5/16/2021 16:49:36'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test23CardinalPointOAndCommandRThenRotateRightToCardinalPointN stamp: 'bi 5/16/2021 16:49:36'!
+FAILURE!
+!MarsRover methodsFor: 'operations' stamp: 'bi 5/16/2021 16:51:50' prior: 50864838!
+process: aProcess
+
+	aProcess do: [:s | 
+		self assertInstructionValid: s.
+		($f = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+		].
+		($b = s) ifTrue: [
+			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+		].
+		($l = s) ifTrue: [
+			($N = cardinalPoint) 
+			ifTrue: [ 
+				cardinalPoint := $O
+			] ifFalse: [
+				($S = cardinalPoint) 
+				ifTrue: [ 
+					cardinalPoint := $E
+				] ifFalse: [
+					($O = cardinalPoint) 
+					ifTrue: [ 
+						cardinalPoint := $S
+					] ifFalse: [
+						($E = cardinalPoint) ifTrue: [cardinalPoint := $N].
+					].
+				].
+			].
+		].
+		($r = s) ifTrue: [
+			($N = cardinalPoint) 
+			ifTrue: [ 
+				cardinalPoint := $E
+			] ifFalse: [
+				($S = cardinalPoint) 
+				ifTrue: [ 
+					cardinalPoint := $O
+				] ifFalse: [
+					($O = cardinalPoint) 
+					ifTrue: [ 
+						cardinalPoint := $N
+					] ifFalse: [
+						($E = cardinalPoint) ifTrue: [cardinalPoint := $S].
+					].
+				].
+			].
+		].
+	].! !
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/16/2021 16:51:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/16/2021 16:51:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/16/2021 16:51:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/16/2021 16:51:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'bi 5/16/2021 16:51:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'bi 5/16/2021 16:51:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'bi 5/16/2021 16:51:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08CardinalPointNAndCommandFThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:51:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09CardinalPointSAndCommandFThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:51:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CardinalPointOAndCommandFThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:51:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11CardinalPointEAndCommandFThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:51:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12CardinalPointNAndCommandBThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:51:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13CardinalPointSAndCommandBThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:51:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14CardinalPointOAndCommandBThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:51:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15CardinalPointEAndCommandBThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:51:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 16:51:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17CardinalPointNAndCommandLThenRotateLeftToCardinalPointO stamp: 'bi 5/16/2021 16:51:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18CardinalPointSAndCommandLThenRotateLeftToCardinalPointE stamp: 'bi 5/16/2021 16:51:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19CardinalPointOAndCommandLThenRotateLeftToCardinalPointS stamp: 'bi 5/16/2021 16:51:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20CardinalPointEAndCommandLThenRotateLeftToCardinalPointN stamp: 'bi 5/16/2021 16:51:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21CardinalPointNAndCommandRThenRotateRightToCardinalPointE stamp: 'bi 5/16/2021 16:51:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22CardinalPointSAndCommandRThenRotateRightToCardinalPointO stamp: 'bi 5/16/2021 16:51:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23CardinalPointOAndCommandRThenRotateRightToCardinalPointN stamp: 'bi 5/16/2021 16:51:55'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 16:52:14'!
+test24CardinalPointEAndCommandRThenRotateRightToCardinalPointS
+	
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: $E.
+	
+	marsRover process: 'r'.
+	
+	self assert: (marsRover isAt: 0@0 heding: $S)! !
+
+!testRun: #MarsRoverTest #test24CardinalPointEAndCommandRThenRotateRightToCardinalPointS stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08CardinalPointNAndCommandFThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09CardinalPointSAndCommandFThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CardinalPointOAndCommandFThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11CardinalPointEAndCommandFThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12CardinalPointNAndCommandBThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13CardinalPointSAndCommandBThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14CardinalPointOAndCommandBThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15CardinalPointEAndCommandBThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17CardinalPointNAndCommandLThenRotateLeftToCardinalPointO stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18CardinalPointSAndCommandLThenRotateLeftToCardinalPointE stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19CardinalPointOAndCommandLThenRotateLeftToCardinalPointS stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20CardinalPointEAndCommandLThenRotateLeftToCardinalPointN stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21CardinalPointNAndCommandRThenRotateRightToCardinalPointE stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22CardinalPointSAndCommandRThenRotateRightToCardinalPointO stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23CardinalPointOAndCommandRThenRotateRightToCardinalPointN stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24CardinalPointEAndCommandRThenRotateRightToCardinalPointS stamp: 'bi 5/16/2021 16:52:16'!
+PASSED!
+!MarsRover class methodsFor: 'initialize' stamp: 'bi 5/16/2021 17:03:40' prior: 50863007!
+at: aPosition heading: aCardinalPoint 
+	
+	self assertPositionIsAPoint: aPosition .
+	self assertPositionCoordinatesIsIntenger: aPosition .
+	self assertCardinalPointValid: aCardinalPoint .
+
+	^self new initializeAt: aPosition heading: aCardinalPoint
+! !
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/16/2021 17:03:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/16/2021 17:03:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/16/2021 17:03:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/16/2021 17:03:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'bi 5/16/2021 17:03:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'bi 5/16/2021 17:03:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'bi 5/16/2021 17:03:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08CardinalPointNAndCommandFThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 17:03:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09CardinalPointSAndCommandFThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 17:03:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CardinalPointOAndCommandFThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 17:03:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11CardinalPointEAndCommandFThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 17:03:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12CardinalPointNAndCommandBThenMove1NegativeOnYAxis stamp: 'bi 5/16/2021 17:03:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13CardinalPointSAndCommandBThenMove1PositiveOnYAxis stamp: 'bi 5/16/2021 17:03:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14CardinalPointOAndCommandBThenMove1PositiveOnXAxis stamp: 'bi 5/16/2021 17:03:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15CardinalPointEAndCommandBThenMove1NegativeOnXAxis stamp: 'bi 5/16/2021 17:03:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/16/2021 17:03:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17CardinalPointNAndCommandLThenRotateLeftToCardinalPointO stamp: 'bi 5/16/2021 17:03:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18CardinalPointSAndCommandLThenRotateLeftToCardinalPointE stamp: 'bi 5/16/2021 17:03:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19CardinalPointOAndCommandLThenRotateLeftToCardinalPointS stamp: 'bi 5/16/2021 17:03:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20CardinalPointEAndCommandLThenRotateLeftToCardinalPointN stamp: 'bi 5/16/2021 17:03:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21CardinalPointNAndCommandRThenRotateRightToCardinalPointE stamp: 'bi 5/16/2021 17:03:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22CardinalPointSAndCommandRThenRotateRightToCardinalPointO stamp: 'bi 5/16/2021 17:03:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23CardinalPointOAndCommandRThenRotateRightToCardinalPointN stamp: 'bi 5/16/2021 17:03:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24CardinalPointEAndCommandRThenRotateRightToCardinalPointS stamp: 'bi 5/16/2021 17:03:47'!
+PASSED!
+
+Object subclass: #CardinalPoint
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+!classDefinition: #CardinalPoint category: 'Mars-Rover' stamp: 'bi 5/16/2021 17:10:38'!
+Object subclass: #CardinalPoint
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+Object subclass: #MarsRoverCardinalPoint
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+!classDefinition: #MarsRoverCardinalPoint category: 'Mars-Rover' stamp: 'bi 5/16/2021 17:11:06'!
+Object subclass: #MarsRoverCardinalPoint
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+!classRemoval: #CardinalPoint stamp: 'bi 5/16/2021 17:11:10'!
+Object subclass: #CardinalPoint
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+!MarsRoverCardinalPoint class methodsFor: 'nil' stamp: 'bi 5/16/2021 17:12:22'!
+for: aMarsRover
+
+	^self new initializeWith: aMarsRover .! !
+!MarsRoverCardinalPoint methodsFor: 'initialization' stamp: 'bi 5/16/2021 17:15:52'!
+initializeWith: aMarsRover
+
+	marsRover := aMarsRover! !
+!MarsRoverCardinalPoint methodsFor: 'operations' stamp: 'bi 5/16/2021 17:19:22'!
+rotateLeft
+
+	self subclassResponsibility .! !
+!MarsRoverCardinalPoint methodsFor: 'operations' stamp: 'bi 5/16/2021 17:19:43'!
+rotateRight
+
+	self subclassResponsibility .! !
+
+MarsRoverCardinalPoint subclass: #NorthCardinalPoint
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+!classDefinition: #NorthCardinalPoint category: 'Mars-Rover' stamp: 'bi 5/16/2021 17:20:15'!
+MarsRoverCardinalPoint subclass: #NorthCardinalPoint
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+MarsRoverCardinalPoint subclass: #NCardinalPoint
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+!classDefinition: #NCardinalPoint category: 'Mars-Rover' stamp: 'bi 5/16/2021 17:20:26'!
+MarsRoverCardinalPoint subclass: #NCardinalPoint
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+!classRemoval: #NorthCardinalPoint stamp: 'bi 5/16/2021 17:20:29'!
+MarsRoverCardinalPoint subclass: #NorthCardinalPoint
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+MarsRoverCardinalPoint subclass: #SCardinalPoint
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+!classDefinition: #SCardinalPoint category: 'Mars-Rover' stamp: 'bi 5/16/2021 17:20:33'!
+MarsRoverCardinalPoint subclass: #SCardinalPoint
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+MarsRoverCardinalPoint subclass: #OCardinalPoint
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+!classDefinition: #OCardinalPoint category: 'Mars-Rover' stamp: 'bi 5/16/2021 17:20:36'!
+MarsRoverCardinalPoint subclass: #OCardinalPoint
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+MarsRoverCardinalPoint subclass: #ECardinalPoint
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+!classDefinition: #ECardinalPoint category: 'Mars-Rover' stamp: 'bi 5/16/2021 17:20:38'!
+MarsRoverCardinalPoint subclass: #ECardinalPoint
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+Object subclass: #MarsRoverLocation
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+!classDefinition: #MarsRoverLocation category: 'Mars-Rover' stamp: 'bi 5/16/2021 17:24:48'!
+Object subclass: #MarsRoverLocation
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+!methodRemoval: MarsRoverCardinalPoint #rotateLeft stamp: 'bi 5/16/2021 17:25:59'!
+rotateLeft
+
+	self subclassResponsibility .!
+
+!methodRemoval: MarsRoverCardinalPoint #rotateRight stamp: 'bi 5/16/2021 17:25:59'!
+rotateRight
+
+	self subclassResponsibility .!
+
+----QUIT----(16 May 2021 17:27:58) CuisUniversity-4532.image priorSource: 16994292!
