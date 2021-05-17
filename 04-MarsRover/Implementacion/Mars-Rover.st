@@ -277,11 +277,52 @@ Object subclass: #MarsRover
 	poolDictionaries: ''
 	category: 'Mars-Rover'!
 
-!MarsRover methodsFor: 'comparing' stamp: 'bi 5/14/2021 20:19:18'!
+!MarsRover methodsFor: 'comparing' stamp: 'bi 5/16/2021 21:28:24'!
 isAt: aPosition heding: aCardinalPoint 
 	
-	^position = aPosition and: [cardinalPoint = aCardinalPoint ].! !
+	^position = aPosition and: [self cardinalPoint = aCardinalPoint ].
+	"^position = aPosition and: [cardinalPoint = aCardinalPoint ]."! !
 
+
+!MarsRover methodsFor: 'operations' stamp: 'bi 5/16/2021 21:39:06'!
+ECardinalPointRotateLeft
+
+	cardinalPoint := NCardinalPoint new initializeWith: self.! !
+
+!MarsRover methodsFor: 'operations' stamp: 'bi 5/16/2021 21:39:21'!
+ECardinalPointRotateRight
+
+	cardinalPoint := SCardinalPoint new initializeWith: self.! !
+
+!MarsRover methodsFor: 'operations' stamp: 'bi 5/16/2021 21:39:26'!
+NCardinalPointRotateLeft
+
+	cardinalPoint := OCardinalPoint new initializeWith: self.! !
+
+!MarsRover methodsFor: 'operations' stamp: 'bi 5/16/2021 21:39:31'!
+NCardinalPointRotateRight
+
+	cardinalPoint := ECardinalPoint new initializeWith: self.! !
+
+!MarsRover methodsFor: 'operations' stamp: 'bi 5/16/2021 21:39:36'!
+OCardinalPointRotateLeft
+
+	cardinalPoint := SCardinalPoint new initializeWith: self.! !
+
+!MarsRover methodsFor: 'operations' stamp: 'bi 5/16/2021 21:39:40'!
+OCardinalPointRotateRight
+
+	cardinalPoint := NCardinalPoint new initializeWith: self.! !
+
+!MarsRover methodsFor: 'operations' stamp: 'bi 5/16/2021 21:39:47'!
+SCardinalPointRotateLeft
+
+	cardinalPoint := ECardinalPoint new initializeWith: self.! !
+
+!MarsRover methodsFor: 'operations' stamp: 'bi 5/16/2021 21:39:51'!
+SCardinalPointRotateRight
+
+	cardinalPoint := OCardinalPoint new initializeWith: self.! !
 
 !MarsRover methodsFor: 'operations' stamp: 'bi 5/16/2021 16:10:42'!
 moveOnXAxis: aValueX
@@ -293,66 +334,38 @@ moveOnYAxis: aValueY
 
 	position :=  (position x) @ (position y  + aValueY )! !
 
-!MarsRover methodsFor: 'operations' stamp: 'bi 5/16/2021 16:51:50'!
+!MarsRover methodsFor: 'operations' stamp: 'bi 5/16/2021 21:33:39'!
 process: aProcess
 
 	aProcess do: [:s | 
 		self assertInstructionValid: s.
 		($f = s) ifTrue: [
-			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
-			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
-			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
-			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+			($N = self cardinalPoint ) ifTrue: [ self moveOnYAxis: 1] .
+			($S = self cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($O = self cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+			($E = self cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
 		].
 		($b = s) ifTrue: [
-			($N = cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
-			($S = cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
-			($O = cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
-			($E = cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+			($N = self cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($S = self cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($O = self cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+			($E = self cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
 		].
 		($l = s) ifTrue: [
-			($N = cardinalPoint) 
-			ifTrue: [ 
-				cardinalPoint := $O
-			] ifFalse: [
-				($S = cardinalPoint) 
-				ifTrue: [ 
-					cardinalPoint := $E
-				] ifFalse: [
-					($O = cardinalPoint) 
-					ifTrue: [ 
-						cardinalPoint := $S
-					] ifFalse: [
-						($E = cardinalPoint) ifTrue: [cardinalPoint := $N].
-					].
-				].
-			].
+			cardinalPoint cardinalPointToYourLeft .
+			"cardinalPoint := cardinalPoint cardinalPointToYourLeft ."
 		].
 		($r = s) ifTrue: [
-			($N = cardinalPoint) 
-			ifTrue: [ 
-				cardinalPoint := $E
-			] ifFalse: [
-				($S = cardinalPoint) 
-				ifTrue: [ 
-					cardinalPoint := $O
-				] ifFalse: [
-					($O = cardinalPoint) 
-					ifTrue: [ 
-						cardinalPoint := $N
-					] ifFalse: [
-						($E = cardinalPoint) ifTrue: [cardinalPoint := $S].
-					].
-				].
-			].
+			cardinalPoint cardinalPointToYourRight .
+			"cardinalPoint := cardinalPoint cardinalPointToYourRight ."
 		].
 	].! !
 
 
-!MarsRover methodsFor: 'accessing' stamp: 'bi 5/16/2021 15:07:59'!
+!MarsRover methodsFor: 'accessing' stamp: 'bi 5/16/2021 21:16:11'!
 cardinalPoint
 
-	^cardinalPoint ! !
+	^cardinalPoint cardinalPointCharacter! !
 
 !MarsRover methodsFor: 'accessing' stamp: 'bi 5/16/2021 15:07:49'!
 position
@@ -410,14 +423,25 @@ assertPositionIsAPoint: aPosition
 	aPosition isPoint ifFalse: [self error: self invalidPositionErrorDescription].! !
 
 
-!MarsRover class methodsFor: 'initialize' stamp: 'bi 5/16/2021 17:03:40'!
+!MarsRover class methodsFor: 'initialize' stamp: 'bi 5/16/2021 20:51:26'!
 at: aPosition heading: aCardinalPoint 
 	
 	self assertPositionIsAPoint: aPosition .
 	self assertPositionCoordinatesIsIntenger: aPosition .
 	self assertCardinalPointValid: aCardinalPoint .
 
-	^self new initializeAt: aPosition heading: aCardinalPoint
+	^self new initializeAt: aPosition heading: (self getClassCardinalPoint: aCardinalPoint)
+	"^self new initializeAt: aPosition heading: aCardinalPoint"
+! !
+
+!MarsRover class methodsFor: 'initialize' stamp: 'bi 5/16/2021 20:56:57'!
+getClassCardinalPoint: aCardinalPoint 
+	
+	aCardinalPoint = $N ifTrue: [ ^NCardinalPoint for: self ].
+	aCardinalPoint = $S ifTrue: [ ^SCardinalPoint for: self ].
+	aCardinalPoint = $O ifTrue: [ ^OCardinalPoint for: self ].
+	aCardinalPoint = $E ifTrue: [ ^ECardinalPoint for: self ].
+
 ! !
 
 
@@ -427,6 +451,21 @@ Object subclass: #MarsRoverCardinalPoint
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Mars-Rover'!
+
+!MarsRoverCardinalPoint methodsFor: 'inquiries' stamp: 'bi 5/16/2021 21:11:05'!
+cardinalPointCharacter
+
+	self subclassResponsibility .! !
+
+!MarsRoverCardinalPoint methodsFor: 'inquiries' stamp: 'bi 5/16/2021 20:39:45'!
+cardinalPointToYourLeft
+
+	self subclassResponsibility .! !
+
+!MarsRoverCardinalPoint methodsFor: 'inquiries' stamp: 'bi 5/16/2021 20:39:54'!
+cardinalPointToYourRight
+
+	self subclassResponsibility .! !
 
 
 !MarsRoverCardinalPoint methodsFor: 'initialization' stamp: 'bi 5/16/2021 17:15:52'!
@@ -440,7 +479,7 @@ initializeWith: aMarsRover
 MarsRoverCardinalPoint class
 	instanceVariableNames: ''!
 
-!MarsRoverCardinalPoint class methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 17:12:22'!
+!MarsRoverCardinalPoint class methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 21:54:13'!
 for: aMarsRover
 
 	^self new initializeWith: aMarsRover .! !
@@ -453,6 +492,23 @@ MarsRoverCardinalPoint subclass: #ECardinalPoint
 	poolDictionaries: ''
 	category: 'Mars-Rover'!
 
+!ECardinalPoint methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 21:11:39'!
+cardinalPointCharacter
+
+	^$E.! !
+
+!ECardinalPoint methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 21:40:04'!
+cardinalPointToYourLeft
+
+	marsRover ECardinalPointRotateLeft
+	"^NCardinalPoint new initializeWith: marsRover."! !
+
+!ECardinalPoint methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 21:40:28'!
+cardinalPointToYourRight
+
+	marsRover ECardinalPointRotateRight
+	"^SCardinalPoint new initializeWith: marsRover."! !
+
 
 !classDefinition: #NCardinalPoint category: 'Mars-Rover'!
 MarsRoverCardinalPoint subclass: #NCardinalPoint
@@ -460,6 +516,23 @@ MarsRoverCardinalPoint subclass: #NCardinalPoint
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Mars-Rover'!
+
+!NCardinalPoint methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 21:11:51'!
+cardinalPointCharacter
+
+	^$N.! !
+
+!NCardinalPoint methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 21:40:45'!
+cardinalPointToYourLeft
+
+	marsRover NCardinalPointRotateLeft
+	"^OCardinalPoint new initializeWith: marsRover."! !
+
+!NCardinalPoint methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 21:40:56'!
+cardinalPointToYourRight
+
+	marsRover NCardinalPointRotateRight 
+	"^ECardinalPoint new initializeWith: marsRover."! !
 
 
 !classDefinition: #OCardinalPoint category: 'Mars-Rover'!
@@ -469,6 +542,23 @@ MarsRoverCardinalPoint subclass: #OCardinalPoint
 	poolDictionaries: ''
 	category: 'Mars-Rover'!
 
+!OCardinalPoint methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 21:12:01'!
+cardinalPointCharacter
+
+	^$O.! !
+
+!OCardinalPoint methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 21:41:10'!
+cardinalPointToYourLeft
+
+	marsRover OCardinalPointRotateLeft
+	"^SCardinalPoint new initializeWith: marsRover."! !
+
+!OCardinalPoint methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 21:41:20'!
+cardinalPointToYourRight
+
+	marsRover OCardinalPointRotateRight
+	"^NCardinalPoint new initializeWith: marsRover."! !
+
 
 !classDefinition: #SCardinalPoint category: 'Mars-Rover'!
 MarsRoverCardinalPoint subclass: #SCardinalPoint
@@ -477,10 +567,19 @@ MarsRoverCardinalPoint subclass: #SCardinalPoint
 	poolDictionaries: ''
 	category: 'Mars-Rover'!
 
-
-!classDefinition: #MarsRoverLocation category: 'Mars-Rover'!
-Object subclass: #MarsRoverLocation
-	instanceVariableNames: 'marsRover'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Mars-Rover'!
+!SCardinalPoint methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 21:12:10'!
+cardinalPointCharacter
+
+	^$S.! !
+
+!SCardinalPoint methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 21:41:33'!
+cardinalPointToYourLeft
+
+	marsRover SCardinalPointRotateLeft
+	"^ECardinalPoint new initializeWith: marsRover."! !
+
+!SCardinalPoint methodsFor: 'as yet unclassified' stamp: 'bi 5/16/2021 21:41:45'!
+cardinalPointToYourRight
+
+	marsRover SCardinalPointRotateRight 
+	"^OCardinalPoint new initializeWith: marsRover."! !
