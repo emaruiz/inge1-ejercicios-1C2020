@@ -7244,3 +7244,287 @@ ERROR!
 ERROR!
 
 ----QUIT----(16 May 2021 21:55:53) CuisUniversity-4532.image priorSource: 17087640!
+
+----STARTUP---- (17 May 2021 14:03:35) as /home/bingani/Documentos/Ing 1/PRACTICAS/inge1-ejercicios-1C2021/04-MarsRover/Implementacion/CuisUniversity-4532.image!
+
+
+MarsRoverCardinalPoint subclass: #ECardinalPoint
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+MarsRoverCardinalPoint subclass: #ECardinalPoint
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+MarsRoverCardinalPoint subclass: #ECardinalPoint
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+MarsRoverCardinalPoint subclass: #ECardinalPoint
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+!classDefinition: #ECardinalPoint category: 'Mars-Rover' stamp: 'bi 5/17/2021 14:19:01'!
+MarsRoverCardinalPoint subclass: #ECardinalPoint
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+MarsRoverCardinalPoint subclass: #ECardinalPoint
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+Object subclass: #MarsRoverCardinalPoint
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+!classDefinition: #MarsRoverCardinalPoint category: 'Mars-Rover' stamp: 'bi 5/17/2021 14:19:33'!
+Object subclass: #MarsRoverCardinalPoint
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+MarsRoverCardinalPoint subclass: #ECardinalPoint
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+!classDefinition: #ECardinalPoint category: 'Mars-Rover' stamp: 'bi 5/17/2021 14:19:38'!
+MarsRoverCardinalPoint subclass: #ECardinalPoint
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+MarsRoverCardinalPoint subclass: #NCardinalPoint
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+!classDefinition: #NCardinalPoint category: 'Mars-Rover' stamp: 'bi 5/17/2021 14:19:43'!
+MarsRoverCardinalPoint subclass: #NCardinalPoint
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+MarsRoverCardinalPoint subclass: #OCardinalPoint
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+!classDefinition: #OCardinalPoint category: 'Mars-Rover' stamp: 'bi 5/17/2021 14:19:47'!
+MarsRoverCardinalPoint subclass: #OCardinalPoint
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+MarsRoverCardinalPoint subclass: #SCardinalPoint
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+
+!classDefinition: #SCardinalPoint category: 'Mars-Rover' stamp: 'bi 5/17/2021 14:19:51'!
+MarsRoverCardinalPoint subclass: #SCardinalPoint
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Mars-Rover'!
+!MarsRoverCardinalPoint class methodsFor: 'as yet unclassified' stamp: 'bi 5/17/2021 14:22:36' prior: 50866930!
+for: aMarsRover
+
+	^self new initializeWith: aMarsRover .! !
+
+----QUIT----(17 May 2021 14:24:00) CuisUniversity-4532.image priorSource: 17132621!
+
+----STARTUP---- (17 May 2021 15:46:53) as /home/bingani/Documentos/Ing 1/PRACTICAS/inge1-ejercicios-1C2021/04-MarsRover/Implementacion/CuisUniversity-4532.image!
+
+
+!methodRemoval: MarsRover #ECardinalPointRotateLeft stamp: 'bi 5/17/2021 15:47:08'!
+ECardinalPointRotateLeft
+
+	cardinalPoint := NCardinalPoint new initializeWith: self.!
+
+!methodRemoval: MarsRover #ECardinalPointRotateRight stamp: 'bi 5/17/2021 15:47:10'!
+ECardinalPointRotateRight
+
+	cardinalPoint := SCardinalPoint new initializeWith: self.!
+
+!methodRemoval: MarsRover #NCardinalPointRotateLeft stamp: 'bi 5/17/2021 15:47:11'!
+NCardinalPointRotateLeft
+
+	cardinalPoint := OCardinalPoint new initializeWith: self.!
+
+!methodRemoval: MarsRover #NCardinalPointRotateRight stamp: 'bi 5/17/2021 15:47:13'!
+NCardinalPointRotateRight
+
+	cardinalPoint := ECardinalPoint new initializeWith: self.!
+
+!methodRemoval: MarsRover #OCardinalPointRotateLeft stamp: 'bi 5/17/2021 15:47:15'!
+OCardinalPointRotateLeft
+
+	cardinalPoint := SCardinalPoint new initializeWith: self.!
+
+!methodRemoval: MarsRover #OCardinalPointRotateRight stamp: 'bi 5/17/2021 15:47:19'!
+OCardinalPointRotateRight
+
+	cardinalPoint := NCardinalPoint new initializeWith: self.!
+
+!methodRemoval: MarsRover #SCardinalPointRotateLeft stamp: 'bi 5/17/2021 15:47:21'!
+SCardinalPointRotateLeft
+
+	cardinalPoint := ECardinalPoint new initializeWith: self.!
+
+!methodRemoval: MarsRover #SCardinalPointRotateRight stamp: 'bi 5/17/2021 15:47:24'!
+SCardinalPointRotateRight
+
+	cardinalPoint := OCardinalPoint new initializeWith: self.!
+!ECardinalPoint methodsFor: 'as yet unclassified' stamp: 'bi 5/17/2021 15:47:36' prior: 50866545 overrides: 50865786!
+cardinalPointToYourLeft
+
+	^NCardinalPoint new initializeWith: marsRover.! !
+!ECardinalPoint methodsFor: 'as yet unclassified' stamp: 'bi 5/17/2021 15:47:45' prior: 50866553 overrides: 50865791!
+cardinalPointToYourRight
+
+	^SCardinalPoint new initializeWith: marsRover.! !
+!NCardinalPoint methodsFor: 'as yet unclassified' stamp: 'bi 5/17/2021 15:47:54' prior: 50866561 overrides: 50865786!
+cardinalPointToYourLeft
+
+	^OCardinalPoint new initializeWith: marsRover.! !
+!NCardinalPoint methodsFor: 'as yet unclassified' stamp: 'bi 5/17/2021 15:48:00' prior: 50866569 overrides: 50865791!
+cardinalPointToYourRight
+
+	^ECardinalPoint new initializeWith: marsRover.! !
+!OCardinalPoint methodsFor: 'as yet unclassified' stamp: 'bi 5/17/2021 15:48:08' prior: 50866577 overrides: 50865786!
+cardinalPointToYourLeft
+
+	^SCardinalPoint new initializeWith: marsRover.! !
+!OCardinalPoint methodsFor: 'as yet unclassified' stamp: 'bi 5/17/2021 15:48:13' prior: 50866585 overrides: 50865791!
+cardinalPointToYourRight
+
+	^NCardinalPoint new initializeWith: marsRover.! !
+!SCardinalPoint methodsFor: 'as yet unclassified' stamp: 'bi 5/17/2021 15:48:21' prior: 50866593 overrides: 50865786!
+cardinalPointToYourLeft
+
+	^ECardinalPoint new initializeWith: marsRover.! !
+!SCardinalPoint methodsFor: 'as yet unclassified' stamp: 'bi 5/17/2021 15:48:27' prior: 50866601 overrides: 50865791!
+cardinalPointToYourRight
+
+	^OCardinalPoint new initializeWith: marsRover.! !
+!MarsRover methodsFor: 'operations' stamp: 'bi 5/17/2021 15:49:10' prior: 50866378!
+process: aProcess
+
+	aProcess do: [:s | 
+		self assertInstructionValid: s.
+		($f = s) ifTrue: [
+			($N = self cardinalPoint ) ifTrue: [ self moveOnYAxis: 1] .
+			($S = self cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($O = self cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+			($E = self cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+		].
+		($b = s) ifTrue: [
+			($N = self cardinalPoint) ifTrue: [ self moveOnYAxis: -1] .
+			($S = self cardinalPoint) ifTrue: [ self moveOnYAxis: 1] .
+			($O = self cardinalPoint) ifTrue: [ self moveOnXAxis: 1] .
+			($E = self cardinalPoint) ifTrue: [ self moveOnXAxis: -1] .
+		].
+		($l = s) ifTrue: [
+			cardinalPoint := cardinalPoint cardinalPointToYourLeft .
+		].
+		($r = s) ifTrue: [
+			cardinalPoint := cardinalPoint cardinalPointToYourRight .
+		].
+	].! !
+
+!testRun: #MarsRoverTest #test01CreationCorrectlyPositionAndCardinalPoint stamp: 'bi 5/17/2021 15:49:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtHeadingReturnFalseWhenMarsRoverIsNotInThePositionOfCreation stamp: 'bi 5/17/2021 15:49:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtHeadingReturnFalseWhenMarsRoverIsNotInTheCardinalPointOfCreation stamp: 'bi 5/17/2021 15:49:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04CannotCreateMarsRoverWithWrongCardinalPoint stamp: 'bi 5/17/2021 15:49:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05CannotCreateMarsRoverWithWrongYCoordinateOfPosition stamp: 'bi 5/17/2021 15:49:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06CannotCreateMarsRoverWithWrongXCoordinateOfPosition stamp: 'bi 5/17/2021 15:49:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07CannotCreateMarsRoverWithWrongPosition stamp: 'bi 5/17/2021 15:49:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08CardinalPointNAndCommandFThenMove1PositiveOnYAxis stamp: 'bi 5/17/2021 15:49:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09CardinalPointSAndCommandFThenMove1NegativeOnYAxis stamp: 'bi 5/17/2021 15:49:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CardinalPointOAndCommandFThenMove1NegativeOnXAxis stamp: 'bi 5/17/2021 15:49:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11CardinalPointEAndCommandFThenMove1PositiveOnXAxis stamp: 'bi 5/17/2021 15:49:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12CardinalPointNAndCommandBThenMove1NegativeOnYAxis stamp: 'bi 5/17/2021 15:49:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13CardinalPointSAndCommandBThenMove1PositiveOnYAxis stamp: 'bi 5/17/2021 15:49:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14CardinalPointOAndCommandBThenMove1PositiveOnXAxis stamp: 'bi 5/17/2021 15:49:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15CardinalPointEAndCommandBThenMove1NegativeOnXAxis stamp: 'bi 5/17/2021 15:49:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverStopProcessingOnInvalidInstruccion stamp: 'bi 5/17/2021 15:49:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17CardinalPointNAndCommandLThenRotateLeftToCardinalPointO stamp: 'bi 5/17/2021 15:49:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18CardinalPointSAndCommandLThenRotateLeftToCardinalPointE stamp: 'bi 5/17/2021 15:49:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19CardinalPointOAndCommandLThenRotateLeftToCardinalPointS stamp: 'bi 5/17/2021 15:49:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20CardinalPointEAndCommandLThenRotateLeftToCardinalPointN stamp: 'bi 5/17/2021 15:49:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21CardinalPointNAndCommandRThenRotateRightToCardinalPointE stamp: 'bi 5/17/2021 15:49:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test22CardinalPointSAndCommandRThenRotateRightToCardinalPointO stamp: 'bi 5/17/2021 15:49:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test23CardinalPointOAndCommandRThenRotateRightToCardinalPointN stamp: 'bi 5/17/2021 15:49:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test24CardinalPointEAndCommandRThenRotateRightToCardinalPointS stamp: 'bi 5/17/2021 15:49:14'!
+PASSED!
+
+----QUIT----(17 May 2021 15:49:41) CuisUniversity-4532.image priorSource: 17136059!
