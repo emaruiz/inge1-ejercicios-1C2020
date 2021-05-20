@@ -266,3 +266,280 @@ balance
 		(aTransaction isKindOf: Withdraw) 	ifTrue: [value := value negated ].
 		value
 	] ifEmpty: [ 0 ]! !
+
+----QUIT----(17 May 2021 22:09:39) CuisUniversity-4532.image priorSource: 16893206!
+
+----STARTUP---- (19 May 2021 21:18:42) as /home/bingani/Documentos/Ing 1/PRACTICAS/inge1-ejercicios-1C2021/05-Portfolio 1/Implementacion/CuisUniversity-4532.image!
+
+!ReceptiveAccount methodsFor: 'balance' stamp: 'bi 5/19/2021 21:28:08' prior: 50859818!
+balance
+
+	
+
+	^(transactions collect: [:aTransaction | 
+		aTransaction 
+	])
+	"sum: [ :aTransaction | 
+		value := aTransaction value.
+		(aTransaction isKindOf: Withdraw) 	ifTrue: [value := value negated ].
+		value	
+	]" 
+	ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'bi 5/19/2021 21:28:27' prior: 50859835!
+balance
+
+	| value |
+
+	^(transactions collect: [:aTransaction | 
+		value := aTransaction 
+	])
+	"sum: [ :aTransaction | 
+		value := aTransaction value.
+		(aTransaction isKindOf: Withdraw) 	ifTrue: [value := value negated ].
+		value	
+	]" 
+	ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'bi 5/19/2021 21:30:39' prior: 50859846!
+balance
+
+	| value |
+
+	value := 0.
+	^(transactions collect: [:aTransaction | 
+		value := aTransaction addYourValueToTotal: value
+	])
+	"sum: [ :aTransaction | 
+		value := aTransaction value.
+		(aTransaction isKindOf: Withdraw) 	ifTrue: [value := value negated ].
+		value	
+	]" 
+	ifEmpty: [ 0 ]! !
+!AccountTransaction methodsFor: 'nil' stamp: 'bi 5/19/2021 21:33:27'!
+addYourValueToTotal: aTotalAmount
+	
+	self subclassResponsibility .! !
+!Deposit methodsFor: 'nil' stamp: 'bi 5/19/2021 21:34:48' overrides: 50859869!
+addYourValueToTotal: aTotalAmount
+
+	^aTotalAmount  + self value .! !
+!Withdraw methodsFor: 'nil' stamp: 'bi 5/19/2021 21:35:02' overrides: 50859869!
+addYourValueToTotal: aTotalAmount
+
+	^aTotalAmount  - self value .! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'bi 5/19/2021 21:35:05' prior: 50859879 overrides: 50859869!
+addYourValueToTotal: aTotalAmount
+
+	^aTotalAmount - self value .! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'bi 5/19/2021 21:35:15' prior: 50859874 overrides: 50859869!
+addYourValueToTotal: aTotalAmount
+
+	^aTotalAmount + self value .! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'bi 5/19/2021 21:35:40' prior: 50859857!
+balance
+
+	| value |
+
+	value := 0.
+	^(transactions collect: [:aTransaction | 
+		value := aTransaction addYourValueToTotal: value
+	]) ifEmpty: [ 0 ]
+	"sum: [ :aTransaction | 
+		value := aTransaction value.
+		(aTransaction isKindOf: Withdraw) 	ifTrue: [value := value negated ].
+		value	
+	] ifEmpty: [ 0 ]"! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'bi 5/19/2021 21:36:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'bi 5/19/2021 21:36:00'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'bi 5/19/2021 21:36:00'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'bi 5/19/2021 21:36:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'bi 5/19/2021 21:36:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'bi 5/19/2021 21:36:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'bi 5/19/2021 21:36:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'bi 5/19/2021 21:37:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'bi 5/19/2021 21:37:12'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'bi 5/19/2021 21:37:12'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'bi 5/19/2021 21:37:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'bi 5/19/2021 21:37:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'bi 5/19/2021 21:37:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'bi 5/19/2021 21:37:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'bi 5/19/2021 21:37:16'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'bi 5/19/2021 21:38:49' prior: 50859896!
+balance
+
+	| value |
+
+	value := 0.
+	^(transactions do: [:aTransaction | 
+		value := aTransaction addYourValueToTotal: value
+	]) ifEmpty: [ 0 ]
+	"sum: [ :aTransaction | 
+		value := aTransaction value.
+		(aTransaction isKindOf: Withdraw) 	ifTrue: [value := value negated ].
+		value	
+	] ifEmpty: [ 0 ]"! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'bi 5/19/2021 21:38:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'bi 5/19/2021 21:38:53'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'bi 5/19/2021 21:38:53'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'bi 5/19/2021 21:38:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'bi 5/19/2021 21:38:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'bi 5/19/2021 21:38:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'bi 5/19/2021 21:38:53'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'bi 5/19/2021 21:40:21' prior: 50859965!
+balance
+
+	| value |
+
+	value := 0.
+	value := (transactions do: [:aTransaction | 
+		value := aTransaction addYourValueToTotal: value
+	]) ifEmpty: [ 0 ].
+	^value
+	"sum: [ :aTransaction | 
+		value := aTransaction value.
+		(aTransaction isKindOf: Withdraw) 	ifTrue: [value := value negated ].
+		value	
+	] ifEmpty: [ 0 ]"! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'bi 5/19/2021 21:40:36' prior: 50860004!
+balance
+
+	| value |
+
+	value := 0.
+	value := (transactions do: [:aTransaction | 		value := aTransaction addYourValueToTotal: value ]) ifEmpty: [ 0 ].
+	^value
+	"sum: [ :aTransaction | 
+		value := aTransaction value.
+		(aTransaction isKindOf: Withdraw) 	ifTrue: [value := value negated ].
+		value	
+	] ifEmpty: [ 0 ]"! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'bi 5/19/2021 21:40:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'bi 5/19/2021 21:40:56'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'bi 5/19/2021 21:40:56'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'bi 5/19/2021 21:40:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'bi 5/19/2021 21:40:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'bi 5/19/2021 21:40:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'bi 5/19/2021 21:40:56'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'bi 5/19/2021 21:42:50' prior: 50860017!
+balance
+
+	| value |
+
+	value := 0.
+	value := (transactions do: [:aTransaction | 		value := aTransaction addYourValueToTotal: value ]).
+	^value ifEmpty: [ 0 ]
+	"sum: [ :aTransaction | 
+		value := aTransaction value.
+		(aTransaction isKindOf: Withdraw) 	ifTrue: [value := value negated ].
+		value	
+	] ifEmpty: [ 0 ]"! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'bi 5/19/2021 21:42:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'bi 5/19/2021 21:42:56'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'bi 5/19/2021 21:42:56'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'bi 5/19/2021 21:42:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'bi 5/19/2021 21:42:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'bi 5/19/2021 21:42:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'bi 5/19/2021 21:42:56'!
+PASSED!
+
+----End fileIn of /home/bingani/Documentos/Ing 1/PRACTICAS/inge1-ejercicios-1C2021/05-Portfolio 1/Implementacion/Packages/TerseGuide.pck.st----!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'bi 5/19/2021 21:47:31' prior: 50860056!
+balance
+
+	| value |
+
+	value := 0. transactions do: [:aTransaction | 		value := aTransaction addYourValueToTotal: value ].
+	^ value.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'bi 5/19/2021 21:47:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'bi 5/19/2021 21:47:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'bi 5/19/2021 21:47:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'bi 5/19/2021 21:47:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'bi 5/19/2021 21:47:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'bi 5/19/2021 21:47:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'bi 5/19/2021 21:47:36'!
+PASSED!
+
+----QUIT----(19 May 2021 21:48:33) CuisUniversity-4532.image priorSource: 16901631!

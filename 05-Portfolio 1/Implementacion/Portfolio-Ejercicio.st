@@ -1,3 +1,34 @@
+!classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/17/2021 20:59:20'!
+test01
+
+	| portfolio |
+	
+	portfolio := Portfolio new.
+
+	self assert: 0 equals: portfolio balance.! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/17/2021 21:06:05'!
+test02
+
+	| portfolio account |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+
+	portfolio add: account.
+
+	self assert: 0 equals: portfolio balance.! !
+
+
 !classDefinition: #ReceptiveAccountTest category: 'Portfolio-Ejercicio'!
 TestCase subclass: #ReceptiveAccountTest
 	instanceVariableNames: ''
@@ -101,6 +132,12 @@ value
 
 	self subclassResponsibility ! !
 
+
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'bi 5/19/2021 21:33:27'!
+addYourValueToTotal: aTotalAmount
+	
+	self subclassResponsibility .! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'AccountTransaction class' category: 'Portfolio-Ejercicio'!
@@ -136,6 +173,12 @@ value
 
 	^ value! !
 
+
+!Deposit methodsFor: 'as yet unclassified' stamp: 'bi 5/19/2021 21:35:15'!
+addYourValueToTotal: aTotalAmount
+
+	^aTotalAmount + self value .! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Deposit class' category: 'Portfolio-Ejercicio'!
@@ -166,6 +209,12 @@ value
 
 	^ value! !
 
+
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'bi 5/19/2021 21:35:05'!
+addYourValueToTotal: aTotalAmount
+
+	^aTotalAmount - self value .! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Withdraw class' category: 'Portfolio-Ejercicio'!
@@ -176,6 +225,24 @@ Withdraw class
 for: aValue
 
 	^ self new initializeFor: aValue ! !
+
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/17/2021 21:06:41'!
+add: anAccount
+
+	! !
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/17/2021 21:02:06'!
+balance
+
+	^0! !
 
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio'!
@@ -203,10 +270,13 @@ transactions
 	^ transactions copy! !
 
 
-!ReceptiveAccount methodsFor: 'balance' stamp: 'HAW 5/23/2019 15:19:32'!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'bi 5/19/2021 21:47:31'!
 balance
 
-	^transactions sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ]! !
+	| value |
+
+	value := 0. transactions do: [:aTransaction | 		value := aTransaction addYourValueToTotal: value ].
+	^ value.! !
 
 
 !ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/17/2019 03:28:43'!
