@@ -5,8 +5,8 @@ TestCase subclass: #PortfolioTest
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/17/2021 20:59:20'!
-test01
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/20/2021 20:54:24'!
+test01PortfolioHaveZeroAsBalanceWhenCreated 
 
 	| portfolio |
 	
@@ -14,19 +14,41 @@ test01
 
 	self assert: 0 equals: portfolio balance.! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/17/2021 21:06:05'!
-test02
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/20/2021 20:58:15'!
+test02AccountIncreasesBalanceInTheValueOfYourTransaction
 
 	| portfolio account |
-	
-	portfolio := Portfolio new.
 	
 	account := ReceptiveAccount  new.
 	Deposit register: 100 on: account.
 
-	portfolio add: account.
+	portfolio := Portfolio new.
+	portfolio register: account.
 
-	self assert: 0 equals: portfolio balance.! !
+	self assert: 100 equals: portfolio balance.! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/20/2021 21:04:28'!
+test03
+
+	| account deposit withdraw portfolio |
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	withdraw := Withdraw register: 50 on: account.
+	
+	portfolio := Portfolio new.
+	portfolio register: account.
+		
+	self assert: (account hasRegistered: deposit).	
+	
+	"account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Withdraw register: 50 on: account1.
+	
+	portfolio := Portfolio new.
+	portfolio register: account1.
+
+	self assert: 100 equals: portfolio balance."! !
 
 
 !classDefinition: #ReceptiveAccountTest category: 'Portfolio-Ejercicio'!
@@ -229,20 +251,27 @@ for: aValue
 
 !classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
 Object subclass: #Portfolio
-	instanceVariableNames: ''
+	instanceVariableNames: 'accounts'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/17/2021 21:06:41'!
-add: anAccount
-
-	! !
-
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/17/2021 21:02:06'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/20/2021 20:49:45'!
 balance
 
-	^0! !
+	^accounts sum: [ :anAccount | anAccount balance ] ifEmpty: [ 0 ]! !
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/20/2021 20:41:04'!
+initialize
+
+	accounts := OrderedCollection new.! !
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/20/2021 20:22:19'!
+register: anAccount
+
+	accounts add: anAccount 
+
+	! !
 
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio'!
