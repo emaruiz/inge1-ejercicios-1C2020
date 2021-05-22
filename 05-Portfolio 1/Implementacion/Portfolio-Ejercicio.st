@@ -14,7 +14,7 @@ test01PortfolioHaveZeroAsBalanceWhenCreated
 
 	self assert: 0 equals: portfolio balance.! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 18:40:29'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:28:27'!
 test02AccountIncreasesPortfolioBalanceValueOfYourTransactions
 
 	| portfolio account |
@@ -23,11 +23,11 @@ test02AccountIncreasesPortfolioBalanceValueOfYourTransactions
 	Deposit register: 100 on: account.
 
 	portfolio := Portfolio new.
-	portfolio registerAccount: account.
+	portfolio register: account.
 
 	self assert: 100 equals: portfolio balance.! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 18:40:43'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:28:21'!
 test03PortfolioKnowsRegisteredTransactionsOfYourAccounts
 
 	| account deposit withdraw portfolio |
@@ -37,12 +37,12 @@ test03PortfolioKnowsRegisteredTransactionsOfYourAccounts
 	withdraw := Withdraw register: 50 on: account.
 	
 	portfolio := Portfolio new.
-	portfolio registerAccount: account.
+	portfolio register: account.
 		
 	self assert: (portfolio hasRegistered: deposit).	
 	self assert: (portfolio hasRegistered: withdraw).! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 18:40:50'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:28:15'!
 test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts
 
 	| account deposit withdraw portfolio |
@@ -52,12 +52,12 @@ test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts
 	withdraw := Withdraw for: 50.
 	
 	portfolio := Portfolio new.
-	portfolio registerAccount: account.
+	portfolio register: account.
 		
 	self assert: (portfolio hasRegistered: deposit).	
 	self deny: (portfolio hasRegistered: withdraw).! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 19:24:21'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:28:09'!
 test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions
 
 	| portfolioIn portfolioOut account1 account2 |
@@ -67,20 +67,20 @@ test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions
 	Deposit register: 50 on: account1.
 
 	portfolioIn := Portfolio new.
-	portfolioIn registerAccount: account1.
+	portfolioIn register: account1.
 
 	account2 := ReceptiveAccount  new.
 	Deposit register: 50 on: account2.
 	
 	portfolioOut := Portfolio new.
-	portfolioOut registerPorfolio: portfolioIn.
-	portfolioOut registerAccount: account2.
-	
+	portfolioOut register: portfolioIn.
+	portfolioOut register: account2.
+
 	self assert: 150 equals: portfolioIn balance.
 	self assert: 200 equals: portfolioOut balance.
 ! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 19:27:24'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:27:59'!
 test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios
 
 	| portfolioIn portfolioOut account1 account2 depositIn depositOut |
@@ -90,14 +90,14 @@ test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios
 	depositIn := Deposit register: 50 on: account1.
 
 	portfolioIn := Portfolio new.
-	portfolioIn registerAccount: account1.
+	portfolioIn register: account1.
 
 	account2 := ReceptiveAccount  new.
 	depositOut := Deposit register: 50 on: account2.
 	
 	portfolioOut := Portfolio new.
-	portfolioOut registerPorfolio: portfolioIn.
-	portfolioOut registerAccount: account2.
+	portfolioOut register: portfolioIn.
+	portfolioOut register: account2.
 	
 	self assert: (portfolioOut hasRegistered: depositOut).	
 	self assert: (portfolioOut hasRegistered: depositIn).
@@ -302,48 +302,46 @@ for: aValue
 	^ self new initializeFor: aValue ! !
 
 
-!classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
-Object subclass: #Portfolio
-	instanceVariableNames: 'accounts portfolios'
+!classDefinition: #FinancialAsset category: 'Portfolio-Ejercicio'!
+Object subclass: #FinancialAsset
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 18:48:45'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
+FinancialAsset subclass: #Portfolio
+	instanceVariableNames: 'financialAssets'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:28:57'!
 balance
 
-	^ (portfolios sum: [ :aPortfolio | aPortfolio balance ] ifEmpty: [ 0 ])
-	+ (accounts sum: [ :anAccount | anAccount balance ] ifEmpty: [ 0 ])! !
+	^financialAssets sum: [ :aFinancialAsset | aFinancialAsset balance ] ifEmpty: [ 0 ]! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 18:56:11'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:28:50'!
 hasRegistered: aTransaction
 
-	^ (portfolios anySatisfy: [:aPortolio | aPortolio hasRegistered: aTransaction ])
-	or: (accounts anySatisfy: [:anAccount | anAccount hasRegistered: aTransaction ]).! !
+	^financialAssets anySatisfy: [:aFinancialAsset | aFinancialAsset hasRegistered: aTransaction ]! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 18:46:15'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:28:44'!
 initialize
 
-	accounts := OrderedCollection new.
-	portfolios := OrderedCollection new.! !
+	financialAssets := OrderedCollection new.! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 18:40:09'!
-registerAccount: anAccount
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:04:48'!
+register: aFinancialAsset
 
-	accounts add: anAccount 
-
-	! !
-
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 18:45:46'!
-registerPorfolio: anPortfolio
-
-	portfolios add: anPortfolio 
+	financialAssets add: aFinancialAsset
 
 	! !
 
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio'!
-Object subclass: #ReceptiveAccount
+FinancialAsset subclass: #ReceptiveAccount
 	instanceVariableNames: 'transactions'
 	classVariableNames: ''
 	poolDictionaries: ''

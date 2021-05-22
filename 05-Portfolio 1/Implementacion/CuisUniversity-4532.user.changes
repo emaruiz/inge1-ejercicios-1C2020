@@ -2299,3 +2299,433 @@ PASSED!
 PASSED!
 
 ----QUIT----(22 May 2021 19:47:15) CuisUniversity-4532.image priorSource: 17056465!
+
+----STARTUP---- (22 May 2021 19:48:18) as /home/bingani/Documentos/Ing 1/PRACTICAS/inge1-ejercicios-1C2021/05-Portfolio 1/Implementacion/CuisUniversity-4532.image!
+
+
+Object subclass: #FinancialAsset
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #FinancialAsset category: 'Portfolio-Ejercicio' stamp: 'bi 5/22/2021 19:49:00'!
+Object subclass: #FinancialAsset
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+FinancialAsset subclass: #Portfolio
+	instanceVariableNames: 'accounts portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'bi 5/22/2021 19:49:21'!
+FinancialAsset subclass: #Portfolio
+	instanceVariableNames: 'accounts portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+FinancialAsset subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'bi 5/22/2021 19:49:26'!
+FinancialAsset subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+FinancialAsset subclass: #Portfolio
+	instanceVariableNames: 'financialAsset'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'bi 5/22/2021 19:51:20'!
+FinancialAsset subclass: #Portfolio
+	instanceVariableNames: 'financialAsset'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+FinancialAsset subclass: #Portfolio
+	instanceVariableNames: 'financialAssets'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'bi 5/22/2021 20:03:23'!
+FinancialAsset subclass: #Portfolio
+	instanceVariableNames: 'financialAssets'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:04:20'!
+register: aFinancialAsset
+
+	financialAssets add: aFinancialAsset 
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:04:48' prior: 50865340!
+register: aFinancialAsset
+
+	financialAssets add: aFinancialAsset
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:06:07' prior: 50864861 overrides: 16896425!
+initialize
+
+	financialAssets := FinancialAsset new.
+	"accounts := OrderedCollection new.
+	portfolios := OrderedCollection new."! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:21:00' prior: 50865352 overrides: 16896425!
+initialize
+
+	financialAssets := OrderedCollection new.
+	"accounts := OrderedCollection new.
+	portfolios := OrderedCollection new."! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:22:35' prior: 50864870!
+balance
+
+	^financialAssets sum: [ :aFinnalAsset | aFinnalAsset balance ] ifEmpty: [ 0 ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:22:53' prior: 50865368!
+balance
+
+	^financialAssets sum: [ :aFinnalAsset | aFinnalAsset balance ] ifEmpty: [ 0 ]
+	"^ (portfolios sum: [ :aPortfolio | aPortfolio balance ] ifEmpty: [ 0 ])
+	+ (accounts sum: [ :anAccount | anAccount balance ] ifEmpty: [ 0 ])"! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:23:51' prior: 50865052!
+hasRegistered: aTransaction
+
+	^financialAssets anySatisfy: [:aFinancialAsset | aFinancialAsset hasRegistered: aTransaction ]
+	"^ (portfolios anySatisfy: [:aPortolio | aPortolio hasRegistered: aTransaction ])
+	or: (accounts anySatisfy: [:anAccount | anAccount hasRegistered: aTransaction ])."! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:24:01' prior: 50865374!
+balance
+
+	^financialAssets sum: [ :aFinancialAsset | aFinancialAsset balance ] ifEmpty: [ 0 ]
+	"^ (portfolios sum: [ :aPortfolio | aPortfolio balance ] ifEmpty: [ 0 ])
+	+ (accounts sum: [ :anAccount | anAccount balance ] ifEmpty: [ 0 ])"! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:24:58' prior: 50864778!
+test02AccountIncreasesPortfolioBalanceValueOfYourTransactions
+
+	| portfolio account |
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+
+	portfolio := Portfolio new.
+	portfolio register: account.
+	"portfolio registerAccount: account."
+
+	self assert: 100 equals: portfolio balance.! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:25:19' prior: 50864790!
+test03PortfolioKnowsRegisteredTransactionsOfYourAccounts
+
+	| account deposit withdraw portfolio |
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	withdraw := Withdraw register: 50 on: account.
+	
+	portfolio := Portfolio new.
+	portfolio register: account.
+	"portfolio registerAccount: account."
+		
+	self assert: (portfolio hasRegistered: deposit).	
+	self assert: (portfolio hasRegistered: withdraw).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:25:38' prior: 50864806!
+test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts
+
+	| account deposit withdraw portfolio |
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	withdraw := Withdraw for: 50.
+	
+	portfolio := Portfolio new.
+	portfolio register: account.
+	"portfolio registerAccount: account."
+		
+	self assert: (portfolio hasRegistered: deposit).	
+	self deny: (portfolio hasRegistered: withdraw).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:26:23' prior: 50865132!
+test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions
+
+	| portfolioIn portfolioOut account1 account2 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account1.
+	"portfolioIn registerAccount: account1."
+
+	account2 := ReceptiveAccount  new.
+	Deposit register: 50 on: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: portfolioIn.
+	portfolioOut register: account2.
+	"portfolioOut registerPorfolio: portfolioIn.
+	portfolioOut registerAccount: account2."
+	
+	self assert: 150 equals: portfolioIn balance.
+	self assert: 200 equals: portfolioOut balance.
+! !
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/22/2021 20:26:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'bi 5/22/2021 20:26:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/22/2021 20:26:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'bi 5/22/2021 20:26:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'bi 5/22/2021 20:26:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/22/2021 20:26:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'bi 5/22/2021 20:26:25'!
+ERROR!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'bi 5/22/2021 20:26:25'!
+ERROR!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:26:44' prior: 50865195!
+test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios
+
+	| portfolioIn portfolioOut account1 account2 depositIn depositOut |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	depositIn := Deposit register: 50 on: account1.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account1.
+	"portfolioIn registerAccount: account1."
+
+	account2 := ReceptiveAccount  new.
+	depositOut := Deposit register: 50 on: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut registerPorfolio: portfolioIn.
+	portfolioOut registerAccount: account2.
+	
+	self assert: (portfolioOut hasRegistered: depositOut).	
+	self assert: (portfolioOut hasRegistered: depositIn).
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:27:00' prior: 50865514!
+test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios
+
+	| portfolioIn portfolioOut account1 account2 depositIn depositOut |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	depositIn := Deposit register: 50 on: account1.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account1.
+	"portfolioIn registerAccount: account1."
+
+	account2 := ReceptiveAccount  new.
+	depositOut := Deposit register: 50 on: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: portfolioIn.
+	portfolioOut register: account2.
+	"portfolioOut registerPorfolio: portfolioIn.
+	portfolioOut registerAccount: account2."
+	
+	self assert: (portfolioOut hasRegistered: depositOut).	
+	self assert: (portfolioOut hasRegistered: depositIn).
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:27:07' prior: 50865539!
+test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios
+
+	| portfolioIn portfolioOut account1 account2 depositIn depositOut |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	depositIn := Deposit register: 50 on: account1.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account1.
+	"portfolioIn registerAccount: account1."
+
+	account2 := ReceptiveAccount  new.
+	depositOut := Deposit register: 50 on: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: portfolioIn.
+	portfolioOut register: account2.
+	"portfolioOut registerPorfolio: portfolioIn.
+	portfolioOut registerAccount: account2."
+	
+	self assert: (portfolioOut hasRegistered: depositOut).	
+	self assert: (portfolioOut hasRegistered: depositIn).
+! !
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'bi 5/22/2021 20:27:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'bi 5/22/2021 20:27:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/22/2021 20:27:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'bi 5/22/2021 20:27:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'bi 5/22/2021 20:27:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/22/2021 20:27:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'bi 5/22/2021 20:27:13'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:27:59' prior: 50865567!
+test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios
+
+	| portfolioIn portfolioOut account1 account2 depositIn depositOut |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	depositIn := Deposit register: 50 on: account1.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account1.
+
+	account2 := ReceptiveAccount  new.
+	depositOut := Deposit register: 50 on: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: portfolioIn.
+	portfolioOut register: account2.
+	
+	self assert: (portfolioOut hasRegistered: depositOut).	
+	self assert: (portfolioOut hasRegistered: depositIn).
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:28:09' prior: 50865456!
+test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions
+
+	| portfolioIn portfolioOut account1 account2 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account1.
+
+	account2 := ReceptiveAccount  new.
+	Deposit register: 50 on: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: portfolioIn.
+	portfolioOut register: account2.
+
+	self assert: 150 equals: portfolioIn balance.
+	self assert: 200 equals: portfolioOut balance.
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:28:15' prior: 50865439!
+test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts
+
+	| account deposit withdraw portfolio |
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	withdraw := Withdraw for: 50.
+	
+	portfolio := Portfolio new.
+	portfolio register: account.
+		
+	self assert: (portfolio hasRegistered: deposit).	
+	self deny: (portfolio hasRegistered: withdraw).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:28:21' prior: 50865422!
+test03PortfolioKnowsRegisteredTransactionsOfYourAccounts
+
+	| account deposit withdraw portfolio |
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	withdraw := Withdraw register: 50 on: account.
+	
+	portfolio := Portfolio new.
+	portfolio register: account.
+		
+	self assert: (portfolio hasRegistered: deposit).	
+	self assert: (portfolio hasRegistered: withdraw).! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:28:27' prior: 50865409!
+test02AccountIncreasesPortfolioBalanceValueOfYourTransactions
+
+	| portfolio account |
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+
+	portfolio := Portfolio new.
+	portfolio register: account.
+
+	self assert: 100 equals: portfolio balance.! !
+
+!methodRemoval: Portfolio #registerPorfolio: stamp: 'bi 5/22/2021 20:28:36'!
+registerPorfolio: anPortfolio
+
+	portfolios add: anPortfolio 
+
+	!
+
+!methodRemoval: Portfolio #registerAccount: stamp: 'bi 5/22/2021 20:28:38'!
+registerAccount: anAccount
+
+	accounts add: anAccount 
+
+	!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:28:44' prior: 50865360 overrides: 16896425!
+initialize
+
+	financialAssets := OrderedCollection new.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:28:50' prior: 50865385!
+hasRegistered: aTransaction
+
+	^financialAssets anySatisfy: [:aFinancialAsset | aFinancialAsset hasRegistered: aTransaction ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:28:57' prior: 50865398!
+balance
+
+	^financialAssets sum: [ :aFinancialAsset | aFinancialAsset balance ] ifEmpty: [ 0 ]! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'bi 5/22/2021 20:29:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/22/2021 20:29:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'bi 5/22/2021 20:29:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'bi 5/22/2021 20:29:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/22/2021 20:29:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'bi 5/22/2021 20:29:01'!
+PASSED!
+
+----QUIT----(22 May 2021 20:29:17) CuisUniversity-4532.image priorSource: 17075746!
