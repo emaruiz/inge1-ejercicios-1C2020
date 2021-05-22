@@ -14,7 +14,7 @@ test01PortfolioHaveZeroAsBalanceWhenCreated
 
 	self assert: 0 equals: portfolio balance.! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 15:44:23'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 18:40:29'!
 test02AccountIncreasesPortfolioBalanceValueOfYourTransactions
 
 	| portfolio account |
@@ -23,11 +23,11 @@ test02AccountIncreasesPortfolioBalanceValueOfYourTransactions
 	Deposit register: 100 on: account.
 
 	portfolio := Portfolio new.
-	portfolio register: account.
+	portfolio registerAccount: account.
 
 	self assert: 100 equals: portfolio balance.! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 15:37:48'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 18:40:43'!
 test03PortfolioKnowsRegisteredTransactionsOfYourAccounts
 
 	| account deposit withdraw portfolio |
@@ -37,12 +37,12 @@ test03PortfolioKnowsRegisteredTransactionsOfYourAccounts
 	withdraw := Withdraw register: 50 on: account.
 	
 	portfolio := Portfolio new.
-	portfolio register: account.
+	portfolio registerAccount: account.
 		
 	self assert: (portfolio hasRegistered: deposit).	
 	self assert: (portfolio hasRegistered: withdraw).! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 15:39:49'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 18:40:50'!
 test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts
 
 	| account deposit withdraw portfolio |
@@ -52,32 +52,55 @@ test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts
 	withdraw := Withdraw for: 50.
 	
 	portfolio := Portfolio new.
-	portfolio register: account.
+	portfolio registerAccount: account.
 		
 	self assert: (portfolio hasRegistered: deposit).	
 	self deny: (portfolio hasRegistered: withdraw).! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 16:11:04'!
-test05
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 19:24:21'!
+test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions
 
 	| portfolioIn portfolioOut account1 account2 |
-"COMO HACERLO FALLAR?"	
+
 	account1 := ReceptiveAccount  new.
 	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+
+	portfolioIn := Portfolio new.
+	portfolioIn registerAccount: account1.
 
 	account2 := ReceptiveAccount  new.
 	Deposit register: 50 on: account2.
-
-	portfolioIn := Portfolio new.
-	portfolioIn register: account1.
 	
 	portfolioOut := Portfolio new.
-	portfolioOut register: portfolioIn.
-	portfolioOut register: account2.
+	portfolioOut registerPorfolio: portfolioIn.
+	portfolioOut registerAccount: account2.
 	
-	self assert: 100 equals: portfolioIn balance.
-	self assert: 150 equals: portfolioOut balance.
+	self assert: 150 equals: portfolioIn balance.
+	self assert: 200 equals: portfolioOut balance.
+! !
 
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 19:27:24'!
+test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios
+
+	| portfolioIn portfolioOut account1 account2 depositIn depositOut |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	depositIn := Deposit register: 50 on: account1.
+
+	portfolioIn := Portfolio new.
+	portfolioIn registerAccount: account1.
+
+	account2 := ReceptiveAccount  new.
+	depositOut := Deposit register: 50 on: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut registerPorfolio: portfolioIn.
+	portfolioOut registerAccount: account2.
+	
+	self assert: (portfolioOut hasRegistered: depositOut).	
+	self assert: (portfolioOut hasRegistered: depositIn).
 ! !
 
 
@@ -281,30 +304,40 @@ for: aValue
 
 !classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
 Object subclass: #Portfolio
-	instanceVariableNames: 'accounts'
+	instanceVariableNames: 'accounts portfolios'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/20/2021 20:49:45'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 18:48:45'!
 balance
 
-	^accounts sum: [ :anAccount | anAccount balance ] ifEmpty: [ 0 ]! !
+	^ (portfolios sum: [ :aPortfolio | aPortfolio balance ] ifEmpty: [ 0 ])
+	+ (accounts sum: [ :anAccount | anAccount balance ] ifEmpty: [ 0 ])! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 15:36:04'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 18:56:11'!
 hasRegistered: aTransaction
 
-	^accounts anySatisfy: [:anAccount | anAccount hasRegistered: aTransaction ].! !
+	^ (portfolios anySatisfy: [:aPortolio | aPortolio hasRegistered: aTransaction ])
+	or: (accounts anySatisfy: [:anAccount | anAccount hasRegistered: aTransaction ]).! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/20/2021 20:41:04'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 18:46:15'!
 initialize
 
-	accounts := OrderedCollection new.! !
+	accounts := OrderedCollection new.
+	portfolios := OrderedCollection new.! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/20/2021 20:22:19'!
-register: anAccount
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 18:40:09'!
+registerAccount: anAccount
 
 	accounts add: anAccount 
+
+	! !
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 18:45:46'!
+registerPorfolio: anPortfolio
+
+	portfolios add: anPortfolio 
 
 	! !
 
