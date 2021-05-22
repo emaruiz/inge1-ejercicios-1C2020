@@ -14,8 +14,8 @@ test01PortfolioHaveZeroAsBalanceWhenCreated
 
 	self assert: 0 equals: portfolio balance.! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/20/2021 20:58:15'!
-test02AccountIncreasesBalanceInTheValueOfYourTransaction
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 15:44:23'!
+test02AccountIncreasesPortfolioBalanceValueOfYourTransactions
 
 	| portfolio account |
 	
@@ -27,8 +27,8 @@ test02AccountIncreasesBalanceInTheValueOfYourTransaction
 
 	self assert: 100 equals: portfolio balance.! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/20/2021 21:04:28'!
-test03
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 15:37:48'!
+test03PortfolioKnowsRegisteredTransactionsOfYourAccounts
 
 	| account deposit withdraw portfolio |
 	
@@ -39,16 +39,46 @@ test03
 	portfolio := Portfolio new.
 	portfolio register: account.
 		
-	self assert: (account hasRegistered: deposit).	
+	self assert: (portfolio hasRegistered: deposit).	
+	self assert: (portfolio hasRegistered: withdraw).! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 15:39:49'!
+test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts
+
+	| account deposit withdraw portfolio |
 	
-	"account1 := ReceptiveAccount  new.
-	Deposit register: 100 on: account1.
-	Withdraw register: 50 on: account1.
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	withdraw := Withdraw for: 50.
 	
 	portfolio := Portfolio new.
-	portfolio register: account1.
+	portfolio register: account.
+		
+	self assert: (portfolio hasRegistered: deposit).	
+	self deny: (portfolio hasRegistered: withdraw).! !
 
-	self assert: 100 equals: portfolio balance."! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 16:11:04'!
+test05
+
+	| portfolioIn portfolioOut account1 account2 |
+"COMO HACERLO FALLAR?"	
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+
+	account2 := ReceptiveAccount  new.
+	Deposit register: 50 on: account2.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account1.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: portfolioIn.
+	portfolioOut register: account2.
+	
+	self assert: 100 equals: portfolioIn balance.
+	self assert: 150 equals: portfolioOut balance.
+
+! !
 
 
 !classDefinition: #ReceptiveAccountTest category: 'Portfolio-Ejercicio'!
@@ -260,6 +290,11 @@ Object subclass: #Portfolio
 balance
 
 	^accounts sum: [ :anAccount | anAccount balance ] ifEmpty: [ 0 ]! !
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 15:36:04'!
+hasRegistered: aTransaction
+
+	^accounts anySatisfy: [:anAccount | anAccount hasRegistered: aTransaction ].! !
 
 !Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/20/2021 20:41:04'!
 initialize
