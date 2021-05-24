@@ -103,6 +103,78 @@ test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios
 	self assert: (portfolioOut hasRegistered: depositIn).
 ! !
 
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 21:49:14'!
+test07CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts
+
+	| account1 account2 portfolio |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 200 on: account2.
+	
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.
+	
+	self 
+		should: [portfolio register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 21:50:30'!
+test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndPortfolio
+
+	| portfolioIn portfolioOut account1 account2 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 200 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 100 on: account2.
+	Deposit register: 50 on: account2.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: account1.
+	portfolioOut register: portfolioIn.
+	
+	self 
+		should: [portfolioOut register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 21:51:25'!
+test09CannotInsertARepeatedAccountOfDifferentCollaboratorInPortfolioOfOnlyAccounts
+
+	| account1 account2 account3 portfolio |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 200 on: account2.
+	
+	account3 := ReceptiveAccount  new.
+	Deposit register: 200 on: account3.
+	
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.
+	
+	self 
+		should: [portfolio register: account3]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+
 
 !classDefinition: #ReceptiveAccountTest category: 'Portfolio-Ejercicio'!
 TestCase subclass: #ReceptiveAccountTest
@@ -332,12 +404,49 @@ initialize
 
 	financialAssets := OrderedCollection new.! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:04:48'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 20:29:48'!
 register: aFinancialAsset
-
+	
+	|copyFinancialAssets|
+	copyFinancialAssets := financialAssets copy
+.	(self Includes: aFinancialAsset On: copyFinancialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
 	financialAssets add: aFinancialAsset
 
 	! !
+
+
+!Portfolio methodsFor: 'accessing - private' stamp: 'e d r r 5/23/2021 20:45:47'!
+getFinancialAssetsCopy
+	
+	^financialAssets copy ! !
+
+
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/23/2021 20:55:32'!
+Includes: aFinancialAssetToInsert On: worklistOfFinancialAssets
+	
+	| aFinancialAssetExtracted |
+	worklistOfFinancialAssets size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := worklistOfFinancialAssets removeFirst.
+	
+	aFinancialAssetExtracted = aFinancialAssetToInsert ifTrue: [^true].
+	
+	(aFinancialAssetExtracted isKindOf: Portfolio) ifTrue: 
+		[worklistOfFinancialAssets addAllLast: aFinancialAssetExtracted getFinancialAssetsCopy].
+	
+	^self Includes: aFinancialAssetToInsert On: worklistOfFinancialAssets.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Portfolio class' category: 'Portfolio-Ejercicio'!
+Portfolio class
+	instanceVariableNames: ''!
+
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 18:56:56'!
+attemptToInsertRepeatedFinancialAssetErrorDescription
+	
+	^'cannot insert a financial asset that is already in the portfolio'! !
 
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio'!

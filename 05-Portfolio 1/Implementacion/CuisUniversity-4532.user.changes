@@ -2729,3 +2729,1456 @@ PASSED!
 PASSED!
 
 ----QUIT----(22 May 2021 20:29:17) CuisUniversity-4532.image priorSource: 17075746!
+
+----STARTUP---- (23 May 2021 17:45:21) as /home/manuel/Facultad/Ingeniería1/Ejercicios/inge1-ejercicios-1C2021/05-Portfolio 1/Implementacion/CuisUniversity-4532.image!
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 18:53:44'!
+test07PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios
+
+	| portfolioIn portfolioOut account1 account2 depositIn depositOut |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	depositIn := Deposit register: 50 on: account1.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account1.
+
+	account2 := ReceptiveAccount  new.
+	depositOut := Deposit register: 50 on: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: portfolioIn.
+	portfolioOut register: account2.
+	
+	self assert: (portfolioOut hasRegistered: depositOut).	
+	self assert: (portfolioOut hasRegistered: depositIn).
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 18:54:23' prior: 50865771!
+test07PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios
+
+	| account1 account2 portfolio |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 100 on: account2.
+	
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.
+	
+	self 
+		should: [portfolio register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 18:55:08'!
+test07CannotInsertARepeatedAccountInPortfolioOfOnlyAccounts
+
+	| account1 account2 portfolio |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 100 on: account2.
+	
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.
+	
+	self 
+		should: [portfolio register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+
+!methodRemoval: PortfolioTest #test07PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'e d r r 5/23/2021 18:55:08'!
+test07PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios
+
+	| account1 account2 portfolio |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 100 on: account2.
+	
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.
+	
+	self 
+		should: [portfolio register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 18:55:32'!
+FAILURE!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 18:55:32'!
+FAILURE!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 18:56:00' prior: 50865817!
+test07CannotInsertARepeatedAccountInPortfolioOfOnlyAccounts
+
+	| account1 account2 portfolio |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 200 on: account2.
+	
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.
+	
+	self 
+		should: [portfolio register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 18:56:04'!
+FAILURE!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 18:56:04'!
+FAILURE!
+!Portfolio class methodsFor: 'nil' stamp: 'e d r r 5/23/2021 18:56:56'!
+attemptToInsertRepeatedFinancialAssetErrorDescription
+	
+	^'cannot insert a financial asset that is already in the portfolio'! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 18:57:09' prior: 50865346!
+register: aFinancialAsset
+	
+	
+	financialAssets add: aFinancialAsset
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 19:00:01' prior: 50865907!
+register: aFinancialAsset
+	
+	self XXXXXBfsIncludes: '' ifTrue: [self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset
+
+	! !
+!Portfolio methodsFor: 'nil' stamp: 'e d r r 5/23/2021 19:01:00'!
+XXXXXBfsIncludes: yyyItem
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 19:02:58' prior: 50865913!
+register: aFinancialAsset
+	
+	(self XXXXXBfsIncludes: aFinancialAsset) ifTrue: [self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 19:09:21' prior: 50865926!
+register: aFinancialAsset
+	
+	(self XXXXXBfsIncludes: aFinancialAsset ZZZZZWith: '') ifTrue: [self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 19:10:28'!
+XXXXXBfsIncludes: yyyItem yyy: ZZZZZWith 
+	! !
+
+!methodRemoval: Portfolio #XXXXXBfsIncludes: stamp: 'e d r r 5/23/2021 19:10:28'!
+XXXXXBfsIncludes: yyyItem
+	!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 19:10:51' prior: 50865946!
+XXXXXBfsIncludes: yyyItem yyy: yyyy 
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 19:11:16'!
+XXXXXBfsIncludes: yyyItem ZZZZZWith: yyyy 
+	! !
+
+!methodRemoval: Portfolio #XXXXXBfsIncludes:yyy: stamp: 'e d r r 5/23/2021 19:11:16'!
+XXXXXBfsIncludes: yyyItem yyy: yyyy 
+	!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 19:11:55' prior: 50865959!
+XXXXXBfsIncludes: yyyItem ZZZZZWith: yyyyqueue
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 19:20:58' prior: 50865968!
+XXXXXBfsIncludes: yyyItem ZZZZZWith: yyyyworklist
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 19:22:43' prior: 50865973!
+XXXXXBfsIncludes: yyyItem ZZZZZWith: yyyyworklist
+	
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 19:24:43' prior: 50865978!
+XXXXXBfsIncludes: yyyItem ZZZZZWith: yyyyworklist
+	
+	yyyyworklist size = 0 ifTrue: [].! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 19:24:59' prior: 50865983!
+XXXXXBfsIncludes: yyyItem ZZZZZWith: yyyyworklist
+	
+	yyyyworklist size = 0 ifTrue: [^false].
+	
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 19:26:43' prior: 50865989!
+XXXXXBfsIncludes: yyyItem ZZZZZWith: yyyyworklist
+	
+	|  |
+	yyyyworklist size = 0 ifTrue: [^false].
+	
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 19:27:46' prior: 50865996!
+XXXXXBfsIncludes: yyyItem ZZZZZWith: yyyyworklist
+	
+	| aFinancialAsset |
+	yyyyworklist size = 0 ifTrue: [^false].
+	
+	aFinancialAsset := yyyyworklist removeFirst.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 19:27:52' prior: 50866003!
+XXXXXBfsIncludes: yyyItem ZZZZZWith: yyyyworklist
+	
+	| aFinancialAsset |
+	yyyyworklist size = 0 ifTrue: [^false].
+	
+	aFinancialAsset := yyyyworklist removeFirst.
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 19:36:33' prior: 50866012!
+XXXXXBfsIncludes: yyyItem ZZZZZWith: yyyyworklist
+	
+	| aFinancialAsset |
+	yyyyworklist size = 0 ifTrue: [^false].
+	
+	aFinancialAsset := yyyyworklist removeFirst.
+	
+	aFinancialAsset = yyyItem ifTrue: [^true].
+	
+	self XXXXXBfsIncludes: yyyItem ZZZZZWith: yyyyworklist.! !
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 19:37:24'!
+FAILURE!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 19:37:24'!
+FAILURE!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 19:37:37'!
+FAILURE!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 19:37:37'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 19:42:06' prior: 50865936!
+register: aFinancialAsset
+	
+	(self XXXXXBfsIncludes: aFinancialAsset ZZZZZWith: financialAssets copy) ifTrue: [self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 19:42:27' prior: 50866050!
+register: aFinancialAsset
+	
+	(self XXXXXBfsIncludes: aFinancialAsset ZZZZZWith: financialAssets copy) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset
+
+	! !
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 19:42:57'!
+ERROR!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 19:42:57'!
+ERROR!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 19:43:18'!
+ERROR!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 19:45:04'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 19:46:58' prior: 50866061!
+register: aFinancialAsset
+	
+	|copyFinancialAssets|
+	copyFinancialAssets := financialAssets copy
+.	(self XXXXXBfsIncludes: aFinancialAsset ZZZZZWith: copyFinancialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset
+
+	! !
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 19:47:05'!
+ERROR!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 19:47:05'!
+ERROR!
+
+aFinancialAsset!
+
+copyFinancialAssets!
+
+financialAssets copy!
+
+copyFinancialAssets!
+
+yyyyworklist!
+
+aFinancialAsset!
+
+yyyyworklist!
+
+yyyyworklist!
+
+copyFinancialAssets!
+
+yyyyworklist!
+
+aFinancialAsset!
+
+yyyyworklist!
+
+aFinancialAsset!
+
+yyyItem!
+
+yyyyworklist!
+
+yyyyworklist!
+
+yyyyworklist!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 19:53:55' prior: 50866021!
+XXXXXBfsIncludes: yyyItem ZZZZZWith: yyyyworklist
+	
+	| aFinancialAsset |
+	yyyyworklist size = 0 ifTrue: [^false].
+	
+	aFinancialAsset := yyyyworklist removeFirst.
+	
+	aFinancialAsset = yyyItem ifTrue: [^true].
+	
+	^self XXXXXBfsIncludes: yyyItem ZZZZZWith: yyyyworklist.! !
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 19:54:02'!
+PASSED!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 19:57:54' prior: 50866118!
+XXXXXBfsIncludes: yyyItem ZZZZZWith: yyyyworklist
+	
+	| aFinancialAsset |
+	yyyyworklist size = 0 ifTrue: [^false].
+	
+	aFinancialAsset := yyyyworklist removeFirst.
+	
+	"(yyyItem isKindOf: self class) ifTrue: [
+		
+	]."
+	aFinancialAsset = yyyItem ifTrue: [^true].
+	
+	^self XXXXXBfsIncludes: yyyItem ZZZZZWith: yyyyworklist.! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'e d r r 5/23/2021 19:58:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'e d r r 5/23/2021 19:58:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'e d r r 5/23/2021 19:58:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'e d r r 5/23/2021 19:58:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'e d r r 5/23/2021 19:58:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'e d r r 5/23/2021 19:58:03'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 19:58:03'!
+PASSED!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 20:01:57' prior: 50866134!
+XXXXXBfsIncludes: yyyItem ZZZZZWith: yyyyworklist
+	
+	| aFinancialAsset |
+	yyyyworklist size = 0 ifTrue: [^false].
+	
+	aFinancialAsset := yyyyworklist removeFirst.
+	
+	aFinancialAsset = yyyItem ifTrue: [^true].
+	
+	^self XXXXXBfsIncludes: yyyItem ZZZZZWith: yyyyworklist.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 20:22:57' prior: 50866177!
+XXXXXBfsIncludes: aFinancialAssetToInsert ZZZZZWith: yyyyworklist
+	
+	| aFinancialAssetExtracted |
+	yyyyworklist size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := yyyyworklist removeFirst.
+	
+	aFinancialAssetExtracted = aFinancialAssetToInsert ifTrue: [^true].
+	
+	^self XXXXXBfsIncludes: aFinancialAssetToInsert ZZZZZWith: yyyyworklist.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 20:24:52' prior: 50866189!
+XXXXXBfsIncludes: aFinancialAssetToInsert ZZZZZWith: worklistOfFinancialAssets
+	
+	| aFinancialAssetExtracted |
+	worklistOfFinancialAssets size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := worklistOfFinancialAssets removeFirst.
+	
+	aFinancialAssetExtracted = aFinancialAssetToInsert ifTrue: [^true].
+	
+	^self XXXXXBfsIncludes: aFinancialAssetToInsert ZZZZZWith: worklistOfFinancialAssets.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 20:28:46'!
+Includes: aFinancialAssetToInsert On: worklistOfFinancialAssets
+	
+	| aFinancialAssetExtracted |
+	worklistOfFinancialAssets size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := worklistOfFinancialAssets removeFirst.
+	
+	aFinancialAssetExtracted = aFinancialAssetToInsert ifTrue: [^true].
+	
+	^self XXXXXBfsIncludes: aFinancialAssetToInsert ZZZZZWith: worklistOfFinancialAssets.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 20:29:21' prior: 50866218!
+Includes: aFinancialAssetToInsert On: worklistOfFinancialAssets
+	
+	| aFinancialAssetExtracted |
+	worklistOfFinancialAssets size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := worklistOfFinancialAssets removeFirst.
+	
+	aFinancialAssetExtracted = aFinancialAssetToInsert ifTrue: [^true].
+	
+	^self Includes: aFinancialAssetToInsert On: worklistOfFinancialAssets.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 20:29:48' prior: 50866088!
+register: aFinancialAsset
+	
+	|copyFinancialAssets|
+	copyFinancialAssets := financialAssets copy
+.	(self Includes: aFinancialAsset On: copyFinancialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset
+
+	! !
+
+!methodRemoval: Portfolio #XXXXXBfsIncludes:ZZZZZWith: stamp: 'e d r r 5/23/2021 20:30:02'!
+XXXXXBfsIncludes: aFinancialAssetToInsert ZZZZZWith: worklistOfFinancialAssets
+	
+	| aFinancialAssetExtracted |
+	worklistOfFinancialAssets size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := worklistOfFinancialAssets removeFirst.
+	
+	aFinancialAssetExtracted = aFinancialAssetToInsert ifTrue: [^true].
+	
+	^self XXXXXBfsIncludes: aFinancialAssetToInsert ZZZZZWith: worklistOfFinancialAssets.!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 20:30:18'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 20:35:29'!
+test08XXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts
+
+	| account1 account2 portfolio |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 200 on: account2.
+	
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.
+	
+	self 
+		should: [portfolio register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 20:41:26' prior: 50866281!
+test08XXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts
+
+	| portfolioIn portfolioOut account1 account2 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 200 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 100 on: account2.
+	Deposit register: 50 on: account2.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: account1.
+	portfolioOut register: portfolioIn.
+	
+	self 
+		should: [portfolioOut register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+
+!testRun: #PortfolioTest #test08XXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 20:41:39'!
+FAILURE!
+
+!testRun: #PortfolioTest #test08XXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 20:41:39'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 20:44:17' prior: 50866234!
+Includes: aFinancialAssetToInsert On: worklistOfFinancialAssets
+	
+	| aFinancialAssetExtracted |
+	worklistOfFinancialAssets size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := worklistOfFinancialAssets removeFirst.
+	
+	aFinancialAssetExtracted = aFinancialAssetToInsert ifTrue: [^true].
+	
+	"worklistOfFinancialAssets addAllLast: aFinancialAssetExtracted ."
+	
+	^self Includes: aFinancialAssetToInsert On: worklistOfFinancialAssets.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 20:44:45' prior: 50866336!
+Includes: aFinancialAssetToInsert On: worklistOfFinancialAssets
+	
+	| aFinancialAssetExtracted |
+	worklistOfFinancialAssets size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := worklistOfFinancialAssets removeFirst.
+	
+	aFinancialAssetExtracted = aFinancialAssetToInsert ifTrue: [^true].
+	
+	"worklistOfFinancialAssets addAllLast: aFinancialAssetExtracted getFinancialAssets."
+	
+	^self Includes: aFinancialAssetToInsert On: worklistOfFinancialAssets.! !
+!Portfolio methodsFor: 'nil' stamp: 'e d r r 5/23/2021 20:44:52'!
+getFinancialAssets
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 20:44:53' prior: 50866370!
+getFinancialAssets
+	
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 20:45:02' prior: 50866374!
+getFinancialAssets
+	
+	financialAssets! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 20:45:13' prior: 50866378!
+getFinancialAssets
+	
+	^financialAssets! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 20:45:36' prior: 50866383!
+getFinancialAssets
+	
+	^financialAssets! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 20:45:47'!
+getFinancialAssetsCopy
+	
+	^financialAssets copy ! !
+
+!methodRemoval: Portfolio #getFinancialAssets stamp: 'e d r r 5/23/2021 20:45:51'!
+getFinancialAssets
+	
+	^financialAssets!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 20:50:36' prior: 50866353!
+Includes: aFinancialAssetToInsert On: worklistOfFinancialAssets
+	
+	| aFinancialAssetExtracted |
+	worklistOfFinancialAssets size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := worklistOfFinancialAssets removeFirst.
+	
+	aFinancialAssetExtracted = aFinancialAssetToInsert ifTrue: [^true].
+	
+	(worklistOfFinancialAssets isKindOf: Portfolio) ifTrue: 
+		[worklistOfFinancialAssets addAllLast: aFinancialAssetExtracted getFinancialAssetsCopy].
+	
+	^self Includes: aFinancialAssetToInsert On: worklistOfFinancialAssets.! !
+
+!testRun: #PortfolioTest #test08XXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 20:50:58'!
+FAILURE!
+
+!testRun: #PortfolioTest #test08XXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 20:50:58'!
+FAILURE!
+
+aFinancialAsset!
+
+aFinancialAsset!
+
+financialAssets!
+
+aFinancialAssetToInsert!
+
+worklistOfFinancialAssets!
+
+aFinancialAssetExtracted!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 20:55:32' prior: 50866401!
+Includes: aFinancialAssetToInsert On: worklistOfFinancialAssets
+	
+	| aFinancialAssetExtracted |
+	worklistOfFinancialAssets size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := worklistOfFinancialAssets removeFirst.
+	
+	aFinancialAssetExtracted = aFinancialAssetToInsert ifTrue: [^true].
+	
+	(aFinancialAssetExtracted isKindOf: Portfolio) ifTrue: 
+		[worklistOfFinancialAssets addAllLast: aFinancialAssetExtracted getFinancialAssetsCopy].
+	
+	^self Includes: aFinancialAssetToInsert On: worklistOfFinancialAssets.! !
+
+!testRun: #PortfolioTest #test08XXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 20:55:36'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 21:00:48'!
+test08CannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio
+
+	| portfolioIn portfolioOut account1 account2 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 200 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 100 on: account2.
+	Deposit register: 50 on: account2.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: account1.
+	portfolioOut register: portfolioIn.
+	
+	self 
+		should: [portfolioOut register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+
+!methodRemoval: PortfolioTest #test08XXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 21:00:48'!
+test08XXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts
+
+	| portfolioIn portfolioOut account1 account2 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 200 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 100 on: account2.
+	Deposit register: 50 on: account2.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: account1.
+	portfolioOut register: portfolioIn.
+	
+	self 
+		should: [portfolioOut register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'e d r r 5/23/2021 21:02:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'e d r r 5/23/2021 21:02:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'e d r r 5/23/2021 21:02:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'e d r r 5/23/2021 21:02:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'e d r r 5/23/2021 21:02:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'e d r r 5/23/2021 21:02:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 21:02:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio stamp: 'e d r r 5/23/2021 21:02:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio stamp: 'e d r r 5/23/2021 21:04:58'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 21:05:09'!
+test09XXXXXCannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio
+
+	| portfolioIn portfolioOut account1 account2 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 200 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 100 on: account2.
+	Deposit register: 50 on: account2.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: account1.
+	portfolioOut register: portfolioIn.
+	
+	self 
+		should: [portfolioOut register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+
+!methodRemoval: PortfolioTest #test09XXXXXCannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio stamp: 'e d r r 5/23/2021 21:08:27'!
+test09XXXXXCannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio
+
+	| portfolioIn portfolioOut account1 account2 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 200 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 100 on: account2.
+	Deposit register: 50 on: account2.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: account1.
+	portfolioOut register: portfolioIn.
+	
+	self 
+		should: [portfolioOut register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 21:08:35'!
+test09XXXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts
+
+	| account1 account2 portfolio |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 200 on: account2.
+	
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.
+	
+	self 
+		should: [portfolio register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 21:10:57' prior: 50866597!
+test09XXXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts
+
+	| account1 account2 portfolio1 portfolio2 account3 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 200 on: account2.
+	
+	portfolio1 := Portfolio new.
+	portfolio1 register: account1.
+	portfolio1 register: account2.
+	
+	account3 := ReceptiveAccount  new.
+	Deposit register: 300 on: account3.
+	
+	portfolio2 := Portfolio new.
+	portfolio2 register: account3.
+	
+	self 
+		should: [portfolio1 register: portfolio2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+
+!testRun: #PortfolioTest #test09XXXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 21:11:08'!
+FAILURE!
+
+!testRun: #PortfolioTest #test09XXXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 21:11:08'!
+FAILURE!
+
+!testRun: #PortfolioTest #test09XXXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 21:11:14'!
+FAILURE!
+
+!testRun: #PortfolioTest #test09XXXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 21:11:14'!
+FAILURE!
+
+!testRun: #PortfolioTest #test09XXXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 21:11:24'!
+FAILURE!
+
+!testRun: #PortfolioTest #test09XXXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 21:11:24'!
+FAILURE!
+
+!methodRemoval: PortfolioTest #test09XXXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 21:12:47'!
+test09XXXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts
+
+	| account1 account2 portfolio1 portfolio2 account3 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 200 on: account2.
+	
+	portfolio1 := Portfolio new.
+	portfolio1 register: account1.
+	portfolio1 register: account2.
+	
+	account3 := ReceptiveAccount  new.
+	Deposit register: 300 on: account3.
+	
+	portfolio2 := Portfolio new.
+	portfolio2 register: account3.
+	
+	self 
+		should: [portfolio1 register: portfolio2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 21:12:55'!
+test09CannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio
+
+	| portfolioIn portfolioOut account1 account2 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 200 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 100 on: account2.
+	Deposit register: 50 on: account2.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: account1.
+	portfolioOut register: portfolioIn.
+	
+	self 
+		should: [portfolioOut register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+
+!methodRemoval: PortfolioTest #test09CannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio stamp: 'e d r r 5/23/2021 21:13:07'!
+test09CannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio
+
+	| portfolioIn portfolioOut account1 account2 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 200 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 100 on: account2.
+	Deposit register: 50 on: account2.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: account1.
+	portfolioOut register: portfolioIn.
+	
+	self 
+		should: [portfolioOut register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 21:13:12'!
+test09XXXXXCannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio
+
+	| portfolioIn portfolioOut account1 account2 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 200 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 100 on: account2.
+	Deposit register: 50 on: account2.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: account1.
+	portfolioOut register: portfolioIn.
+	
+	self 
+		should: [portfolioOut register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 21:13:51' prior: 50866749!
+test09XXXXXCannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio
+
+	| portfolioIn portfolioOut account1 account2 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 200 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 100 on: account2.
+	Deposit register: 50 on: account2.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: account1.
+	portfolioOut register: portfolioIn.
+	
+	self 
+		should: [portfolioOut register: portfolioIn]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+
+!testRun: #PortfolioTest #test09XXXXXCannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio stamp: 'e d r r 5/23/2021 21:14:02'!
+PASSED!
+
+!methodRemoval: PortfolioTest #test09XXXXXCannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio stamp: 'e d r r 5/23/2021 21:14:20'!
+test09XXXXXCannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio
+
+	| portfolioIn portfolioOut account1 account2 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 200 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 100 on: account2.
+	Deposit register: 50 on: account2.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: account1.
+	portfolioOut register: portfolioIn.
+	
+	self 
+		should: [portfolioOut register: portfolioIn]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 21:14:30'!
+test089XXXXXCannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio
+
+	| portfolioIn portfolioOut account1 account2 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 200 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 100 on: account2.
+	Deposit register: 50 on: account2.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: account1.
+	portfolioOut register: portfolioIn.
+	
+	self 
+		should: [portfolioOut register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 21:14:40'!
+test09XXXXXCannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio
+
+	| portfolioIn portfolioOut account1 account2 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 200 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 100 on: account2.
+	Deposit register: 50 on: account2.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: account1.
+	portfolioOut register: portfolioIn.
+	
+	self 
+		should: [portfolioOut register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+
+!methodRemoval: PortfolioTest #test089XXXXXCannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio stamp: 'e d r r 5/23/2021 21:14:40'!
+test089XXXXXCannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio
+
+	| portfolioIn portfolioOut account1 account2 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 200 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 100 on: account2.
+	Deposit register: 50 on: account2.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: account1.
+	portfolioOut register: portfolioIn.
+	
+	self 
+		should: [portfolioOut register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 21:17:31' prior: 50866854!
+test09XXXXXCannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio
+
+	| portfolioIn1 portfolioIn2 portfolioOut account1 account2 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 200 on: account1.
+	
+	portfolioIn1 := Portfolio new.
+	portfolioIn1 register: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 100 on: account2.
+	Deposit register: 50 on: account2.
+
+	portfolioIn2 := Portfolio new.
+	portfolioIn2 register: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: portfolioIn1.
+	portfolioOut register: portfolioIn2.
+	
+	self 
+		should: [portfolioOut register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 21:17:40' prior: 50866905!
+test09XXXXXCannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio
+
+	| portfolioIn1 portfolioIn2 portfolioOut account1 account2 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 200 on: account1.
+	
+	portfolioIn1 := Portfolio new.
+	portfolioIn1 register: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 100 on: account2.
+	Deposit register: 50 on: account2.
+
+	portfolioIn2 := Portfolio new.
+	portfolioIn2 register: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: portfolioIn1.
+	portfolioOut register: portfolioIn2.
+	
+	self 
+		should: [portfolioOut register: portfolioIn2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+
+!testRun: #PortfolioTest #test09XXXXXCannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio stamp: 'e d r r 5/23/2021 21:17:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test09XXXXXCannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio stamp: 'e d r r 5/23/2021 21:17:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test09XXXXXCannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio stamp: 'e d r r 5/23/2021 21:18:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'e d r r 5/23/2021 21:18:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'e d r r 5/23/2021 21:18:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'e d r r 5/23/2021 21:18:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'e d r r 5/23/2021 21:18:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'e d r r 5/23/2021 21:18:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'e d r r 5/23/2021 21:18:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 21:18:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio stamp: 'e d r r 5/23/2021 21:18:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test09XXXXXCannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio stamp: 'e d r r 5/23/2021 21:18:41'!
+PASSED!
+
+!methodRemoval: PortfolioTest #test09XXXXXCannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio stamp: 'e d r r 5/23/2021 21:20:00'!
+test09XXXXXCannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio
+
+	| portfolioIn1 portfolioIn2 portfolioOut account1 account2 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 200 on: account1.
+	
+	portfolioIn1 := Portfolio new.
+	portfolioIn1 register: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 100 on: account2.
+	Deposit register: 50 on: account2.
+
+	portfolioIn2 := Portfolio new.
+	portfolioIn2 register: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: portfolioIn1.
+	portfolioOut register: portfolioIn2.
+	
+	self 
+		should: [portfolioOut register: portfolioIn2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 21:22:44'!
+test09XXXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts
+
+	| account1 account2 portfolio |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 200 on: account2.
+	
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.
+	
+	self 
+		should: [portfolio register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 21:23:54' prior: 50867041!
+test09XXXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts
+
+	| account1 account2 account3 portfolio |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 200 on: account2.
+	
+	account3 := ReceptiveAccount  new.
+	Deposit register: 200 on: account3.
+	
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.
+	
+	self 
+		should: [portfolio register: account3]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+
+!testRun: #PortfolioTest #test09XXXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 21:24:06'!
+FAILURE!
+
+!testRun: #PortfolioTest #test09XXXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 21:24:06'!
+FAILURE!
+
+!testRun: #PortfolioTest #test09XXXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 21:24:41'!
+FAILURE!
+
+!testRun: #PortfolioTest #test09XXXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 21:24:41'!
+FAILURE!
+
+account1!
+
+account2!
+
+account3!
+
+worklistOfFinancialAssets!
+
+worklistOfFinancialAssets!
+
+^self Includes: aFinancialAssetToInsert On: worklistOfFinancialAssets!
+
+aFinancialAssetToInsert!
+
+ReceptiveAccount!
+
+self transactions !
+
+aFinancialAssetExtracted!
+
+self transactions !
+
+!testRun: #PortfolioTest #test09XXXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 21:32:47'!
+FAILURE!
+
+!testRun: #PortfolioTest #test09XXXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 21:32:47'!
+FAILURE!
+
+worklistOfFinancialAssets!
+
+aFinancialAssetExtracted!
+
+self transactions !
+
+aFinancialAssetToInsert!
+
+self transactions !
+
+aFinancialAssetToInsert!
+
+self transactions !
+
+aFinancialAssetExtracted!
+
+self transactions !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 21:48:35'!
+test09CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts
+
+	| account1 account2 account3 portfolio |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 200 on: account2.
+	
+	account3 := ReceptiveAccount  new.
+	Deposit register: 200 on: account3.
+	
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.
+	
+	self 
+		should: [portfolio register: account3]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+
+!methodRemoval: PortfolioTest #test09XXXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 21:48:35'!
+test09XXXXXCannotInsertARepeatedAccountInPortfolioOfOnlyAccounts
+
+	| account1 account2 account3 portfolio |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 200 on: account2.
+	
+	account3 := ReceptiveAccount  new.
+	Deposit register: 200 on: account3.
+	
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.
+	
+	self 
+		should: [portfolio register: account3]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 21:49:14'!
+test07CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts
+
+	| account1 account2 portfolio |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 200 on: account2.
+	
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.
+	
+	self 
+		should: [portfolio register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+
+!methodRemoval: PortfolioTest #test07CannotInsertARepeatedAccountInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 21:49:14'!
+test07CannotInsertARepeatedAccountInPortfolioOfOnlyAccounts
+
+	| account1 account2 portfolio |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 200 on: account2.
+	
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.
+	
+	self 
+		should: [portfolio register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 21:50:30'!
+test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndPortfolio
+
+	| portfolioIn portfolioOut account1 account2 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 200 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 100 on: account2.
+	Deposit register: 50 on: account2.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: account1.
+	portfolioOut register: portfolioIn.
+	
+	self 
+		should: [portfolioOut register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+
+!methodRemoval: PortfolioTest #test08CannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio stamp: 'e d r r 5/23/2021 21:50:30'!
+test08CannotInsertARepeatedAccountInPortfolioOfAccountsAndPortfolio
+
+	| portfolioIn portfolioOut account1 account2 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 200 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 100 on: account2.
+	Deposit register: 50 on: account2.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: account1.
+	portfolioOut register: portfolioIn.
+	
+	self 
+		should: [portfolioOut register: account2]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 21:51:25'!
+test09CannotInsertARepeatedAccountOfDifferentCollaboratorInPortfolioOfOnlyAccounts
+
+	| account1 account2 account3 portfolio |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 200 on: account2.
+	
+	account3 := ReceptiveAccount  new.
+	Deposit register: 200 on: account3.
+	
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.
+	
+	self 
+		should: [portfolio register: account3]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+
+!methodRemoval: PortfolioTest #test09CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 21:51:25'!
+test09CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts
+
+	| account1 account2 account3 portfolio |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 200 on: account2.
+	
+	account3 := ReceptiveAccount  new.
+	Deposit register: 200 on: account3.
+	
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.
+	
+	self 
+		should: [portfolio register: account3]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'e d r r 5/23/2021 21:51:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'e d r r 5/23/2021 21:51:43'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'e d r r 5/23/2021 21:51:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'e d r r 5/23/2021 21:51:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'e d r r 5/23/2021 21:51:57'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'e d r r 5/23/2021 21:52:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts stamp: 'e d r r 5/23/2021 21:52:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndPortfolio stamp: 'e d r r 5/23/2021 21:52:10'!
+PASSED!
+
+----QUIT----(23 May 2021 22:00:21) CuisUniversity-4532.image priorSource: 17091588!
