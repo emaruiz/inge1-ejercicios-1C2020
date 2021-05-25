@@ -5915,3 +5915,290 @@ register: aFinancialAsset
 	! !
 
 ----QUIT----(25 May 2021 17:37:28) CuisUniversity-4532.image priorSource: 17178154!
+
+----STARTUP---- (25 May 2021 18:12:03) as /home/bingani/Documentos/Ing 1/PRACTICAS/inge1-ejercicios-1C2021/05-Portfolio 1/Implementacion/CuisUniversity-4532.image!
+
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'bi 5/25/2021 18:19:59'!
+includes: aFinancialAssetToInsert
+	
+	| rootListOfFinancialAssets aFinancialAssetExtracted |
+	
+	rootListOfFinancialAssets := 
+	rootListOfFinancialAssets size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := rootListOfFinancialAssets removeFirst.
+	
+	aFinancialAssetExtracted = aFinancialAssetToInsert ifTrue: [^true].
+	
+	(aFinancialAssetExtracted isKindOf: Portfolio) ifTrue: 
+		[rootListOfFinancialAssets addAllLast: aFinancialAssetExtracted getFinancialAssetsCopy].
+	
+	^self includes: aFinancialAssetToInsert on: rootListOfFinancialAssets.! !
+
+!methodRemoval: Portfolio #getFinancialAssetsCopy stamp: 'bi 5/25/2021 18:20:23'!
+getFinancialAssetsCopy
+	
+	^financialAssets copy !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'bi 5/25/2021 18:20:28' prior: 50868742!
+includes: aFinancialAssetToInsert on: worklistOfFinancialAssets
+	
+	| aFinancialAssetExtracted |
+	worklistOfFinancialAssets size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := worklistOfFinancialAssets removeFirst.
+	
+	aFinancialAssetExtracted = aFinancialAssetToInsert ifTrue: [^true].
+	
+	(aFinancialAssetExtracted isKindOf: Portfolio) ifTrue: 
+		[worklistOfFinancialAssets addAllLast: aFinancialAssetExtracted financialAssets].
+	
+	^self includes: aFinancialAssetToInsert on: worklistOfFinancialAssets.! !
+
+!methodRemoval: Portfolio #includes: stamp: 'bi 5/25/2021 18:22:38'!
+includes: aFinancialAssetToInsert
+	
+	| rootListOfFinancialAssets aFinancialAssetExtracted |
+	
+	rootListOfFinancialAssets := 
+	rootListOfFinancialAssets size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := rootListOfFinancialAssets removeFirst.
+	
+	aFinancialAssetExtracted = aFinancialAssetToInsert ifTrue: [^true].
+	
+	(aFinancialAssetExtracted isKindOf: Portfolio) ifTrue: 
+		[rootListOfFinancialAssets addAllLast: aFinancialAssetExtracted getFinancialAssetsCopy].
+	
+	^self includes: aFinancialAssetToInsert on: rootListOfFinancialAssets.!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 18:24:18' prior: 50869464!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
+	"se debe meter la consulta de forma recurrente dentro de includes: on:"
+	| rootListOfFinancialAssets |
+	
+	rootListOfFinancialAssets := nil.
+	(self includes: aFinancialAsset on: rootListOfFinancialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 18:27:20' prior: 50869558!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
+	
+	| rootListOfFinancialAssets |
+	
+	rootListOfFinancialAssets := self getYourRootListOfFinancialAssets.
+	(self includes: aFinancialAsset on: rootListOfFinancialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 18:29:46'!
+getYourRootListOfFinancialAssets
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
+	
+
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 18:38:23' prior: 50869604!
+getYourRootListOfFinancialAssets
+	
+	(parentFinancialAsset = nil) ifTrue: [ ^self financialAssets ].
+	
+
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 18:39:24' prior: 50869616!
+getYourRootListOfFinancialAssets
+	
+	(parentFinancialAsset = nil) ifTrue: [ ^self financialAssets ].
+	parentFinancialAsset getYourRootListOfFinancialAssets.
+	
+
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 18:39:54' prior: 50869623!
+getYourRootListOfFinancialAssets
+	
+	(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset getYourRootListOfFinancialAssets ].
+	^self financialAssets.
+	
+
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 18:40:33' prior: 50869632!
+getYourRootListOfFinancialAssets
+	
+	
+	(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset getYourRootListOfFinancialAssets ].
+	^self financialAssets.
+	
+
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 18:41:13' prior: 50869641!
+getYourRootListOfFinancialAssets
+	
+	| rootListOfFinancialAssets |
+	
+	
+	(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset getYourRootListOfFinancialAssets ].
+	^self financialAssets.
+	
+
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 18:43:01' prior: 50869650!
+getYourRootListOfFinancialAssets
+	
+	(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset getYourRootListOfFinancialAssets ].
+	^self financialAssets.
+	
+
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 18:44:51' prior: 50869660!
+getYourRootListOfFinancialAssets
+	
+	
+	
+	(parentFinancialAsset = nil) ifTrue: [ ^self financialAssets ].
+	parentFinancialAsset getYourRootListOfFinancialAssets.
+	
+
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 18:44:57' prior: 50869669!
+getYourRootListOfFinancialAssets
+		
+	(parentFinancialAsset = nil) ifTrue: [ ^self financialAssets ].
+	parentFinancialAsset getYourRootListOfFinancialAssets.
+	
+
+
+	! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'bi 5/25/2021 18:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 18:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 18:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 18:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 18:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'bi 5/25/2021 18:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/25/2021 18:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndPortfolio stamp: 'bi 5/25/2021 18:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'bi 5/25/2021 18:45:41'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 18:45:41'!
+FAILURE!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 18:45:41'!
+FAILURE!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'bi 5/25/2021 18:47:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 18:47:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 18:47:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 18:47:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 18:47:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'bi 5/25/2021 18:47:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/25/2021 18:47:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndPortfolio stamp: 'bi 5/25/2021 18:47:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'bi 5/25/2021 18:47:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 18:47:32'!
+FAILURE!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 18:47:32'!
+FAILURE!
+
+portfolioChildWithAccount!
+
+portfolioChildWithAccount!
+
+account!
+
+account!
+
+parentFinancialAsset !
+
+parentFinancialAsset!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'bi 5/25/2021 18:57:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 18:57:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 18:57:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 18:57:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 18:57:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'bi 5/25/2021 18:57:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/25/2021 18:57:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndPortfolio stamp: 'bi 5/25/2021 18:57:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'bi 5/25/2021 18:57:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 18:57:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 18:57:26'!
+FAILURE!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 18:58:58'!
+FAILURE!
+
+----QUIT----(25 May 2021 19:03:57) CuisUniversity-4532.image priorSource: 17210697!

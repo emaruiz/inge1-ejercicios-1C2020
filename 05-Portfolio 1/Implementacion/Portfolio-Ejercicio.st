@@ -437,6 +437,16 @@ financialAssets
 	^financialAssets copy
 	! !
 
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 18:44:57'!
+getYourRootListOfFinancialAssets
+		
+	(parentFinancialAsset = nil) ifTrue: [ ^self financialAssets ].
+	parentFinancialAsset getYourRootListOfFinancialAssets.
+	
+
+
+	! !
+
 !Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:28:50'!
 hasRegistered: aTransaction
 
@@ -453,13 +463,16 @@ parentFinancialAsset
 
 	^parentFinancialAsset! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 17:37:09'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 18:27:20'!
 register: aFinancialAsset
 	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
 	
 	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
-	"se debe meter la consulta de forma recurrente dentro de includes: on:"
-	(self includes: aFinancialAsset on: self financialAssets) ifTrue: 
+	
+	| rootListOfFinancialAssets |
+	
+	rootListOfFinancialAssets := self getYourRootListOfFinancialAssets.
+	(self includes: aFinancialAsset on: rootListOfFinancialAssets) ifTrue: 
 		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
 	financialAssets add: aFinancialAsset.
 	aFinancialAsset setYourParentFinancialAssetWith: self.
@@ -482,13 +495,8 @@ transactions
 	^ allTransactions .! !
 
 
-!Portfolio methodsFor: 'accessing - private' stamp: 'e d r r 5/23/2021 20:45:47'!
-getFinancialAssetsCopy
-	
-	^financialAssets copy ! !
 
-
-!Portfolio methodsFor: 'explore financial assets - private' stamp: 'bi 5/25/2021 16:52:00'!
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'bi 5/25/2021 18:20:28'!
 includes: aFinancialAssetToInsert on: worklistOfFinancialAssets
 	
 	| aFinancialAssetExtracted |
@@ -499,7 +507,7 @@ includes: aFinancialAssetToInsert on: worklistOfFinancialAssets
 	aFinancialAssetExtracted = aFinancialAssetToInsert ifTrue: [^true].
 	
 	(aFinancialAssetExtracted isKindOf: Portfolio) ifTrue: 
-		[worklistOfFinancialAssets addAllLast: aFinancialAssetExtracted getFinancialAssetsCopy].
+		[worklistOfFinancialAssets addAllLast: aFinancialAssetExtracted financialAssets].
 	
 	^self includes: aFinancialAssetToInsert on: worklistOfFinancialAssets.! !
 
