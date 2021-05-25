@@ -5154,3 +5154,764 @@ test9
 !
 
 ----QUIT----(25 May 2021 00:06:24) CuisUniversity-4532.image priorSource: 17167233!
+
+----STARTUP---- (25 May 2021 16:17:21) as /home/bingani/Documentos/Ing 1/PRACTICAS/inge1-ejercicios-1C2021/05-Portfolio 1/Implementacion/CuisUniversity-4532.image!
+
+!FinancialAsset methodsFor: 'nil' stamp: 'bi 5/25/2021 16:30:38'!
+ParentFinancialAsset
+
+	self subclassResponsibility.! !
+
+FinancialAsset subclass: #Portfolio
+	instanceVariableNames: 'financialAssets ParentFinancialAsset'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'bi 5/25/2021 16:30:51'!
+FinancialAsset subclass: #Portfolio
+	instanceVariableNames: 'financialAssets ParentFinancialAsset'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+FinancialAsset subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions ParentFinancialAsset'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'bi 5/25/2021 16:30:55'!
+FinancialAsset subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions ParentFinancialAsset'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 16:31:42' prior: 50865721 overrides: 16896425!
+initialize
+
+	financialAssets := OrderedCollection new.
+	ParentFinancialAsset := nil.! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'bi 5/25/2021 16:31:57' prior: 50863749 overrides: 16896425!
+initialize
+
+	transactions := OrderedCollection new.
+	ParentFinancialAsset := nil.! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'bi 5/25/2021 16:35:47'!
+setYourParentFinancialAssetWith: aParentFinancialAsset
+
+	
+! !
+
+FinancialAsset subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions parentFinancialAsset'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'bi 5/25/2021 16:35:56'!
+FinancialAsset subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions parentFinancialAsset'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+FinancialAsset subclass: #Portfolio
+	instanceVariableNames: 'financialAssets parentFinancialAsset'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'bi 5/25/2021 16:36:02'!
+FinancialAsset subclass: #Portfolio
+	instanceVariableNames: 'financialAssets parentFinancialAsset'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 16:36:06' prior: 50868511 overrides: 16896425!
+initialize
+
+	financialAssets := OrderedCollection new.
+	parentFinancialAsset := nil.! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'bi 5/25/2021 16:36:11' prior: 50868518 overrides: 16896425!
+initialize
+
+	transactions := OrderedCollection new.
+	parentFinancialAsset := nil.! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'bi 5/25/2021 16:36:33' prior: 50868524!
+setYourParentFinancialAssetWith: aParentFinancialAsset
+
+	parentFinancialAsset := aParentFinancialAsset
+! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'bi 5/25/2021 16:42:33' prior: 50868572!
+setYourParentFinancialAssetWith: aParentFinancialAsset
+
+	"faltaria verificar que sea de clase Financial Asset"
+	parentFinancialAsset := aParentFinancialAsset
+! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'bi 5/25/2021 16:43:00'!
+parentFinancialAsset
+	
+	^parentFinancialAsset ! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 16:44:30'!
+setYourParentFinancialAssetWith: aParentFinancialAsset
+
+	"faltaria verificar que sea de clase Financial Asset"
+	parentFinancialAsset := aParentFinancialAsset! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 16:44:51'!
+parentFinancialAsset
+
+	^parentFinancialAsset! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'bi 5/25/2021 16:45:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 16:45:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 16:45:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 16:45:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 16:45:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'bi 5/25/2021 16:45:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/25/2021 16:45:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndPortfolio stamp: 'bi 5/25/2021 16:45:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'bi 5/25/2021 16:45:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 16:45:11'!
+FAILURE!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 16:45:11'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 16:48:56' prior: 50867906!
+register: aFinancialAsset
+	
+	|copyFinancialAssets|
+
+	"(parentFinancialAsset = nil) ifFalse: parentFinancialAsset includes:"
+	copyFinancialAssets := financialAssets copy.
+	(self Includes: aFinancialAsset On: copyFinancialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 16:49:55' prior: 50868559 overrides: 16896425!
+initialize
+
+	financialAssets := OrderedCollection new.
+	parentFinancialAsset := FinancialAsset new.! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'bi 5/25/2021 16:50:09' prior: 50868566 overrides: 16896425!
+initialize
+
+	transactions := OrderedCollection new.
+	parentFinancialAsset := FinancialAsset new.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 16:50:56' prior: 50868660 overrides: 16896425!
+initialize
+
+	financialAssets := OrderedCollection new.
+	parentFinancialAsset := nil.! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'bi 5/25/2021 16:51:03' prior: 50868667 overrides: 16896425!
+initialize
+
+	transactions := OrderedCollection new.
+	parentFinancialAsset := nil.! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'bi 5/25/2021 16:52:00'!
+includes: aFinancialAssetToInsert on: worklistOfFinancialAssets
+	
+	| aFinancialAssetExtracted |
+	worklistOfFinancialAssets size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := worklistOfFinancialAssets removeFirst.
+	
+	aFinancialAssetExtracted = aFinancialAssetToInsert ifTrue: [^true].
+	
+	(aFinancialAssetExtracted isKindOf: Portfolio) ifTrue: 
+		[worklistOfFinancialAssets addAllLast: aFinancialAssetExtracted getFinancialAssetsCopy].
+	
+	^self Includes: aFinancialAssetToInsert On: worklistOfFinancialAssets.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 16:52:00' prior: 50866434!
+Includes: aFinancialAssetToInsert On: worklistOfFinancialAssets
+	
+	| aFinancialAssetExtracted |
+	worklistOfFinancialAssets size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := worklistOfFinancialAssets removeFirst.
+	
+	aFinancialAssetExtracted = aFinancialAssetToInsert ifTrue: [^true].
+	
+	(aFinancialAssetExtracted isKindOf: Portfolio) ifTrue: 
+		[worklistOfFinancialAssets addAllLast: aFinancialAssetExtracted getFinancialAssetsCopy].
+	
+	^self includes: aFinancialAssetToInsert on: worklistOfFinancialAssets.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 16:52:00' prior: 50868645!
+register: aFinancialAsset
+	
+	|copyFinancialAssets|
+
+	"(parentFinancialAsset = nil) ifFalse: parentFinancialAsset includes:"
+	copyFinancialAssets := financialAssets copy.
+	(self includes: aFinancialAsset on: copyFinancialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 16:52:00' prior: 50868687!
+includes: aFinancialAssetToInsert on: worklistOfFinancialAssets
+	
+	| aFinancialAssetExtracted |
+	worklistOfFinancialAssets size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := worklistOfFinancialAssets removeFirst.
+	
+	aFinancialAssetExtracted = aFinancialAssetToInsert ifTrue: [^true].
+	
+	(aFinancialAssetExtracted isKindOf: Portfolio) ifTrue: 
+		[worklistOfFinancialAssets addAllLast: aFinancialAssetExtracted getFinancialAssetsCopy].
+	
+	^self includes: aFinancialAssetToInsert on: worklistOfFinancialAssets.! !
+
+!methodRemoval: Portfolio #Includes:On: stamp: 'bi 5/25/2021 16:52:00'!
+Includes: aFinancialAssetToInsert On: worklistOfFinancialAssets
+	
+	| aFinancialAssetExtracted |
+	worklistOfFinancialAssets size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := worklistOfFinancialAssets removeFirst.
+	
+	aFinancialAssetExtracted = aFinancialAssetToInsert ifTrue: [^true].
+	
+	(aFinancialAssetExtracted isKindOf: Portfolio) ifTrue: 
+		[worklistOfFinancialAssets addAllLast: aFinancialAssetExtracted getFinancialAssetsCopy].
+	
+	^self includes: aFinancialAssetToInsert on: worklistOfFinancialAssets.!
+
+!testRun: #PortfolioTest #test09 stamp: 'bi 5/25/2021 16:53:24'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'bi 5/25/2021 16:53:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 16:53:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 16:53:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 16:53:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 16:53:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'bi 5/25/2021 16:53:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/25/2021 16:53:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndPortfolio stamp: 'bi 5/25/2021 16:53:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'bi 5/25/2021 16:53:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 16:53:30'!
+FAILURE!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 16:53:30'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 16:56:12' prior: 50868727!
+register: aFinancialAsset
+	
+	|copyFinancialAssets|
+
+	"(parentFinancialAsset = nil) ifFalse: parentFinancialAsset includes: aFinancialAsset."
+	copyFinancialAssets := financialAssets copy.
+	(self includes: aFinancialAsset on: copyFinancialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 16:56:40'!
+financialAssets 
+	
+	^financialAssets copy
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 16:57:39' prior: 50868823!
+register: aFinancialAsset
+	
+	|copyFinancialAssets|
+
+	"(parentFinancialAsset = nil) ifFalse: parentFinancialAsset includes: aFinancialAsset."
+	copyFinancialAssets := self financialAssets.
+	(self includes: aFinancialAsset on: copyFinancialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 17:03:21' prior: 50868843!
+register: aFinancialAsset
+	
+	(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets].
+	(self includes: aFinancialAsset on: self financialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 17:03:59' prior: 50868858!
+register: aFinancialAsset
+	"mejorar metodo includes: on:"
+	(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets].
+	(self includes: aFinancialAsset on: self financialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset
+
+	! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'bi 5/25/2021 17:04:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 17:04:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 17:04:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 17:04:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 17:04:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'bi 5/25/2021 17:04:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/25/2021 17:04:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndPortfolio stamp: 'bi 5/25/2021 17:04:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'bi 5/25/2021 17:04:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 17:04:02'!
+FAILURE!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 17:04:02'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 17:08:29' prior: 50868872!
+register: aFinancialAsset
+	"mejorar metodo includes: on:"
+	(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets].
+	(self includes: aFinancialAsset on: self financialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	parentFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'bi 5/25/2021 17:08:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 17:08:31'!
+ERROR!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 17:08:31'!
+ERROR!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 17:08:31'!
+ERROR!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 17:08:31'!
+ERROR!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'bi 5/25/2021 17:08:31'!
+ERROR!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/25/2021 17:08:31'!
+ERROR!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndPortfolio stamp: 'bi 5/25/2021 17:08:31'!
+ERROR!
+
+!testRun: #PortfolioTest #test09 stamp: 'bi 5/25/2021 17:08:31'!
+ERROR!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 17:08:31'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 17:08:48' prior: 50868928!
+register: aFinancialAsset
+	"mejorar metodo includes: on:"
+	(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets].
+	(self includes: aFinancialAsset on: self financialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	parentFinancialAsset setYourParentFinancialAssetWith: self value.
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 17:09:48' prior: 50868983!
+register: aFinancialAsset
+	"mejorar metodo includes: on:"
+	(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets].
+	(self includes: aFinancialAsset on: self financialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'bi 5/25/2021 17:09:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 17:09:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 17:09:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 17:09:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 17:09:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'bi 5/25/2021 17:09:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/25/2021 17:09:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndPortfolio stamp: 'bi 5/25/2021 17:09:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'bi 5/25/2021 17:09:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 17:09:49'!
+FAILURE!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 17:09:49'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 17:12:04' prior: 50869001!
+register: aFinancialAsset
+	"mejorar metodo includes: on:"
+	(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets].
+	(self includes: aFinancialAsset on: self financialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	"aFinancialAsset setYourParentFinancialAssetWith: self."
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 17:15:59' prior: 50869059!
+register: aFinancialAsset
+	"mejorar metodo includes: on:"
+	(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets].
+	(self includes: aFinancialAsset on: self financialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'bi 5/25/2021 17:16:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 17:16:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 17:16:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 17:16:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 17:16:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'bi 5/25/2021 17:16:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/25/2021 17:16:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndPortfolio stamp: 'bi 5/25/2021 17:16:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'bi 5/25/2021 17:16:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 17:16:00'!
+FAILURE!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 17:16:00'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 17:16:09' prior: 50869076!
+register: aFinancialAsset
+	"mejorar metodo includes: on:"
+	(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets].
+	(self includes: aFinancialAsset on: self financialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self value.
+
+	! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'bi 5/25/2021 17:16:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 17:16:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 17:16:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 17:16:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 17:16:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'bi 5/25/2021 17:16:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/25/2021 17:16:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndPortfolio stamp: 'bi 5/25/2021 17:16:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'bi 5/25/2021 17:16:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 17:16:12'!
+FAILURE!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 17:16:12'!
+FAILURE!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'bi 5/25/2021 17:23:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 17:23:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 17:23:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 17:23:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 17:23:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'bi 5/25/2021 17:23:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/25/2021 17:23:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndPortfolio stamp: 'bi 5/25/2021 17:23:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'bi 5/25/2021 17:23:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 17:23:49'!
+FAILURE!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 17:23:49'!
+FAILURE!
+
+portfolioChildWithoutAccount!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 17:30:09' prior: 50868353!
+test10
+
+	| portfolioRoot portfolioChildWithAccount portfolioChildWithoutAccount portfolioToAddWithSameAccount account|
+
+	portfolioRoot := Portfolio new.
+	account :=  ReceptiveAccount new.
+  
+	portfolioChildWithoutAccount := Portfolio new.
+  
+	portfolioChildWithAccount := Portfolio new.
+	portfolioChildWithAccount register: account.
+  
+	portfolioToAddWithSameAccount := Portfolio new.
+	portfolioToAddWithSameAccount register: account.
+ 
+	portfolioRoot register: portfolioChildWithoutAccount . 
+	portfolioRoot register: portfolioChildWithAccount .
+	self 
+		should: [portfolioRoot register: portfolioToAddWithSameAccount]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 17:30:28' prior: 50869134!
+register: aFinancialAsset
+	"mejorar metodo includes: on:"
+	(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets].
+	(self includes: aFinancialAsset on: self financialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'bi 5/25/2021 17:30:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 17:30:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 17:30:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 17:30:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 17:30:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'bi 5/25/2021 17:30:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/25/2021 17:30:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndPortfolio stamp: 'bi 5/25/2021 17:30:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'bi 5/25/2021 17:30:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 17:30:29'!
+FAILURE!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 17:30:29'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 17:30:37' prior: 50869262!
+register: aFinancialAsset
+	"mejorar metodo includes: on:"
+	(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets].
+	(self includes: aFinancialAsset on: self financialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self value.
+
+	! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'bi 5/25/2021 17:30:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 17:30:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 17:30:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'bi 5/25/2021 17:30:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/25/2021 17:30:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'bi 5/25/2021 17:30:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/25/2021 17:30:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndPortfolio stamp: 'bi 5/25/2021 17:30:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'bi 5/25/2021 17:30:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 17:30:38'!
+FAILURE!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/25/2021 17:30:38'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 17:30:43' prior: 50869320!
+register: aFinancialAsset
+	"mejorar metodo includes: on:"
+	(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets].
+	(self includes: aFinancialAsset on: self financialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 17:31:42' prior: 50869234!
+test10
+
+	| portfolioRoot portfolioChildWithAccount portfolioChildWithoutAccount portfolioToAddWithSameAccount account|
+
+	portfolioRoot := Portfolio new.
+	account :=  ReceptiveAccount new.
+  
+	portfolioChildWithoutAccount := Portfolio new.
+  
+	portfolioChildWithAccount := Portfolio new.
+	portfolioChildWithAccount register: account.
+  
+	portfolioToAddWithSameAccount := Portfolio new.
+	portfolioToAddWithSameAccount register: account.
+ 
+	portfolioRoot register: portfolioChildWithoutAccount . 
+	portfolioRoot register: portfolioChildWithAccount .
+	self 
+		should: [portfolioRoot register: portfolioToAddWithSameAccount]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 17:33:47' prior: 50869378!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets].
+	(self includes: aFinancialAsset on: self financialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 17:35:25' prior: 50869423!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	(parentFinancialAsset = nil) ifFalse: [ 
+			(parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets)
+			ifTrue: 	[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ]
+		].
+	(self includes: aFinancialAsset on: self financialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 17:37:09' prior: 50869442!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
+	"se debe meter la consulta de forma recurrente dentro de includes: on:"
+	(self includes: aFinancialAsset on: self financialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+
+----QUIT----(25 May 2021 17:37:28) CuisUniversity-4532.image priorSource: 17178154!

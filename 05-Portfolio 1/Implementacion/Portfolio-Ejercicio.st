@@ -183,7 +183,7 @@ test09
 	self assert: (portfolio transactions includes: deposit3).
 ! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 23:56:37'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 17:31:42'!
 test10
 
 	| portfolioRoot portfolioChildWithAccount portfolioChildWithoutAccount portfolioToAddWithSameAccount account|
@@ -198,11 +198,11 @@ test10
   
 	portfolioToAddWithSameAccount := Portfolio new.
 	portfolioToAddWithSameAccount register: account.
-  
-	portfolioChildWithoutAccount register: portfolioRoot .
-	portfolioChildWithAccount register: portfolioRoot .
+ 
+	portfolioRoot register: portfolioChildWithoutAccount . 
+	portfolioRoot register: portfolioChildWithAccount .
 	self 
-		should: [portfolioToAddWithSameAccount register: portfolioRoot]
+		should: [portfolioRoot register: portfolioToAddWithSameAccount]
 		raise: Error
 		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
 ! !
@@ -413,10 +413,15 @@ Object subclass: #FinancialAsset
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
+!FinancialAsset methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 16:30:38'!
+ParentFinancialAsset
+
+	self subclassResponsibility.! !
+
 
 !classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
 FinancialAsset subclass: #Portfolio
-	instanceVariableNames: 'financialAssets'
+	instanceVariableNames: 'financialAssets parentFinancialAsset'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
@@ -426,27 +431,46 @@ balance
 
 	^financialAssets sum: [ :aFinancialAsset | aFinancialAsset balance ] ifEmpty: [ 0 ].! !
 
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 16:56:40'!
+financialAssets 
+	
+	^financialAssets copy
+	! !
+
 !Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:28:50'!
 hasRegistered: aTransaction
 
 	^financialAssets anySatisfy: [:aFinancialAsset | aFinancialAsset hasRegistered: aTransaction ]! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:28:44'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 16:50:56'!
 initialize
 
-	financialAssets := OrderedCollection new.! !
+	financialAssets := OrderedCollection new.
+	parentFinancialAsset := nil.! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 19:43:32'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 16:44:51'!
+parentFinancialAsset
+
+	^parentFinancialAsset! !
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 17:37:09'!
 register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
 	
-	|copyFinancialAssets|
-
-	copyFinancialAssets := financialAssets copy.
-	(self Includes: aFinancialAsset On: copyFinancialAssets) ifTrue: 
+	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
+	"se debe meter la consulta de forma recurrente dentro de includes: on:"
+	(self includes: aFinancialAsset on: self financialAssets) ifTrue: 
 		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
-	financialAssets add: aFinancialAsset
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
 
 	! !
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 16:44:30'!
+setYourParentFinancialAssetWith: aParentFinancialAsset
+
+	"faltaria verificar que sea de clase Financial Asset"
+	parentFinancialAsset := aParentFinancialAsset! !
 
 !Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:13:12'!
 transactions 
@@ -464,8 +488,8 @@ getFinancialAssetsCopy
 	^financialAssets copy ! !
 
 
-!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/23/2021 20:55:32'!
-Includes: aFinancialAssetToInsert On: worklistOfFinancialAssets
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'bi 5/25/2021 16:52:00'!
+includes: aFinancialAssetToInsert on: worklistOfFinancialAssets
 	
 	| aFinancialAssetExtracted |
 	worklistOfFinancialAssets size = 0 ifTrue: [^false].
@@ -477,7 +501,7 @@ Includes: aFinancialAssetToInsert On: worklistOfFinancialAssets
 	(aFinancialAssetExtracted isKindOf: Portfolio) ifTrue: 
 		[worklistOfFinancialAssets addAllLast: aFinancialAssetExtracted getFinancialAssetsCopy].
 	
-	^self Includes: aFinancialAssetToInsert On: worklistOfFinancialAssets.! !
+	^self includes: aFinancialAssetToInsert on: worklistOfFinancialAssets.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -493,21 +517,34 @@ attemptToInsertRepeatedFinancialAssetErrorDescription
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio'!
 FinancialAsset subclass: #ReceptiveAccount
-	instanceVariableNames: 'transactions'
+	instanceVariableNames: 'transactions parentFinancialAsset'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!ReceptiveAccount methodsFor: 'initialization' stamp: 'NR 10/17/2019 15:06:56'!
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'bi 5/25/2021 16:51:03'!
 initialize
 
-	transactions := OrderedCollection new.! !
+	transactions := OrderedCollection new.
+	parentFinancialAsset := nil.! !
 
+
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'bi 5/25/2021 16:43:00'!
+parentFinancialAsset
+	
+	^parentFinancialAsset ! !
 
 !ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37'!
 register: aTransaction
 
 	transactions add: aTransaction 
+! !
+
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'bi 5/25/2021 16:42:33'!
+setYourParentFinancialAssetWith: aParentFinancialAsset
+
+	"faltaria verificar que sea de clase Financial Asset"
+	parentFinancialAsset := aParentFinancialAsset
 ! !
 
 !ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37'!
