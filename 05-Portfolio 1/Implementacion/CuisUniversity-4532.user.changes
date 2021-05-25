@@ -4862,3 +4862,295 @@ balance
 	^financialAssets sum: [ :aFinancialAsset | aFinancialAsset balance ] ifEmpty: [ 0 ].! !
 
 ----QUIT----(24 May 2021 22:34:34) CuisUniversity-4532.image priorSource: 17142637!
+
+----STARTUP---- (24 May 2021 23:13:15) as /home/bingani/Documentos/Ing 1/PRACTICAS/inge1-ejercicios-1C2021/05-Portfolio 1/Implementacion/CuisUniversity-4532.image!
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 23:22:09'!
+test11
+
+| portfolioRoot portfolioChildWithAccount portfolioChildWithoutAccount portfolioToAddWithSameAccount account|
+
+  portfolioRoot := Portfolio new.
+  account :=  ReceptiveAccount new.
+  
+  portfolioChildWithoutAccount := Portfolio new.
+  
+  portfolioChildWithAccount := Portfolio new.
+  self assertAdd: account To: portfolioChildWithAccount.
+  
+  portfolioToAddWithSameAccount := Portfolio new.
+  self assertAdd: account To: portfolioToAddWithSameAccount.
+  
+  self assertAdd: portfolioChildWithoutAccount To: portfolioRoot.
+  self assertAdd: portfolioChildWithAccount To: portfolioRoot.
+  self denyAdd: portfolioToAddWithSameAccount To: portfolioRoot.
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 23:45:00' prior: 50868135!
+test11
+
+| portfolioRoot portfolioChildWithAccount portfolioChildWithoutAccount portfolioToAddWithSameAccount account|
+
+  portfolioRoot := Portfolio new.
+  account :=  ReceptiveAccount new.
+  
+  portfolioChildWithoutAccount := Portfolio new.
+  
+  portfolioChildWithAccount := Portfolio new.
+ portfolioChildWithAccount register: account.
+  "self assertAdd: account To: portfolioChildWithAccount."
+  
+  portfolioToAddWithSameAccount := Portfolio new.
+ portfolioToAddWithSameAccount register: account.
+  "self assertAdd: account To: portfolioToAddWithSameAccount."
+  
+portfolioChildWithoutAccount register: portfolioRoot .
+portfolioChildWithAccount register: portfolioRoot .
+portfolioToAddWithSameAccount register: portfolioRoot .
+  "self assertAdd: portfolioChildWithoutAccount To: portfolioRoot.
+  self assertAdd: portfolioChildWithAccount To: portfolioRoot.
+  self denyAdd: portfolioToAddWithSameAccount To: portfolioRoot."
+! !
+
+!testRun: #PortfolioTest #test11 stamp: 'bi 5/24/2021 23:50:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'bi 5/24/2021 23:50:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/24/2021 23:50:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'bi 5/24/2021 23:50:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'bi 5/24/2021 23:50:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/24/2021 23:50:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'bi 5/24/2021 23:50:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/24/2021 23:50:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndPortfolio stamp: 'bi 5/24/2021 23:50:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CannotInsertARepeatedAccountOfDifferentCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/24/2021 23:50:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/24/2021 23:50:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'bi 5/24/2021 23:50:53'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 23:55:24' prior: 50868159!
+test11
+
+	| portfolioRoot portfolioChildWithAccount portfolioChildWithoutAccount portfolioToAddWithSameAccount account|
+
+	portfolioRoot := Portfolio new.
+	account :=  ReceptiveAccount new.
+  
+	portfolioChildWithoutAccount := Portfolio new.
+  
+	portfolioChildWithAccount := Portfolio new.
+	portfolioChildWithAccount register: account.
+  
+	portfolioToAddWithSameAccount := Portfolio new.
+	portfolioToAddWithSameAccount register: account.
+  
+	portfolioChildWithoutAccount register: portfolioRoot .
+	portfolioChildWithAccount register: portfolioRoot .
+	self 
+			should: [portfolioToAddWithSameAccount register: portfolioRoot]
+			raise: Error
+			withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 23:55:33' prior: 50868237!
+test11
+
+	| portfolioRoot portfolioChildWithAccount portfolioChildWithoutAccount portfolioToAddWithSameAccount account|
+
+	portfolioRoot := Portfolio new.
+	account :=  ReceptiveAccount new.
+  
+	portfolioChildWithoutAccount := Portfolio new.
+  
+	portfolioChildWithAccount := Portfolio new.
+	portfolioChildWithAccount register: account.
+  
+	portfolioToAddWithSameAccount := Portfolio new.
+	portfolioToAddWithSameAccount register: account.
+  
+	portfolioChildWithoutAccount register: portfolioRoot .
+	portfolioChildWithAccount register: portfolioRoot .
+	self 
+		should: [portfolioToAddWithSameAccount register: portfolioRoot]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+
+!testRun: #PortfolioTest #test11 stamp: 'bi 5/24/2021 23:55:49'!
+FAILURE!
+
+!methodRemoval: PortfolioTest #test09CannotInsertARepeatedAccountOfDifferentCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/24/2021 23:56:24'!
+test09CannotInsertARepeatedAccountOfDifferentCollaboratorInPortfolioOfOnlyAccounts
+
+	"| account1 account2 account3 portfolio |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 200 on: account2.
+	
+	account3 := ReceptiveAccount  new.
+	Deposit register: 200 on: account3.
+	
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.
+	
+	self 
+		should: [portfolio register: account3]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+"!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 23:56:29'!
+test9
+
+	| account1 account2 deposit1 deposit2 deposit3 portfolio|
+	
+	account1 := ReceptiveAccount new.
+	deposit1 := Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount new.
+	deposit2 := Deposit register: 200 on: account2.
+	deposit3 := Deposit register: 50 on: account2.
+		
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.		
+	
+	self assert: 1 equals: account1 transactions size.
+	self assert: (account1 transactions includes: deposit1).
+
+	self assert: 2 equals: account2 transactions size.
+	self assert: (account2 transactions includes: deposit2).
+	self assert: (account2 transactions includes: deposit3).
+	
+	self assert: 3 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit1).	
+	self assert: (portfolio transactions includes: deposit2).
+	self assert: (portfolio transactions includes: deposit3).
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 23:56:37' prior: 50868007!
+test10
+
+	| portfolioRoot portfolioChildWithAccount portfolioChildWithoutAccount portfolioToAddWithSameAccount account|
+
+	portfolioRoot := Portfolio new.
+	account :=  ReceptiveAccount new.
+  
+	portfolioChildWithoutAccount := Portfolio new.
+  
+	portfolioChildWithAccount := Portfolio new.
+	portfolioChildWithAccount register: account.
+  
+	portfolioToAddWithSameAccount := Portfolio new.
+	portfolioToAddWithSameAccount register: account.
+  
+	portfolioChildWithoutAccount register: portfolioRoot .
+	portfolioChildWithAccount register: portfolioRoot .
+	self 
+		should: [portfolioToAddWithSameAccount register: portfolioRoot]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+
+!methodRemoval: PortfolioTest #test11 stamp: 'bi 5/24/2021 23:56:43'!
+test11
+
+	| portfolioRoot portfolioChildWithAccount portfolioChildWithoutAccount portfolioToAddWithSameAccount account|
+
+	portfolioRoot := Portfolio new.
+	account :=  ReceptiveAccount new.
+  
+	portfolioChildWithoutAccount := Portfolio new.
+  
+	portfolioChildWithAccount := Portfolio new.
+	portfolioChildWithAccount register: account.
+  
+	portfolioToAddWithSameAccount := Portfolio new.
+	portfolioToAddWithSameAccount register: account.
+  
+	portfolioChildWithoutAccount register: portfolioRoot .
+	portfolioChildWithAccount register: portfolioRoot .
+	self 
+		should: [portfolioToAddWithSameAccount register: portfolioRoot]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 23:56:53'!
+test09
+
+	| account1 account2 deposit1 deposit2 deposit3 portfolio|
+	
+	account1 := ReceptiveAccount new.
+	deposit1 := Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount new.
+	deposit2 := Deposit register: 200 on: account2.
+	deposit3 := Deposit register: 50 on: account2.
+		
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.		
+	
+	self assert: 1 equals: account1 transactions size.
+	self assert: (account1 transactions includes: deposit1).
+
+	self assert: 2 equals: account2 transactions size.
+	self assert: (account2 transactions includes: deposit2).
+	self assert: (account2 transactions includes: deposit3).
+	
+	self assert: 3 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit1).	
+	self assert: (portfolio transactions includes: deposit2).
+	self assert: (portfolio transactions includes: deposit3).
+! !
+
+!methodRemoval: PortfolioTest #test9 stamp: 'bi 5/24/2021 23:56:53'!
+test9
+
+	| account1 account2 deposit1 deposit2 deposit3 portfolio|
+	
+	account1 := ReceptiveAccount new.
+	deposit1 := Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount new.
+	deposit2 := Deposit register: 200 on: account2.
+	deposit3 := Deposit register: 50 on: account2.
+		
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.		
+	
+	self assert: 1 equals: account1 transactions size.
+	self assert: (account1 transactions includes: deposit1).
+
+	self assert: 2 equals: account2 transactions size.
+	self assert: (account2 transactions includes: deposit2).
+	self assert: (account2 transactions includes: deposit3).
+	
+	self assert: 3 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit1).	
+	self assert: (portfolio transactions includes: deposit2).
+	self assert: (portfolio transactions includes: deposit3).
+!
+
+----QUIT----(25 May 2021 00:06:24) CuisUniversity-4532.image priorSource: 17167233!

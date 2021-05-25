@@ -154,33 +154,8 @@ test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndP
 		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
 ! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 19:33:38'!
-test09CannotInsertARepeatedAccountOfDifferentCollaboratorInPortfolioOfOnlyAccounts
-
-	"| account1 account2 account3 portfolio |
-
-	account1 := ReceptiveAccount  new.
-	Deposit register: 100 on: account1.
-	Deposit register: 50 on: account1.
-	
-	account2 := ReceptiveAccount  new.
-	Deposit register: 200 on: account2.
-	
-	account3 := ReceptiveAccount  new.
-	Deposit register: 200 on: account3.
-	
-	portfolio := Portfolio new.
-	portfolio register: account1.
-	portfolio register: account2.
-	
-	self 
-		should: [portfolio register: account3]
-		raise: Error
-		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
-"! !
-
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 19:55:19'!
-test10
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 23:56:53'!
+test09
 
 	| account1 account2 deposit1 deposit2 deposit3 portfolio|
 	
@@ -206,6 +181,30 @@ test10
 	self assert: (portfolio transactions includes: deposit1).	
 	self assert: (portfolio transactions includes: deposit2).
 	self assert: (portfolio transactions includes: deposit3).
+! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 23:56:37'!
+test10
+
+	| portfolioRoot portfolioChildWithAccount portfolioChildWithoutAccount portfolioToAddWithSameAccount account|
+
+	portfolioRoot := Portfolio new.
+	account :=  ReceptiveAccount new.
+  
+	portfolioChildWithoutAccount := Portfolio new.
+  
+	portfolioChildWithAccount := Portfolio new.
+	portfolioChildWithAccount register: account.
+  
+	portfolioToAddWithSameAccount := Portfolio new.
+	portfolioToAddWithSameAccount register: account.
+  
+	portfolioChildWithoutAccount register: portfolioRoot .
+	portfolioChildWithAccount register: portfolioRoot .
+	self 
+		should: [portfolioToAddWithSameAccount register: portfolioRoot]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
 ! !
 
 
