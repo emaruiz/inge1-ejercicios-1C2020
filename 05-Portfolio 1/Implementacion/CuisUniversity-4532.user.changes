@@ -4182,3 +4182,683 @@ PASSED!
 PASSED!
 
 ----QUIT----(23 May 2021 22:00:21) CuisUniversity-4532.image priorSource: 17091588!
+
+----STARTUP---- (24 May 2021 18:23:28) as /home/bingani/Documentos/Ing 1/PRACTICAS/inge1-ejercicios-1C2021/05-Portfolio 1/Implementacion/CuisUniversity-4532.image!
+
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'bi 5/24/2021 19:31:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/24/2021 19:31:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'bi 5/24/2021 19:31:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'bi 5/24/2021 19:31:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/24/2021 19:31:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'bi 5/24/2021 19:31:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/24/2021 19:31:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndPortfolio stamp: 'bi 5/24/2021 19:31:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CannotInsertARepeatedAccountOfDifferentCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/24/2021 19:31:56'!
+FAILURE!
+
+!testRun: #PortfolioTest #test09CannotInsertARepeatedAccountOfDifferentCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/24/2021 19:31:56'!
+FAILURE!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 19:33:38' prior: 50867273!
+test09CannotInsertARepeatedAccountOfDifferentCollaboratorInPortfolioOfOnlyAccounts
+
+	"| account1 account2 account3 portfolio |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 200 on: account2.
+	
+	account3 := ReceptiveAccount  new.
+	Deposit register: 200 on: account3.
+	
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.
+	
+	self 
+		should: [portfolio register: account3]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+"! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 19:34:34' prior: 50865647!
+test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions
+
+	| portfolioIn portfolioOut account1 account2 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account1.
+
+	account2 := ReceptiveAccount  new.
+	Deposit register: 50 on: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: portfolioIn.
+	portfolioOut register: account2.
+
+	self assert: 150 equals: portfolioIn balance.
+	self assert: 200 equals: portfolioOut balance.
+
+	Deposit register: 50 on: account1.
+	
+	self assert: 200 equals: portfolioIn balance.
+	self assert: 250 equals: portfolioOut balance.! !
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/24/2021 19:34:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'bi 5/24/2021 19:34:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/24/2021 19:34:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'bi 5/24/2021 19:34:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'bi 5/24/2021 19:34:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/24/2021 19:34:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'bi 5/24/2021 19:34:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/24/2021 19:34:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndPortfolio stamp: 'bi 5/24/2021 19:34:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CannotInsertARepeatedAccountOfDifferentCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/24/2021 19:34:36'!
+PASSED!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 19:43:32' prior: 50866249!
+register: aFinancialAsset
+	
+	|copyFinancialAssets|
+
+	copyFinancialAssets := financialAssets copy.
+	(self Includes: aFinancialAsset On: copyFinancialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset
+
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 19:49:18'!
+test10
+
+	| account1 account2 deposit1 deposit2 portfolio|
+	
+	account1 := ReceptiveAccount  new.
+	deposit1 := Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	deposit2 := Deposit register: 200 on: account2.
+		
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.		
+	
+	self assert: 1 equals: account1 transactions size.
+	self assert: (account1 transactions includes: deposit1).
+	
+	"| account1 account2 account3 portfolio |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 200 on: account2.
+		
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.
+	
+"! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 19:51:43' prior: 50867515!
+test10
+
+	| account1 account2 deposit1 deposit2 deposit3 portfolio|
+	
+	account1 := ReceptiveAccount new.
+	deposit1 := Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount new.
+	deposit2 := Deposit register: 200 on: account2.
+	deposit3 := Deposit register: 50 on: account2.
+		
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.		
+	
+	self assert: 1 equals: account1 transactions size.
+	self assert: (account1 transactions includes: deposit1).
+
+	self assert: 1 equals: account2 transactions size.
+	self assert: (account1 transactions includes: deposit2).
+	
+	"| account1 account2 account3 portfolio |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 200 on: account2.
+		
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.
+	
+"! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 19:54:17' prior: 50867543!
+test10
+
+	| account1 account2 deposit1 deposit2 deposit3 portfolio|
+	
+	account1 := ReceptiveAccount new.
+	deposit1 := Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount new.
+	deposit2 := Deposit register: 200 on: account2.
+	deposit3 := Deposit register: 50 on: account2.
+		
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.		
+	
+	self assert: 1 equals: account1 transactions size.
+	self assert: (account1 transactions includes: deposit1).
+
+	self assert: 2 equals: account2 transactions size.
+	self assert: (account2 transactions includes: deposit2).
+	self assert: (account2 transactions includes: deposit3).
+	
+	self assert: 1 equals: account1 transactions size.
+	self assert: (account1 transactions includes: deposit1).	
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 19:55:19' prior: 50867576!
+test10
+
+	| account1 account2 deposit1 deposit2 deposit3 portfolio|
+	
+	account1 := ReceptiveAccount new.
+	deposit1 := Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount new.
+	deposit2 := Deposit register: 200 on: account2.
+	deposit3 := Deposit register: 50 on: account2.
+		
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.		
+	
+	self assert: 1 equals: account1 transactions size.
+	self assert: (account1 transactions includes: deposit1).
+
+	self assert: 2 equals: account2 transactions size.
+	self assert: (account2 transactions includes: deposit2).
+	self assert: (account2 transactions includes: deposit3).
+	
+	self assert: 3 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit1).	
+	self assert: (portfolio transactions includes: deposit2).
+	self assert: (portfolio transactions includes: deposit3).
+! !
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/24/2021 19:55:43'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:01:58'!
+transactions 
+
+	^ financialAssets transactions 
+	"^ transactions copy"! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:03:59' prior: 50865733!
+balance
+
+	| allTransactions |
+	
+	^financialAssets sum: [ :aFinancialAsset | aFinancialAsset balance ] ifEmpty: [ 0 ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:05:42' prior: 50867643!
+balance
+
+	| allTransactions |
+	
+	allTransactions  := OrderedCollection new.
+	^financialAssets on: [ :aFinancialAsset | allTransactions add: (aFinancialAsset transactions) ] ifEmpty: [ 0 ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:05:52' prior: 50867650!
+balance
+
+	| allTransactions |
+	
+	allTransactions  := OrderedCollection new.
+	^financialAssets on: [ :aFinancialAsset | allTransactions add: (aFinancialAsset transactions) ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:06:44' prior: 50867637!
+transactions 
+
+	
+	OrderedCollection new.
+	^ financialAssets transactions 
+	"^ transactions copy"! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:07:02' prior: 50867668!
+transactions 
+
+	| allTransactions |
+	
+	allTransactions := OrderedCollection new.
+	^ financialAssets transactions 
+	"^ transactions copy"! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:07:25' prior: 50867675!
+transactions 
+
+	| allTransactions |
+	
+	allTransactions := OrderedCollection new.
+	^ financialAssets! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:08:18' prior: 50867683!
+transactions 
+
+	| allTransactions |
+	
+	allTransactions := OrderedCollection new.
+	"financialAssets do: [:aTransaction | 		value := aTransaction addYourValueToTotal: value ]."
+	^ financialAssets! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:09:23' prior: 50867690!
+transactions 
+
+	| allTransactions |
+	
+	allTransactions := OrderedCollection new.
+	financialAssets do: [:aFinancialAsset | allTransactions add: (aFinancialAsset transactions) ].
+	^ allTransactions .! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'bi 5/24/2021 20:10:04'!
+ERROR!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/24/2021 20:10:04'!
+ERROR!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'bi 5/24/2021 20:10:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'bi 5/24/2021 20:10:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/24/2021 20:10:04'!
+ERROR!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'bi 5/24/2021 20:10:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/24/2021 20:10:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndPortfolio stamp: 'bi 5/24/2021 20:10:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CannotInsertARepeatedAccountOfDifferentCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/24/2021 20:10:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/24/2021 20:10:04'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:13:12' prior: 50867700!
+transactions 
+
+	| allTransactions |
+	
+	allTransactions := OrderedCollection new.
+	financialAssets do: [:aFinancialAsset | allTransactions addAll: (aFinancialAsset transactions) ].
+	^ allTransactions .! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'bi 5/24/2021 20:13:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/24/2021 20:13:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'bi 5/24/2021 20:13:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'bi 5/24/2021 20:13:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/24/2021 20:13:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'bi 5/24/2021 20:13:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/24/2021 20:13:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndPortfolio stamp: 'bi 5/24/2021 20:13:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CannotInsertARepeatedAccountOfDifferentCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/24/2021 20:13:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/24/2021 20:13:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'bi 5/24/2021 20:13:21'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:15:07' prior: 50867659!
+balance
+
+	^financialAssets sum: [ :aFinancialAsset | aFinancialAsset balance ] ifEmpty: [ 0 ].! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'bi 5/24/2021 20:15:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/24/2021 20:15:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'bi 5/24/2021 20:15:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'bi 5/24/2021 20:15:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'bi 5/24/2021 20:15:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'bi 5/24/2021 20:15:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/24/2021 20:15:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndPortfolio stamp: 'bi 5/24/2021 20:15:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test09CannotInsertARepeatedAccountOfDifferentCollaboratorInPortfolioOfOnlyAccounts stamp: 'bi 5/24/2021 20:15:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'bi 5/24/2021 20:15:09'!
+PASSED!
+
+----STARTUP---- (24 May 2021 22:33:54) as /home/bingani/Documentos/Ing 1/PRACTICAS/inge1-ejercicios-1C2021/05-Portfolio 1/Implementacion/CuisUniversity-4532.image!
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 19:33:38' prior: 50867273!
+test09CannotInsertARepeatedAccountOfDifferentCollaboratorInPortfolioOfOnlyAccounts
+
+	"| account1 account2 account3 portfolio |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 200 on: account2.
+	
+	account3 := ReceptiveAccount  new.
+	Deposit register: 200 on: account3.
+	
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.
+	
+	self 
+		should: [portfolio register: account3]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+"! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 19:34:34' prior: 50865647!
+test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions
+
+	| portfolioIn portfolioOut account1 account2 |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+
+	portfolioIn := Portfolio new.
+	portfolioIn register: account1.
+
+	account2 := ReceptiveAccount  new.
+	Deposit register: 50 on: account2.
+	
+	portfolioOut := Portfolio new.
+	portfolioOut register: portfolioIn.
+	portfolioOut register: account2.
+
+	self assert: 150 equals: portfolioIn balance.
+	self assert: 200 equals: portfolioOut balance.
+
+	Deposit register: 50 on: account1.
+	
+	self assert: 200 equals: portfolioIn balance.
+	self assert: 250 equals: portfolioOut balance.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 19:43:32' prior: 50866249!
+register: aFinancialAsset
+	
+	|copyFinancialAssets|
+
+	copyFinancialAssets := financialAssets copy.
+	(self Includes: aFinancialAsset On: copyFinancialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset
+
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 19:49:18'!
+test10
+
+	| account1 account2 deposit1 deposit2 portfolio|
+	
+	account1 := ReceptiveAccount  new.
+	deposit1 := Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	deposit2 := Deposit register: 200 on: account2.
+		
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.		
+	
+	self assert: 1 equals: account1 transactions size.
+	self assert: (account1 transactions includes: deposit1).
+	
+	"| account1 account2 account3 portfolio |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 200 on: account2.
+		
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.
+	
+"! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 19:51:43' prior: 50867918!
+test10
+
+	| account1 account2 deposit1 deposit2 deposit3 portfolio|
+	
+	account1 := ReceptiveAccount new.
+	deposit1 := Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount new.
+	deposit2 := Deposit register: 200 on: account2.
+	deposit3 := Deposit register: 50 on: account2.
+		
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.		
+	
+	self assert: 1 equals: account1 transactions size.
+	self assert: (account1 transactions includes: deposit1).
+
+	self assert: 1 equals: account2 transactions size.
+	self assert: (account1 transactions includes: deposit2).
+	
+	"| account1 account2 account3 portfolio |
+
+	account1 := ReceptiveAccount  new.
+	Deposit register: 100 on: account1.
+	Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount  new.
+	Deposit register: 200 on: account2.
+		
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.
+	
+"! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 19:54:17' prior: 50867946!
+test10
+
+	| account1 account2 deposit1 deposit2 deposit3 portfolio|
+	
+	account1 := ReceptiveAccount new.
+	deposit1 := Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount new.
+	deposit2 := Deposit register: 200 on: account2.
+	deposit3 := Deposit register: 50 on: account2.
+		
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.		
+	
+	self assert: 1 equals: account1 transactions size.
+	self assert: (account1 transactions includes: deposit1).
+
+	self assert: 2 equals: account2 transactions size.
+	self assert: (account2 transactions includes: deposit2).
+	self assert: (account2 transactions includes: deposit3).
+	
+	self assert: 1 equals: account1 transactions size.
+	self assert: (account1 transactions includes: deposit1).	
+! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 19:55:19' prior: 50867979!
+test10
+
+	| account1 account2 deposit1 deposit2 deposit3 portfolio|
+	
+	account1 := ReceptiveAccount new.
+	deposit1 := Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount new.
+	deposit2 := Deposit register: 200 on: account2.
+	deposit3 := Deposit register: 50 on: account2.
+		
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.		
+	
+	self assert: 1 equals: account1 transactions size.
+	self assert: (account1 transactions includes: deposit1).
+
+	self assert: 2 equals: account2 transactions size.
+	self assert: (account2 transactions includes: deposit2).
+	self assert: (account2 transactions includes: deposit3).
+	
+	self assert: 3 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit1).	
+	self assert: (portfolio transactions includes: deposit2).
+	self assert: (portfolio transactions includes: deposit3).
+! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:01:58'!
+transactions 
+
+	^ financialAssets transactions 
+	"^ transactions copy"! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:03:59' prior: 50865733!
+balance
+
+	| allTransactions |
+	
+	^financialAssets sum: [ :aFinancialAsset | aFinancialAsset balance ] ifEmpty: [ 0 ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:05:42' prior: 50868044!
+balance
+
+	| allTransactions |
+	
+	allTransactions  := OrderedCollection new.
+	^financialAssets on: [ :aFinancialAsset | allTransactions add: (aFinancialAsset transactions) ] ifEmpty: [ 0 ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:05:52' prior: 50868051!
+balance
+
+	| allTransactions |
+	
+	allTransactions  := OrderedCollection new.
+	^financialAssets on: [ :aFinancialAsset | allTransactions add: (aFinancialAsset transactions) ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:06:44' prior: 50868038!
+transactions 
+
+	
+	OrderedCollection new.
+	^ financialAssets transactions 
+	"^ transactions copy"! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:07:02' prior: 50868069!
+transactions 
+
+	| allTransactions |
+	
+	allTransactions := OrderedCollection new.
+	^ financialAssets transactions 
+	"^ transactions copy"! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:07:25' prior: 50868076!
+transactions 
+
+	| allTransactions |
+	
+	allTransactions := OrderedCollection new.
+	^ financialAssets! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:08:18' prior: 50868084!
+transactions 
+
+	| allTransactions |
+	
+	allTransactions := OrderedCollection new.
+	"financialAssets do: [:aTransaction | 		value := aTransaction addYourValueToTotal: value ]."
+	^ financialAssets! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:09:23' prior: 50868091!
+transactions 
+
+	| allTransactions |
+	
+	allTransactions := OrderedCollection new.
+	financialAssets do: [:aFinancialAsset | allTransactions add: (aFinancialAsset transactions) ].
+	^ allTransactions .! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:13:12' prior: 50868101!
+transactions 
+
+	| allTransactions |
+	
+	allTransactions := OrderedCollection new.
+	financialAssets do: [:aFinancialAsset | allTransactions addAll: (aFinancialAsset transactions) ].
+	^ allTransactions .! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:15:07' prior: 50868060!
+balance
+
+	^financialAssets sum: [ :aFinancialAsset | aFinancialAsset balance ] ifEmpty: [ 0 ].! !
+
+----QUIT----(24 May 2021 22:34:34) CuisUniversity-4532.image priorSource: 17142637!

@@ -57,7 +57,7 @@ test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts
 	self assert: (portfolio hasRegistered: deposit).	
 	self deny: (portfolio hasRegistered: withdraw).! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:28:09'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 19:34:34'!
 test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions
 
 	| portfolioIn portfolioOut account1 account2 |
@@ -78,7 +78,11 @@ test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions
 
 	self assert: 150 equals: portfolioIn balance.
 	self assert: 200 equals: portfolioOut balance.
-! !
+
+	Deposit register: 50 on: account1.
+	
+	self assert: 200 equals: portfolioIn balance.
+	self assert: 250 equals: portfolioOut balance.! !
 
 !PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:27:59'!
 test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios
@@ -150,10 +154,10 @@ test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndP
 		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
 ! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 21:51:25'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 19:33:38'!
 test09CannotInsertARepeatedAccountOfDifferentCollaboratorInPortfolioOfOnlyAccounts
 
-	| account1 account2 account3 portfolio |
+	"| account1 account2 account3 portfolio |
 
 	account1 := ReceptiveAccount  new.
 	Deposit register: 100 on: account1.
@@ -173,6 +177,35 @@ test09CannotInsertARepeatedAccountOfDifferentCollaboratorInPortfolioOfOnlyAccoun
 		should: [portfolio register: account3]
 		raise: Error
 		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+"! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 19:55:19'!
+test10
+
+	| account1 account2 deposit1 deposit2 deposit3 portfolio|
+	
+	account1 := ReceptiveAccount new.
+	deposit1 := Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount new.
+	deposit2 := Deposit register: 200 on: account2.
+	deposit3 := Deposit register: 50 on: account2.
+		
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.		
+	
+	self assert: 1 equals: account1 transactions size.
+	self assert: (account1 transactions includes: deposit1).
+
+	self assert: 2 equals: account2 transactions size.
+	self assert: (account2 transactions includes: deposit2).
+	self assert: (account2 transactions includes: deposit3).
+	
+	self assert: 3 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit1).	
+	self assert: (portfolio transactions includes: deposit2).
+	self assert: (portfolio transactions includes: deposit3).
 ! !
 
 
@@ -389,10 +422,10 @@ FinancialAsset subclass: #Portfolio
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:28:57'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:15:07'!
 balance
 
-	^financialAssets sum: [ :aFinancialAsset | aFinancialAsset balance ] ifEmpty: [ 0 ]! !
+	^financialAssets sum: [ :aFinancialAsset | aFinancialAsset balance ] ifEmpty: [ 0 ].! !
 
 !Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:28:50'!
 hasRegistered: aTransaction
@@ -404,16 +437,26 @@ initialize
 
 	financialAssets := OrderedCollection new.! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/23/2021 20:29:48'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 19:43:32'!
 register: aFinancialAsset
 	
 	|copyFinancialAssets|
-	copyFinancialAssets := financialAssets copy
-.	(self Includes: aFinancialAsset On: copyFinancialAssets) ifTrue: 
+
+	copyFinancialAssets := financialAssets copy.
+	(self Includes: aFinancialAsset On: copyFinancialAssets) ifTrue: 
 		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
 	financialAssets add: aFinancialAsset
 
 	! !
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:13:12'!
+transactions 
+
+	| allTransactions |
+	
+	allTransactions := OrderedCollection new.
+	financialAssets do: [:aFinancialAsset | allTransactions addAll: (aFinancialAsset transactions) ].
+	^ allTransactions .! !
 
 
 !Portfolio methodsFor: 'accessing - private' stamp: 'e d r r 5/23/2021 20:45:47'!
