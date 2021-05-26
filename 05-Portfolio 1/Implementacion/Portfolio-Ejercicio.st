@@ -154,8 +154,8 @@ test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndP
 		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
 ! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 23:56:53'!
-test09
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 23:34:49'!
+test09PortfolioTransactionsWith2Accountsand3Deposits
 
 	| account1 account2 deposit1 deposit2 deposit3 portfolio|
 	
@@ -183,8 +183,8 @@ test09
 	self assert: (portfolio transactions includes: deposit3).
 ! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 17:31:42'!
-test10
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 23:41:45'!
+test10CannotInsertAPortfolioWithRepeatedAccountInPortfolioWithEmptyPortfolioAndPortfolioWith1Account
 
 	| portfolioRoot portfolioChildWithAccount portfolioChildWithoutAccount portfolioToAddWithSameAccount account|
 
@@ -413,8 +413,8 @@ Object subclass: #FinancialAsset
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!FinancialAsset methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 16:30:38'!
-ParentFinancialAsset
+!FinancialAsset methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 23:30:45'!
+parentFinancialAsset
 
 	self subclassResponsibility.! !
 
@@ -426,75 +426,24 @@ FinancialAsset subclass: #Portfolio
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:15:07'!
-balance
-
-	^financialAssets sum: [ :aFinancialAsset | aFinancialAsset balance ] ifEmpty: [ 0 ].! !
-
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 16:56:40'!
+!Portfolio methodsFor: 'accessing - private' stamp: 'bi 5/25/2021 16:56:40'!
 financialAssets 
 	
 	^financialAssets copy
 	! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 18:44:57'!
-getYourRootListOfFinancialAssets
-		
-	(parentFinancialAsset = nil) ifTrue: [ ^self financialAssets ].
-	parentFinancialAsset getYourRootListOfFinancialAssets.
+
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 21:57:25'!
+allFinancialAsset	
 	
-
-
-	! !
-
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/22/2021 20:28:50'!
-hasRegistered: aTransaction
-
-	^financialAssets anySatisfy: [:aFinancialAsset | aFinancialAsset hasRegistered: aTransaction ]! !
-
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 16:50:56'!
-initialize
-
-	financialAssets := OrderedCollection new.
-	parentFinancialAsset := nil.! !
-
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 16:44:51'!
-parentFinancialAsset
-
-	^parentFinancialAsset! !
-
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 18:27:20'!
-register: aFinancialAsset
-	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
-	
-	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
-	
-	| rootListOfFinancialAssets |
-	
-	rootListOfFinancialAssets := self getYourRootListOfFinancialAssets.
-	(self includes: aFinancialAsset on: rootListOfFinancialAssets) ifTrue: 
-		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
-	financialAssets add: aFinancialAsset.
-	aFinancialAsset setYourParentFinancialAssetWith: self.
-
-	! !
-
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/25/2021 16:44:30'!
-setYourParentFinancialAssetWith: aParentFinancialAsset
-
-	"faltaria verificar que sea de clase Financial Asset"
-	parentFinancialAsset := aParentFinancialAsset! !
-
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'bi 5/24/2021 20:13:12'!
-transactions 
-
-	| allTransactions |
-	
-	allTransactions := OrderedCollection new.
-	financialAssets do: [:aFinancialAsset | allTransactions addAll: (aFinancialAsset transactions) ].
-	^ allTransactions .! !
-
-
+	| acum |
+	acum := OrderedCollection with: self.
+	self financialAssets do: [ :aFinancialAsset | 
+		(aFinancialAsset isKindOf: Portfolio) 
+			ifTrue: [acum addAllLast: aFinancialAsset allFinancialAsset]
+			ifFalse: [acum addLast: aFinancialAsset].
+		].
+	^acum.! !
 
 !Portfolio methodsFor: 'explore financial assets - private' stamp: 'bi 5/25/2021 18:20:28'!
 includes: aFinancialAssetToInsert on: worklistOfFinancialAssets
@@ -510,6 +459,75 @@ includes: aFinancialAssetToInsert on: worklistOfFinancialAssets
 		[worklistOfFinancialAssets addAllLast: aFinancialAssetExtracted financialAssets].
 	
 	^self includes: aFinancialAssetToInsert on: worklistOfFinancialAssets.! !
+
+
+!Portfolio methodsFor: 'initialization' stamp: 'bi 5/25/2021 16:50:56'!
+initialize
+
+	financialAssets := OrderedCollection new.
+	parentFinancialAsset := nil.! !
+
+
+!Portfolio methodsFor: 'transactions' stamp: 'e d r r 5/25/2021 23:16:54'!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	| treeOfAFinancialAssetToInsert  |
+	
+	(aFinancialAsset isKindOf: Portfolio) 
+		ifTrue: [treeOfAFinancialAssetToInsert := aFinancialAsset allFinancialAsset] 
+		ifFalse: [treeOfAFinancialAssetToInsert := OrderedCollection with: aFinancialAsset].
+	(treeOfAFinancialAssetToInsert anySatisfy: [:financialAssetOfTree | | rootListOfFinancialAssets |
+		rootListOfFinancialAssets := self getYourRootListOfFinancialAssets.
+		self includes: financialAssetOfTree on: rootListOfFinancialAssets]) ifTrue:
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+
+!Portfolio methodsFor: 'transactions' stamp: 'bi 5/24/2021 20:13:12'!
+transactions 
+
+	| allTransactions |
+	
+	allTransactions := OrderedCollection new.
+	financialAssets do: [:aFinancialAsset | allTransactions addAll: (aFinancialAsset transactions) ].
+	^ allTransactions .! !
+
+
+!Portfolio methodsFor: 'testing' stamp: 'bi 5/22/2021 20:28:50'!
+hasRegistered: aTransaction
+
+	^financialAssets anySatisfy: [:aFinancialAsset | aFinancialAsset hasRegistered: aTransaction ]! !
+
+
+!Portfolio methodsFor: 'balance' stamp: 'bi 5/24/2021 20:15:07'!
+balance
+
+	^financialAssets sum: [ :aFinancialAsset | aFinancialAsset balance ] ifEmpty: [ 0 ].! !
+
+
+!Portfolio methodsFor: 'parent' stamp: 'bi 5/25/2021 18:44:57'!
+getYourRootListOfFinancialAssets
+		
+	(parentFinancialAsset = nil) ifTrue: [ ^self financialAssets ].
+	parentFinancialAsset getYourRootListOfFinancialAssets.
+	
+
+
+	! !
+
+!Portfolio methodsFor: 'parent' stamp: 'bi 5/25/2021 16:44:51'!
+parentFinancialAsset
+
+	^parentFinancialAsset! !
+
+!Portfolio methodsFor: 'parent' stamp: 'bi 5/25/2021 16:44:30'!
+setYourParentFinancialAssetWith: aParentFinancialAsset
+
+	"faltaria verificar que sea de clase Financial Asset"
+	parentFinancialAsset := aParentFinancialAsset! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -537,22 +555,10 @@ initialize
 	parentFinancialAsset := nil.! !
 
 
-!ReceptiveAccount methodsFor: 'transactions' stamp: 'bi 5/25/2021 16:43:00'!
-parentFinancialAsset
-	
-	^parentFinancialAsset ! !
-
 !ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37'!
 register: aTransaction
 
 	transactions add: aTransaction 
-! !
-
-!ReceptiveAccount methodsFor: 'transactions' stamp: 'bi 5/25/2021 16:42:33'!
-setYourParentFinancialAssetWith: aParentFinancialAsset
-
-	"faltaria verificar que sea de clase Financial Asset"
-	parentFinancialAsset := aParentFinancialAsset
 ! !
 
 !ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37'!
@@ -574,4 +580,17 @@ balance
 hasRegistered: aTransaction
 
 	^ transactions includes: aTransaction 
+! !
+
+
+!ReceptiveAccount methodsFor: 'parent' stamp: 'bi 5/25/2021 16:43:00'!
+parentFinancialAsset
+	
+	^parentFinancialAsset ! !
+
+!ReceptiveAccount methodsFor: 'parent' stamp: 'bi 5/25/2021 16:42:33'!
+setYourParentFinancialAssetWith: aParentFinancialAsset
+
+	"faltaria verificar que sea de clase Financial Asset"
+	parentFinancialAsset := aParentFinancialAsset
 ! !

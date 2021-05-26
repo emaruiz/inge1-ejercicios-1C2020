@@ -6202,3 +6202,890 @@ FAILURE!
 FAILURE!
 
 ----QUIT----(25 May 2021 19:03:57) CuisUniversity-4532.image priorSource: 17210697!
+
+----STARTUP---- (25 May 2021 19:07:52) as /home/manuel/Facultad/Ingeniería1/Ejercicios/inge1-ejercicios-1C2021/05-Portfolio 1/Implementacion/CuisUniversity-4532.image!
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 20:08:49' prior: 50869582!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
+	
+	| rootListOfFinancialAssets |
+	
+	rootListOfFinancialAssets := self getYourRootListOfFinancialAssets.
+	"self some element from A is included in B "
+	(self includes: aFinancialAsset on: rootListOfFinancialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 20:13:54' prior: 50869823!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
+	
+	| rootListOfFinancialAssets |
+	
+	rootListOfFinancialAssets := self getYourRootListOfFinancialAssets.
+	self includesSome: aFinancialAsset on: rootListOfFinancialAssets. 
+	(self includes: aFinancialAsset on: rootListOfFinancialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:14:15'!
+includesSome: aFinancialAsset on: rootListOfFinancialAssets
+	
+	! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:15:02' prior: 50869872!
+includesSome: aFinancialAsset on: rootListOfFinancialAssets
+	
+	^0.! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:15:05' prior: 50869878!
+includesSome: aFinancialAsset on: rootListOfFinancialAssets
+	
+	
+	^0.! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:16:55' prior: 50869884!
+includesSome: aFinancialAsset on: rootListOfFinancialAssets
+	
+	self includes: aFinancialAsset on: rootListOfFinancialAssets
+	^0.! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:22:25' prior: 50869890!
+includesSome: aFinancialAsset on: xxxrootListOfFinancialAssets
+	
+	(aFinancialAsset isKindOf: Portfolio) ifTrue: [].
+	self includes: aFinancialAsset on: xxxrootListOfFinancialAssets
+	^0.! !
+
+!methodRemoval: Portfolio #includesSome:on: stamp: 'e d r r 5/25/2021 20:22:29'!
+includesSome: aFinancialAsset on: xxxrootListOfFinancialAssets
+	
+	(aFinancialAsset isKindOf: Portfolio) ifTrue: [].
+	self includes: aFinancialAsset on: xxxrootListOfFinancialAssets
+	^0.!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 20:27:24' prior: 50869847!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
+	
+	| rootListOfFinancialAssets allFinancialAssetsOfTheFinancialAssetToInsert |
+	
+	rootListOfFinancialAssets := self getYourRootListOfFinancialAssets.
+	allFinancialAssetsOfTheFinancialAssetToInsert := self allFinancialAsset.
+	(self includes: aFinancialAsset on: rootListOfFinancialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:27:40'!
+allFinancialAsset
+	
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 20:28:05' prior: 50869916!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
+	
+	| rootListOfFinancialAssets allFinancialAssetsOfTheFinancialAssetToInsert |
+	
+	rootListOfFinancialAssets := self getYourRootListOfFinancialAssets.
+	allFinancialAssetsOfTheFinancialAssetToInsert := self allFinancialAssetOf: aFinancialAsset.
+	(self includes: aFinancialAsset on: rootListOfFinancialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:28:23'!
+allFinancialAssetOf: aFinancialAsset
+	
+	
+	
+	! !
+
+!methodRemoval: Portfolio #allFinancialAsset stamp: 'e d r r 5/25/2021 20:28:26'!
+allFinancialAsset
+	
+	!
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:29:45' prior: 50869974!
+allFinancialAssetOf: aFinancialAsset
+	
+	(aFinancialAsset isKindOf: ReceptiveAccount ) ifTrue: [].
+	(aFinancialAsset isKindOf: Portfolio ) ifTrue: [].! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:30:21' prior: 50869983!
+allFinancialAssetOf: aFinancialAsset
+	
+	(aFinancialAsset isKindOf: ReceptiveAccount ) ifTrue: [OrderedCollection with: aFinancialAsset].
+	(aFinancialAsset isKindOf: Portfolio ) ifTrue: [].! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:32:02' prior: 50869992!
+allFinancialAssetOf: aFinancialAsset
+	
+	(aFinancialAsset isKindOf: ReceptiveAccount ) ifTrue: [OrderedCollection with: aFinancialAsset].
+	(aFinancialAsset isKindOf: Portfolio ) ifTrue: [self xxx: aFinancialAsset].! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:32:11' prior: 50870002!
+allFinancialAssetOf: aFinancialAsset
+	
+	(aFinancialAsset isKindOf: ReceptiveAccount ) ifTrue: [OrderedCollection with: aFinancialAsset].
+	(aFinancialAsset isKindOf: Portfolio ) ifTrue: [self xxxx: aFinancialAsset].! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:32:17' prior: 50870013!
+allFinancialAssetOf: aFinancialAsset
+	
+	(aFinancialAsset isKindOf: ReceptiveAccount ) ifTrue: [OrderedCollection with: aFinancialAsset].
+	(aFinancialAsset isKindOf: Portfolio ) ifTrue: [self yyyy: aFinancialAsset].! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:32:31'!
+yyyy: aFinancialAsset
+	
+	! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:33:18' prior: 50870024!
+allFinancialAssetOf: aFinancialAsset
+	
+	(aFinancialAsset isKindOf: ReceptiveAccount ) ifTrue: [OrderedCollection with: aFinancialAsset].
+	(aFinancialAsset isKindOf: Portfolio ) ifTrue: [self yyyy: aFinancialAsset zzzz: aFinancialAsset financialAssets].! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:33:47'!
+yyyy: aFinancialAsset zzzz: aFinancialAssetfinancialAssets
+	
+		
+	! !
+
+!methodRemoval: Portfolio #yyyy: stamp: 'e d r r 5/25/2021 20:33:50'!
+yyyy: aFinancialAsset
+	
+	!
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:34:03' prior: 50870051!
+yyyy: aFinancialAsset zzzz: worklistOfFinancialAssets
+	
+		
+	! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:34:22' prior: 50870060!
+yyyy: aFinancialAsset zzzz: worklistOfFinancialAssets
+	
+	! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:37:42' prior: 50870066!
+yyyy: aFinancialAsset zzzz: worklistOfFinancialAssets
+	
+	| aFinancialAssetExtracted |
+	worklistOfFinancialAssets size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := worklistOfFinancialAssets removeFirst.
+	
+	"aFinancialAssetExtracted = aFinancialAssetToInsert ifTrue: [^true].
+	
+	(aFinancialAssetExtracted isKindOf: Portfolio) ifTrue: 
+		[worklistOfFinancialAssets addAllLast: aFinancialAssetExtracted financialAssets].
+	
+	^self includes: aFinancialAssetToInsert on: worklistOfFinancialAssets."! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:39:24' prior: 50870072!
+yyyy: aFinancialAsset zzzz: worklistOfFinancialAssets
+	
+	| aFinancialAssetExtracted |
+	worklistOfFinancialAssets size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := worklistOfFinancialAssets removeFirst.
+	
+	(aFinancialAssetExtracted isKindOf: Portfolio) ifTrue: 
+		[worklistOfFinancialAssets addAllLast: aFinancialAssetExtracted financialAssets].
+	
+	^self yyyy: 1 zzzz: worklistOfFinancialAssets.! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:39:46' prior: 50870039!
+allFinancialAssetOf: aFinancialAsset
+	
+	(aFinancialAsset isKindOf: ReceptiveAccount ) ifTrue: [OrderedCollection with: aFinancialAsset].
+	(aFinancialAsset isKindOf: Portfolio ) ifTrue: [self zzzz: aFinancialAsset financialAssets].! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:39:54'!
+zzzz: worklistOfFinancialAssets
+	
+	| aFinancialAssetExtracted |
+	worklistOfFinancialAssets size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := worklistOfFinancialAssets removeFirst.
+	
+	(aFinancialAssetExtracted isKindOf: Portfolio) ifTrue: 
+		[worklistOfFinancialAssets addAllLast: aFinancialAssetExtracted financialAssets].
+	
+	^self yyyy: 1 zzzz: worklistOfFinancialAssets.! !
+
+!methodRemoval: Portfolio #zzzz: stamp: 'e d r r 5/25/2021 20:39:58'!
+zzzz: worklistOfFinancialAssets
+	
+	| aFinancialAssetExtracted |
+	worklistOfFinancialAssets size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := worklistOfFinancialAssets removeFirst.
+	
+	(aFinancialAssetExtracted isKindOf: Portfolio) ifTrue: 
+		[worklistOfFinancialAssets addAllLast: aFinancialAssetExtracted financialAssets].
+	
+	^self yyyy: 1 zzzz: worklistOfFinancialAssets.!
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:55:27' prior: 50870109!
+allFinancialAssetOf: aFinancialAsset
+	
+	|EEEcontenedor|
+	EEEcontenedor := OrderedCollection new.
+	(aFinancialAsset isKindOf: ReceptiveAccount ) ifTrue: [OrderedCollection with: aFinancialAsset].
+	(aFinancialAsset isKindOf: Portfolio ) ifTrue: [self zzzz: aFinancialAsset financialAssets aaaaa: EEEcontenedor].! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:56:14'!
+zzzz: YYaFinancialAssetfinancialAssets aaaaa: E
+	
+	"| aFinancialAssetExtracted |
+	worklistOfFinancialAssets size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := worklistOfFinancialAssets removeFirst.
+	
+	(aFinancialAssetExtracted isKindOf: Portfolio) ifTrue: 
+		[worklistOfFinancialAssets addAllLast: aFinancialAssetExtracted financialAssets].
+	
+	^self yyyy: 1 zzzz: worklistOfFinancialAssets."! !
+
+!methodRemoval: Portfolio #yyyy:zzzz: stamp: 'e d r r 5/25/2021 20:56:18'!
+yyyy: aFinancialAsset zzzz: worklistOfFinancialAssets
+	
+	| aFinancialAssetExtracted |
+	worklistOfFinancialAssets size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := worklistOfFinancialAssets removeFirst.
+	
+	(aFinancialAssetExtracted isKindOf: Portfolio) ifTrue: 
+		[worklistOfFinancialAssets addAllLast: aFinancialAssetExtracted financialAssets].
+	
+	^self yyyy: 1 zzzz: worklistOfFinancialAssets.!
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:56:30' prior: 50870163!
+zzzz: YYaFinancialAssetfinancialAssets aaaaa: EEEcontenedor
+	
+	"| aFinancialAssetExtracted |
+	worklistOfFinancialAssets size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := worklistOfFinancialAssets removeFirst.
+	
+	(aFinancialAssetExtracted isKindOf: Portfolio) ifTrue: 
+		[worklistOfFinancialAssets addAllLast: aFinancialAssetExtracted financialAssets].
+	
+	^self yyyy: 1 zzzz: worklistOfFinancialAssets."! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:56:47' prior: 50870195!
+zzzz: YYaFinancialAssetfinancialAssets aaaaa: EEEcontenedor
+	
+	"| aFinancialAssetExtracted |
+	worklistOfFinancialAssets size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := worklistOfFinancialAssets removeFirst.
+	
+	(aFinancialAssetExtracted isKindOf: Portfolio) ifTrue: 
+		[worklistOfFinancialAssets addAllLast: aFinancialAssetExtracted financialAssets].
+	
+	^self yyyy: 1 zzzz: worklistOfFinancialAssets."! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 20:58:42' prior: 50870212!
+zzzz: YYworklist aaaaa: EEEcontenedor
+	
+	| aFinancialAssetExtracted |
+	YYworklist size = 0 ifTrue: [^false].
+	
+	aFinancialAssetExtracted := YYworklist removeFirst.
+	
+	EEEcontenedor addLast: aFinancialAssetExtracted.
+	
+	(aFinancialAssetExtracted isKindOf: Portfolio) ifTrue: 
+		[YYworklist addAllLast: aFinancialAssetExtracted financialAssets].
+	
+	^self yyyy: 1 zzzz: YYworklist.! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 21:32:28' prior: 50870229!
+zzzz: YYworklist aaaaa: EEEcontenedor
+	
+	| aFinancialAssetExtracted |
+	YYworklist size = 0 ifTrue: [^OrderedCollection new].
+	
+	aFinancialAssetExtracted := YYworklist removeFirst.
+	
+	EEEcontenedor addLast: aFinancialAssetExtracted.
+	
+	(aFinancialAssetExtracted isKindOf: Portfolio) ifTrue: 
+		[YYworklist addAllLast: aFinancialAssetExtracted financialAssets].
+	
+	self zzzz: YYworklist aaaaa: EEEcontenedor.! !
+
+!methodRemoval: Portfolio #zzzz:aaaaa: stamp: 'e d r r 5/25/2021 21:39:56'!
+zzzz: YYworklist aaaaa: EEEcontenedor
+	
+	| aFinancialAssetExtracted |
+	YYworklist size = 0 ifTrue: [^OrderedCollection new].
+	
+	aFinancialAssetExtracted := YYworklist removeFirst.
+	
+	EEEcontenedor addLast: aFinancialAssetExtracted.
+	
+	(aFinancialAssetExtracted isKindOf: Portfolio) ifTrue: 
+		[YYworklist addAllLast: aFinancialAssetExtracted financialAssets].
+	
+	self zzzz: YYworklist aaaaa: EEEcontenedor.!
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 21:40:06' prior: 50870150!
+allFinancialAssetOf: aFinancialAsset
+	
+	! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 21:40:09'!
+allFinancialAssetOf
+	
+	! !
+
+!methodRemoval: Portfolio #allFinancialAssetOf: stamp: 'e d r r 5/25/2021 21:40:16'!
+allFinancialAssetOf: aFinancialAsset
+	
+	!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 21:42:34' prior: 50869947!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
+	
+	| rootListOfFinancialAssets allFinancialAssetsOfTheFinancialAssetToInsert |
+	
+	rootListOfFinancialAssets := self getYourRootListOfFinancialAssets.
+	self YYYgetTree.
+	(self includes: aFinancialAsset on: rootListOfFinancialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 21:45:25' prior: 50870290!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
+	
+	| rootListOfFinancialAssets allFinancialAssetsOfTheFinancialAssetToInsert |
+	
+	rootListOfFinancialAssets := self getYourRootListOfFinancialAssets.
+	allFinancialAssetsOfTheFinancialAssetToInsert := self allFinancialAssetOf: aFinancialAsset.
+	(self includes: aFinancialAsset on: rootListOfFinancialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 21:49:41' prior: 50870315!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
+	
+	| rootListOfFinancialAssets allFinancialAssetsOfTheFinancialAssetToInsert |
+	
+	rootListOfFinancialAssets := self getYourRootListOfFinancialAssets.
+	allFinancialAssetsOfTheFinancialAssetToInsert := self allFinancialAsset.
+	(self includes: aFinancialAsset on: rootListOfFinancialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 21:49:54'!
+allFinancialAsset	
+	! !
+
+!methodRemoval: Portfolio #allFinancialAssetOf stamp: 'e d r r 5/25/2021 21:49:57'!
+allFinancialAssetOf
+	
+	!
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 21:52:19' prior: 50870369!
+allFinancialAsset	
+	
+	| acum |
+	acum := OrderedCollection new.
+	self financialAssets do: [:financialAsset | ].
+	acum! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 21:53:49' prior: 50870377!
+allFinancialAsset	
+	
+	| acum |
+	acum := OrderedCollection with: self.
+	self financialAssets do: [ :aFinancialAsset | acum := aFinancialAsset allFinancialAsset].
+	^acum.! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 21:54:36' prior: 50870385!
+allFinancialAsset	
+	
+	| acum |
+	acum := OrderedCollection with: self.
+	self financialAssets do: [ :aFinancialAsset | acum addAllLast: aFinancialAsset allFinancialAsset].
+	^acum.! !
+!Portfolio methodsFor: 'explore financial assets - private' stamp: 'e d r r 5/25/2021 21:57:25' prior: 50870394!
+allFinancialAsset	
+	
+	| acum |
+	acum := OrderedCollection with: self.
+	self financialAssets do: [ :aFinancialAsset | 
+		(aFinancialAsset isKindOf: Portfolio) 
+			ifTrue: [acum addAllLast: aFinancialAsset allFinancialAsset]
+			ifFalse: [acum addLast: aFinancialAsset].
+		].
+	^acum.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 21:57:55' prior: 50870342!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
+	
+	| rootListOfFinancialAssets allFinancialAssetsOfTheFinancialAssetToInsert |
+	
+	rootListOfFinancialAssets := self getYourRootListOfFinancialAssets.
+	allFinancialAssetsOfTheFinancialAssetToInsert := self allFinancialAsset.
+	
+	(self includes: aFinancialAsset on: rootListOfFinancialAssets) ifTrue: 
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 22:06:06' prior: 50870416!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
+	
+	| rootListOfFinancialAssets allFinancialAssetsOfTheFinancialAssetToInsert |
+	
+	rootListOfFinancialAssets := self getYourRootListOfFinancialAssets.
+	(aFinancialAsset allFinancialAsset) anySatisfy: [:YYYelem | self includes: YYYelem on: rootListOfFinancialAssets].
+	"(self includes: aFinancialAsset on: rootListOfFinancialAssets) ifTrue: "
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 22:06:53' prior: 50870443!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
+	
+	| rootListOfFinancialAssets allFinancialAssetsOfTheFinancialAssetToInsert |
+	
+	rootListOfFinancialAssets := self getYourRootListOfFinancialAssets.
+	((aFinancialAsset allFinancialAsset) anySatisfy: [:YYYelem | self includes: YYYelem on: rootListOfFinancialAssets]) ifTrue:
+	"(self includes: aFinancialAsset on: rootListOfFinancialAssets) ifTrue: "
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 22:07:06' prior: 50870471!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
+	
+	| rootListOfFinancialAssets |
+	
+	rootListOfFinancialAssets := self getYourRootListOfFinancialAssets.
+	((aFinancialAsset allFinancialAsset) anySatisfy: [:YYYelem | self includes: YYYelem on: rootListOfFinancialAssets]) ifTrue:
+	"(self includes: aFinancialAsset on: rootListOfFinancialAssets) ifTrue: "
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 22:15:08' prior: 50870499!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
+	
+	| rootListOfFinancialAssets YYYCollection |
+	
+	rootListOfFinancialAssets := self getYourRootListOfFinancialAssets.
+	(aFinancialAsset isKindOf: Portfolio) 
+		ifTrue: [YYYCollection = aFinancialAsset allFinancialAsset] 
+		ifFalse: [YYYCollection := OrderedCollection with: aFinancialAsset].
+	((YYYCollection allFinancialAsset) anySatisfy: [:YYYelem | self includes: YYYelem on: rootListOfFinancialAssets]) ifTrue:
+	"(self includes: aFinancialAsset on: rootListOfFinancialAssets) ifTrue: "
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 22:15:30' prior: 50870526!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
+	
+	| rootListOfFinancialAssets YYYCollection |
+	
+	rootListOfFinancialAssets := self getYourRootListOfFinancialAssets.
+	(aFinancialAsset isKindOf: Portfolio) 
+		ifTrue: [YYYCollection := aFinancialAsset allFinancialAsset] 
+		ifFalse: [YYYCollection := OrderedCollection with: aFinancialAsset].
+	((YYYCollection allFinancialAsset) anySatisfy: [:YYYelem | self includes: YYYelem on: rootListOfFinancialAssets]) ifTrue:
+	"(self includes: aFinancialAsset on: rootListOfFinancialAssets) ifTrue: "
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+
+!testRun: #PortfolioTest #test10 stamp: 'e d r r 5/25/2021 22:15:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test10 stamp: 'e d r r 5/25/2021 22:15:56'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 22:16:36' prior: 50870559!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
+	
+	| rootListOfFinancialAssets YYYCollection |
+	
+	rootListOfFinancialAssets := self getYourRootListOfFinancialAssets.
+	(aFinancialAsset isKindOf: Portfolio) 
+		ifTrue: [YYYCollection := aFinancialAsset allFinancialAsset] 
+		ifFalse: [YYYCollection := OrderedCollection with: aFinancialAsset].
+	((YYYCollection) anySatisfy: [:YYYelem | self includes: YYYelem on: rootListOfFinancialAssets]) ifTrue:
+	"(self includes: aFinancialAsset on: rootListOfFinancialAssets) ifTrue: "
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 22:16:43' prior: 50870597!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
+	
+	| rootListOfFinancialAssets YYYCollection |
+	
+	rootListOfFinancialAssets := self getYourRootListOfFinancialAssets.
+	(aFinancialAsset isKindOf: Portfolio) 
+		ifTrue: [YYYCollection := aFinancialAsset allFinancialAsset] 
+		ifFalse: [YYYCollection := OrderedCollection with: aFinancialAsset].
+	(YYYCollection anySatisfy: [:YYYelem | self includes: YYYelem on: rootListOfFinancialAssets]) ifTrue:
+	"(self includes: aFinancialAsset on: rootListOfFinancialAssets) ifTrue: "
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+
+!testRun: #PortfolioTest #test10 stamp: 'e d r r 5/25/2021 22:16:54'!
+FAILURE!
+
+!testRun: #PortfolioTest #test10 stamp: 'e d r r 5/25/2021 22:16:54'!
+FAILURE!
+
+aFinancialAsset!
+
+YYYCollection!
+
+aFinancialAsset!
+
+YYYCollection!
+
+worklistOfFinancialAssets!
+
+worklistOfFinancialAssets!
+
+worklistOfFinancialAssets!
+
+aFinancialAssetToInsert!
+
+worklistOfFinancialAssets!
+
+aFinancialAssetToInsert!
+
+worklistOfFinancialAssets!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 22:24:36' prior: 50870629!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
+	
+	| rootListOfFinancialAssets YYYCollection |
+	
+	"rootListOfFinancialAssets := self getYourRootListOfFinancialAssets."
+	(aFinancialAsset isKindOf: Portfolio) 
+		ifTrue: [YYYCollection := aFinancialAsset allFinancialAsset] 
+		ifFalse: [YYYCollection := OrderedCollection with: aFinancialAsset].
+	(YYYCollection anySatisfy: [:YYYelem | self includes: YYYelem on: self getYourRootListOfFinancialAssets]) ifTrue:
+	"(self includes: aFinancialAsset on: rootListOfFinancialAssets) ifTrue: "
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+
+!testRun: #PortfolioTest #test10 stamp: 'e d r r 5/25/2021 22:24:45'!
+PASSED!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 22:37:06' prior: 50870674!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
+	
+	| YYYCollection |
+	
+	(aFinancialAsset isKindOf: Portfolio) 
+		ifTrue: [YYYCollection := aFinancialAsset allFinancialAsset] 
+		ifFalse: [YYYCollection := OrderedCollection with: aFinancialAsset].
+	(YYYCollection anySatisfy: [:YYYelem | | rootListOfFinancialAssets |
+		rootListOfFinancialAssets := self getYourRootListOfFinancialAssets.
+		self includes: YYYelem on: rootListOfFinancialAssets]) ifTrue:
+	"(self includes: aFinancialAsset on: rootListOfFinancialAssets) ifTrue: "
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+
+!testRun: #PortfolioTest #test10 stamp: 'e d r r 5/25/2021 22:37:15'!
+PASSED!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 23:01:22' prior: 50870709!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	"(parentFinancialAsset = nil) ifFalse: [ parentFinancialAsset includes: aFinancialAsset on: parentFinancialAsset financialAssets]."
+	
+	| YYYCollection |
+	
+	(aFinancialAsset isKindOf: Portfolio) 
+		ifTrue: [YYYCollection := aFinancialAsset allFinancialAsset] 
+		ifFalse: [YYYCollection := OrderedCollection with: aFinancialAsset].
+	(YYYCollection anySatisfy: [:YYYelem | | rootListOfFinancialAssets |
+		rootListOfFinancialAssets := self getYourRootListOfFinancialAssets.
+		self includes: YYYelem on: rootListOfFinancialAssets]) ifTrue:
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 23:01:57' prior: 50870744!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	| YYYCollection |
+	
+	(aFinancialAsset isKindOf: Portfolio) 
+		ifTrue: [YYYCollection := aFinancialAsset allFinancialAsset] 
+		ifFalse: [YYYCollection := OrderedCollection with: aFinancialAsset].
+	(YYYCollection anySatisfy: [:YYYelem | | rootListOfFinancialAssets |
+		rootListOfFinancialAssets := self getYourRootListOfFinancialAssets.
+		self includes: YYYelem on: rootListOfFinancialAssets]) ifTrue:
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 23:12:48' prior: 50870774!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	| treeOfAFinancialAssetToInsert  |
+	
+	(aFinancialAsset isKindOf: Portfolio) 
+		ifTrue: [treeOfAFinancialAssetToInsert := aFinancialAsset allFinancialAsset] 
+		ifFalse: [treeOfAFinancialAssetToInsert := OrderedCollection with: aFinancialAsset].
+	(treeOfAFinancialAssetToInsert anySatisfy: [:YYYelem | | rootListOfFinancialAssets |
+		rootListOfFinancialAssets := self getYourRootListOfFinancialAssets.
+		self includes: YYYelem on: rootListOfFinancialAssets]) ifTrue:
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 23:16:54' prior: 50870800!
+register: aFinancialAsset
+	"mejorar metodo includes: on: con self alcanza para obtener los financialAssets dentro del metodo"
+	
+	| treeOfAFinancialAssetToInsert  |
+	
+	(aFinancialAsset isKindOf: Portfolio) 
+		ifTrue: [treeOfAFinancialAssetToInsert := aFinancialAsset allFinancialAsset] 
+		ifFalse: [treeOfAFinancialAssetToInsert := OrderedCollection with: aFinancialAsset].
+	(treeOfAFinancialAssetToInsert anySatisfy: [:financialAssetOfTree | | rootListOfFinancialAssets |
+		rootListOfFinancialAssets := self getYourRootListOfFinancialAssets.
+		self includes: financialAssetOfTree on: rootListOfFinancialAssets]) ifTrue:
+		[ self error: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+	financialAssets add: aFinancialAsset.
+	aFinancialAsset setYourParentFinancialAssetWith: self.
+
+	! !
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'e d r r 5/25/2021 23:21:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'e d r r 5/25/2021 23:21:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'e d r r 5/25/2021 23:21:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'e d r r 5/25/2021 23:21:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'e d r r 5/25/2021 23:21:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'e d r r 5/25/2021 23:21:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts stamp: 'e d r r 5/25/2021 23:21:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndPortfolio stamp: 'e d r r 5/25/2021 23:21:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'e d r r 5/25/2021 23:21:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'e d r r 5/25/2021 23:21:52'!
+PASSED!
+!FinancialAsset methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 23:30:45'!
+parentFinancialAsset
+
+	self subclassResponsibility.! !
+
+!methodRemoval: FinancialAsset #ParentFinancialAsset stamp: 'e d r r 5/25/2021 23:30:45'!
+ParentFinancialAsset
+
+	self subclassResponsibility.!
+
+!testRun: #PortfolioTest #test01PortfolioHaveZeroAsBalanceWhenCreated stamp: 'e d r r 5/25/2021 23:31:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test02AccountIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'e d r r 5/25/2021 23:31:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test03PortfolioKnowsRegisteredTransactionsOfYourAccounts stamp: 'e d r r 5/25/2021 23:31:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioDoNotKnowNotRegisteredTransactionsOfYourAccounts stamp: 'e d r r 5/25/2021 23:31:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test05AccountBalanceIncreasesPortfolioBalanceValueOfYourTransactions stamp: 'e d r r 5/25/2021 23:31:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioKnowsRegisteredTransactionsOfYourAccountsAndYourPortfolios stamp: 'e d r r 5/25/2021 23:31:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test07CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfOnlyAccounts stamp: 'e d r r 5/25/2021 23:31:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test08CannotInsertARepeatedAccountOfTheSameCollaboratorInPortfolioOfAccountsAndPortfolio stamp: 'e d r r 5/25/2021 23:31:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'e d r r 5/25/2021 23:31:06'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'e d r r 5/25/2021 23:31:06'!
+PASSED!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 23:34:49'!
+test09PortfolioTransactionsWith2Accountsand3Deposits
+
+	| account1 account2 deposit1 deposit2 deposit3 portfolio|
+	
+	account1 := ReceptiveAccount new.
+	deposit1 := Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount new.
+	deposit2 := Deposit register: 200 on: account2.
+	deposit3 := Deposit register: 50 on: account2.
+		
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.		
+	
+	self assert: 1 equals: account1 transactions size.
+	self assert: (account1 transactions includes: deposit1).
+
+	self assert: 2 equals: account2 transactions size.
+	self assert: (account2 transactions includes: deposit2).
+	self assert: (account2 transactions includes: deposit3).
+	
+	self assert: 3 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit1).	
+	self assert: (portfolio transactions includes: deposit2).
+	self assert: (portfolio transactions includes: deposit3).
+! !
+
+!methodRemoval: PortfolioTest #test09 stamp: 'e d r r 5/25/2021 23:34:49'!
+test09
+
+	| account1 account2 deposit1 deposit2 deposit3 portfolio|
+	
+	account1 := ReceptiveAccount new.
+	deposit1 := Deposit register: 50 on: account1.
+	
+	account2 := ReceptiveAccount new.
+	deposit2 := Deposit register: 200 on: account2.
+	deposit3 := Deposit register: 50 on: account2.
+		
+	portfolio := Portfolio new.
+	portfolio register: account1.
+	portfolio register: account2.		
+	
+	self assert: 1 equals: account1 transactions size.
+	self assert: (account1 transactions includes: deposit1).
+
+	self assert: 2 equals: account2 transactions size.
+	self assert: (account2 transactions includes: deposit2).
+	self assert: (account2 transactions includes: deposit3).
+	
+	self assert: 3 equals: portfolio transactions size.
+	self assert: (portfolio transactions includes: deposit1).	
+	self assert: (portfolio transactions includes: deposit2).
+	self assert: (portfolio transactions includes: deposit3).
+!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'e d r r 5/25/2021 23:41:45'!
+test10CannotInsertAPortfolioWithRepeatedAccountInPortfolioWithEmptyPortfolioAndPortfolioWith1Account
+
+	| portfolioRoot portfolioChildWithAccount portfolioChildWithoutAccount portfolioToAddWithSameAccount account|
+
+	portfolioRoot := Portfolio new.
+	account :=  ReceptiveAccount new.
+  
+	portfolioChildWithoutAccount := Portfolio new.
+  
+	portfolioChildWithAccount := Portfolio new.
+	portfolioChildWithAccount register: account.
+  
+	portfolioToAddWithSameAccount := Portfolio new.
+	portfolioToAddWithSameAccount register: account.
+ 
+	portfolioRoot register: portfolioChildWithoutAccount . 
+	portfolioRoot register: portfolioChildWithAccount .
+	self 
+		should: [portfolioRoot register: portfolioToAddWithSameAccount]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+! !
+
+!methodRemoval: PortfolioTest #test10 stamp: 'e d r r 5/25/2021 23:41:45'!
+test10
+
+	| portfolioRoot portfolioChildWithAccount portfolioChildWithoutAccount portfolioToAddWithSameAccount account|
+
+	portfolioRoot := Portfolio new.
+	account :=  ReceptiveAccount new.
+  
+	portfolioChildWithoutAccount := Portfolio new.
+  
+	portfolioChildWithAccount := Portfolio new.
+	portfolioChildWithAccount register: account.
+  
+	portfolioToAddWithSameAccount := Portfolio new.
+	portfolioToAddWithSameAccount register: account.
+ 
+	portfolioRoot register: portfolioChildWithoutAccount . 
+	portfolioRoot register: portfolioChildWithAccount .
+	self 
+		should: [portfolioRoot register: portfolioToAddWithSameAccount]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: anError messageText equals: Portfolio attemptToInsertRepeatedFinancialAssetErrorDescription ].
+!
+
+----QUIT----(25 May 2021 23:42:08) CuisUniversity-4532.image priorSource: 17221223!
